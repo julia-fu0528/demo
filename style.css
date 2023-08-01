@@ -51,18 +51,25 @@ body{
     width:fit-content;
     position:relative;
     align-items:center;
-    display: inline-flex;
-    margin-top: 200px;
-    margin-bottom: 200px;
+    display: flex;
+    height: auto;
+    margin-top: -18%;
+    margin-left: 10px;
+    padding:0;
+    font-size: 15px;
 }
 .matrix-equation>span {
     position:relative;
-    top:1.4rem
+    top:0.4rem
 }
-
+.rotation-matrix-wrapper{
+    position: relative;
+    margin-left: 0;
+}
 .matrix {
 text-align: center;
  display:inline-grid;
+ float: left;
  grid-template-areas:"a a a" "b c d";
  grid-template-columns:1ch auto 1ch;
  gap:2ch .75ch
@@ -84,12 +91,15 @@ text-align: center;
     grid-area:a;
     font-size:.75rem;
     font-weight:325;
-    color:#000000
+    color:#000000; 
+    padding: 0;
+    margin-bottom: 0;
    }
-   .matrix-elements {
+ .matrix-elements {
+    margin-top: 0px;
     padding:.75ch .75ch;
     display:grid;
-    place-items:center;
+    place-items:left;
     grid-auto-flow:column;
     gap:.5ch 3ch
-   }
+}
