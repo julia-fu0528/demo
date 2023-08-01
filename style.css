@@ -1,14 +1,6 @@
 *{
     height: 100%;
 }
-html, body{
-    display: grid;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    place-items: center;
-    /* background: #664AFF; */
-}
 body{
     height: 100%;
     margin: 0;
@@ -43,33 +35,61 @@ body{
     margin-top: 0;
     margin-bottom: 0;
 }
-.range{
-    place-items: left;
-    height: 80px;
-    width: 380px;
-    background: #664AFF;
-    border-radius: 10px;
-    margin: 0 65px 0 640px;
-}
-.range .field{
-    position: relative;
+.slideContainer{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    flex-direction: row;
+    margin-left: 10px;
 }
-.range .field .value{
-    position: absolute;
-    font-size: 18px;
-    font-weight: 600;
-    color: #664AFF;
+.slidecontainer{
+    width: 20%;
 }
-.range .field input{
-    -webkit-appearane: none;
-    height: 3px;
-    width: 100%;
-    background: #ddd;
-    border-radius: 5px;
-    outline: none;
-    border: none;
+
+
+
+
+ #matrices-2d{
+    width:fit-content;
+    position:relative;
+    align-items:center;
+    display: inline-flex;
+    margin-top: 200px;
+    margin-bottom: 200px;
 }
+.matrix-equation>span {
+    position:relative;
+    top:1.4rem
+}
+
+.matrix {
+text-align: center;
+ display:inline-grid;
+ grid-template-areas:"a a a" "b c d";
+ grid-template-columns:1ch auto 1ch;
+ gap:2ch .75ch
+}
+
+.matrix:before,
+.matrix:after {
+ content:"";
+ font-size:.5rem;
+ border:1px solid #000000
+}
+.matrix:before {
+ border-right:none
+}
+.matrix:after {
+ border-left:none
+}
+.matrix-label {
+    grid-area:a;
+    font-size:.75rem;
+    font-weight:325;
+    color:#000000
+   }
+   .matrix-elements {
+    padding:.75ch .75ch;
+    display:grid;
+    place-items:center;
+    grid-auto-flow:column;
+    gap:.5ch 3ch
+   }
