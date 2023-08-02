@@ -37,7 +37,6 @@ rotateZMatrix.set(1, 0, 0,
 
 buildEventListeners();
 
-
 function buildEventListeners(){
     rotateXSlider.oninput = function(){
         let cos = Math.cos(rotateXSlider.value);
@@ -61,6 +60,7 @@ function buildEventListeners(){
 
         updateExtrinsicMatrix();
         updateCamMatrix();
+        updatePersMatrix();
     }
     rotateYSlider.oninput = function(){
       let cos = Math.cos(rotateYSlider.value);
@@ -70,6 +70,7 @@ function buildEventListeners(){
                         1 * sin.toFixed(2), 0, 1 * cos.toFixed(2));
       updateExtrinsicMatrix();
       updateCamMatrix();
+      updatePersMatrix();
     }
     rotateZSlider.oninput = function(){
       let cos = Math.cos(rotateZSlider.value);
@@ -79,6 +80,7 @@ function buildEventListeners(){
                         0, 0, 1)
       updateExtrinsicMatrix();
       updateCamMatrix();
+      updatePersMatrix();
     }
 }
 function updateExtrinsicMatrix(){
@@ -101,40 +103,50 @@ function updateExtrinsicMatrix(){
 }
 function updateCamMatrix() {
     let intrinsicMatrix = buildMatrix33( intrinsicMatrixHTML );
-    let extrinsicMatrix = buildMatrix34( extrinsicMatrixHTML );
+    let extrinsicMatrix = new THREE.Matrix4();
+    console.log(extrinsicMatrixHTML.elements);
+    extrinsicMatrix[0].innerHTML = 
+    extrinsicMatrix.set(extrinsicMatrixHTML.toArray[0],extrinsicMatrixHTML.toArray[3], extrinsicMatrixHTML.toArray[6],extrinsicMatrixHTML.toArray[9],
+                        extrinsicMatrixHTML.toArray[1],extrinsicMatrixHTML.toArray[4], extrinsicMatrixHTML.toArray[7],extrinsicMatrixHTML.toArray[10],
+                        extrinsicMatrixHTML.toArray[2],extrinsicMatrixHTML.toArray[5], extrinsicMatrixHTML.toArray[8],extrinsicMatrixHTML.toArray[11],
+                        extrinsicMatrixHTML.toArray[3],extrinsicMatrixHTML.toArray[6], extrinsicMatrixHTML.toArray[9],extrinsicMatrixHTML.toArray[12]);
     let matrix = intrinsicMatrix
     .multiply(extrinsicMatrix);
-    console.log(matrix.elements);
+    // console.log(matrix.toArray())
     for (let i = 0 ; i < 12 ; i ++){
       cameraMatrixHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
     }
-    
     // buildToHTML34(matrix, cameraMatrixHTML)
 }
 function updatePersMatrix(){
     let orthoMatrix = buildMatrix44(orthoMatrixHTML);
     let projMatrix = buildMatrix44(projMatrixHTML);
+    projMatrix.set(1, 0, 0, 0,
+                  0, 1, 0, 0,
+                  0, 0, Math.round(2/3 * 100) / 100, -1,
+                  0, 0, - Math.round(1/3 * 100) / 100, 0);
     let scaleMatrix = buildMatrix44(scaleMatrixHTML);
     let transMatrix = buildMatrix44(transMatrixHTML);
     let matrix = orthoMatrix
     .multiply(projMatrix)
     .multiply(scaleMatrix)
-    .multiply(transMatrix)
+    .multiply(transMatrix);
+    // for (let i = 0; i < 16; i ++){
+    //   persMatrixHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
+    // }
     buildToHTML44(matrix, persMatrixHTML);
 }
 function buildMatrix33(matrixHTML) {
     let ret = new THREE.Matrix4();
-
     let arr = []
     for (let i = 0; i < 9; i++) {
         arr[i] = Math.round(matrixHTML[i].innerHTML * 100) / 100;
     }
-
     ret.set (arr[0], arr[3], arr[6],  
              arr[1], arr[4], arr[7],  
              arr[2], arr[5], arr[8]);
-    
     return ret;
+
 }
 function buildMatrix34(matrixHTML) {
     let ret = new THREE.Matrix4();
