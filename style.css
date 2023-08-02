@@ -1,4 +1,4 @@
-*{
+/* *{
     height: 100%;
 }
 body{
@@ -102,4 +102,4 @@ text-align: center;
     place-items:left;
     grid-auto-flow:column;
     gap:.5ch 3ch
-}
+} */
