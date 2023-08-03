@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
 
 import * as THREE from 'three';
+// import * as np from 'numpy';
 
 const extrinsicMatrixHTML = document.getElementById('extrinsic').getElementsByTagName('span');
 const transMatrixHTML = document.getElementById('transformation').getElementsByTagName('span');
@@ -102,29 +103,25 @@ function updateExtrinsicMatrix(){
   transMatrixHTML[10].innerHTML = Math.round(elts[8] * 100) / 100;
 }
 function updateCamMatrix() {
-    let intrinsicMatrix = buildMatrix33( intrinsicMatrixHTML );
-    let extrinsicMatrix = new THREE.Matrix4();
-    console.log(extrinsicMatrixHTML.elements);
-    extrinsicMatrix[0].innerHTML = 
-    extrinsicMatrix.set(extrinsicMatrixHTML.toArray[0],extrinsicMatrixHTML.toArray[3], extrinsicMatrixHTML.toArray[6],extrinsicMatrixHTML.toArray[9],
-                        extrinsicMatrixHTML.toArray[1],extrinsicMatrixHTML.toArray[4], extrinsicMatrixHTML.toArray[7],extrinsicMatrixHTML.toArray[10],
-                        extrinsicMatrixHTML.toArray[2],extrinsicMatrixHTML.toArray[5], extrinsicMatrixHTML.toArray[8],extrinsicMatrixHTML.toArray[11],
-                        extrinsicMatrixHTML.toArray[3],extrinsicMatrixHTML.toArray[6], extrinsicMatrixHTML.toArray[9],extrinsicMatrixHTML.toArray[12]);
+    let intrinsicMatrix = buildMatrix3to4( intrinsicMatrixHTML );
+    let extrinsicMatrix = buildMatrix34( extrinsicMatrixHTML);
     let matrix = intrinsicMatrix
     .multiply(extrinsicMatrix);
-    // console.log(matrix.toArray())
-    for (let i = 0 ; i < 12 ; i ++){
-      cameraMatrixHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
+    // console.log(matrix.elements)
+    for (let i =0; i<12; i ++){
+      let row = i % 4;
+      let col = parseInt(i / 4);
+      cameraMatrixHTML[col * 3 + row].innerHTML = Math.round(matrix.elements[col * 4 + row] * 100) / 100
     }
-    // buildToHTML34(matrix, cameraMatrixHTML)
 }
 function updatePersMatrix(){
     let orthoMatrix = buildMatrix44(orthoMatrixHTML);
     let projMatrix = buildMatrix44(projMatrixHTML);
     projMatrix.set(1, 0, 0, 0,
-                  0, 1, 0, 0,
-                  0, 0, Math.round(2/3 * 100) / 100, -1,
-                  0, 0, - Math.round(1/3 * 100) / 100, 0);
+      0, 1, 0, 0,
+      0, 0, Math.round(2/3 * 100) / 100, -Math.round(1/3 * 100) / 100,
+      0, 0, - 1, 0);
+    console.log(projMatrix.elements)
     let scaleMatrix = buildMatrix44(scaleMatrixHTML);
     let transMatrix = buildMatrix44(transMatrixHTML);
     let matrix = orthoMatrix
@@ -137,7 +134,7 @@ function updatePersMatrix(){
     buildToHTML44(matrix, persMatrixHTML);
 }
 function buildMatrix33(matrixHTML) {
-    let ret = new THREE.Matrix4();
+    let ret = new THREE.Matrix3();
     let arr = []
     for (let i = 0; i < 9; i++) {
         arr[i] = Math.round(matrixHTML[i].innerHTML * 100) / 100;
@@ -147,6 +144,38 @@ function buildMatrix33(matrixHTML) {
              arr[2], arr[5], arr[8]);
     return ret;
 
+}
+function buildMatrix3to4(matrixHTML){
+  let ret = new THREE.Matrix4();
+  let arr = [];
+  // for (let i = 0; i < 3; i ++){
+  //   for (let j = 0; j < 3; j ++ ){
+  //     arr[i * 4 + j] = Math.round(matrixHTML[i * 3 + j].innerHTML * 100) / 100
+  //   }
+  //   arr[i * 4 + 3] = 0
+  // }
+  // for (let j = 0; j < 3; j ++ ){
+  //   arr[12 + j] = 0
+  // }
+  // arr[15] = 1;
+  for (let i = 0; i < 9; i++) {
+    arr[i] = Math.round(matrixHTML[i].innerHTML * 100) / 100;
+  }
+  ret.set(arr[0], arr[3], arr[6], 0, 
+          arr[1], arr[4], arr[7], 0,
+          arr[2], arr[5], arr[8], 0,
+          0, 0, 0, 1)
+  return ret;
+}
+function buildArray(matrixHTML, row, col){
+  let arr = []
+  for (let i = 0; i < row; i ++){
+    let section=[];
+    for (let j = 0; j < col; j ++ ){
+      section[j] = Math.round(matrixHTML[3*j+i] * 100) / 100;
+    }
+    arr[i] = section
+  }
 }
 function buildMatrix34(matrixHTML) {
     let ret = new THREE.Matrix4();
