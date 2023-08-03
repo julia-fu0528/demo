@@ -77,6 +77,18 @@ function buildEventListeners(){
       updateCamMatrix();
       updatePersMatrix();
     }
+    translateYSlider.oninput = function(){
+      extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
+      transMatrixHTML[13].innerHTML = translateYSlider.value;
+      updateCamMatrix();
+      updatePersMatrix();
+    }
+    translateZSlider.oninput = function(){
+      extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
+      transMatrixHTML[14].innerHTML = translateZSlider.value;
+      updateCamMatrix();
+      updatePersMatrix();
+    }
 }
 function updateExtrinsicMatrix(){
   let matrix = rotateXMatrix
