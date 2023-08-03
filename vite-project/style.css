@@ -103,3 +103,14 @@ border-left:none
   grid-auto-flow:column;
   gap:.5ch 3ch
 }
+
+.cam-canvas{
+  display: block;
+  float: right;
+  height: fit-content;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: clip;
+  position: relative;
+  border: 3px solid blue;
+}
