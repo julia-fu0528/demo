@@ -9,10 +9,11 @@ import * as THREE from 'three';
 const extrinsicMatrixHTML = document.getElementById('extrinsic').getElementsByTagName('span');
 const transMatrixHTML = document.getElementById('transformation').getElementsByTagName('span');
 const cameraMatrixHTML = document.getElementById('camera-proj').getElementsByTagName('span');
-const persMatrixHTML = document.getElementById('pers-proj').getElementsByTagName('span');
+const persProjMatrixHTML = document.getElementById('pers-proj').getElementsByTagName('span');
 
 const orthoMatrixHTML = document.getElementById('ortho-proj').getElementsByTagName('span');
 const projMatrixHTML = document.getElementById('proj-matrix').getElementsByTagName('span');
+const persMatrixHTML = document.getElementById('pers-matrix').getElementsByTagName('span');
 const scaleMatrixHTML = document.getElementById('scale-matrix').getElementsByTagName('span');
 const intrinsicMatrixHTML = document.getElementById('intrinsic').getElementsByTagName('span');
 
@@ -121,17 +122,15 @@ function updatePersMatrix(){
       0, 1, 0, 0,
       0, 0, Math.round(2/3 * 100) / 100, -Math.round(1/3 * 100) / 100,
       0, 0, - 1, 0);
-    console.log(projMatrix.elements)
+    let persMatrix = buildMatrix44(persMatrixHTML);
     let scaleMatrix = buildMatrix44(scaleMatrixHTML);
     let transMatrix = buildMatrix44(transMatrixHTML);
     let matrix = orthoMatrix
     .multiply(projMatrix)
+    .multiply(persMatrix)
     .multiply(scaleMatrix)
     .multiply(transMatrix);
-    // for (let i = 0; i < 16; i ++){
-    //   persMatrixHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
-    // }
-    buildToHTML44(matrix, persMatrixHTML);
+    buildToHTML44(matrix, persProjMatrixHTML);
 }
 function buildMatrix33(matrixHTML) {
     let ret = new THREE.Matrix3();
