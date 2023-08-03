@@ -46,19 +46,6 @@ function buildEventListeners(){
         rotateXMatrix.set(1, 0, 0, 
                           0, 1 * cos.toFixed(2), 1 * sin.toFixed(2),
                           0, -sin.toFixed(2), 1 * cos.toFixed(2));
-        // var r21 = parseInt(extrinsicMatrixHTML[1].innerHTML);
-        // var r22 = parseInt(extrinsicMatrixHTML[4].innerHTML);
-        // var r23 = parseInt(extrinsicMatrixHTML[7].innerHTML);
-        // var r31 = parseInt(extrinsicMatrixHTML[2].innerHTML);
-        // var r32 = parseInt(extrinsicMatrixHTML[5].innerHTML);
-        // var r33 = parseInt(extrinsicMatrixHTML[8].innerHTML);
-
-        // extrinsicMatrixHTML[1].innerHTML = (cos * r21 - sin * r31).toFixed(2);
-        // extrinsicMatrixHTML[4].innerHTML = (cos * r22 - sin * r32).toFixed(2);
-        // extrinsicMatrixHTML[7].innerHTML = (cos * r23 - sin * r33).toFixed(2);
-        // extrinsicMatrixHTML[2].innerHTML = (sin * r21 + cos * r31).toFixed(2);
-        // extrinsicMatrixHTML[5].innerHTML = (sin * r22 + cos * r32).toFixed(2);
-        // extrinsicMatrixHTML[8].innerHTML = (sin * r23 + cos * r33).toFixed(2);
 
         updateExtrinsicMatrix();
         updateCamMatrix();
@@ -81,6 +68,12 @@ function buildEventListeners(){
                         -sin.toFixed(2), 1 * cos.toFixed(2), 0, 
                         0, 0, 1)
       updateExtrinsicMatrix();
+      updateCamMatrix();
+      updatePersMatrix();
+    }
+    translateXSlider.oninput = function(){
+      extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
+      transMatrixHTML[12].innerHTML = translateXSlider.value;
       updateCamMatrix();
       updatePersMatrix();
     }
@@ -108,10 +101,9 @@ function updateCamMatrix() {
     let extrinsicMatrix = buildMatrix34( extrinsicMatrixHTML);
     let matrix = intrinsicMatrix
     .multiply(extrinsicMatrix);
-    // console.log(matrix.elements)
     for (let i =0; i<12; i ++){
-      let row = i % 4;
-      let col = parseInt(i / 4);
+      let row = i % 3;
+      let col = parseInt(i / 3);
       cameraMatrixHTML[col * 3 + row].innerHTML = Math.round(matrix.elements[col * 4 + row] * 100) / 100
     }
 }
