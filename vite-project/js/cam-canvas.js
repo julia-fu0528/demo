@@ -34,3 +34,17 @@ const renderer = new THREE.WebGLRenderer({canvas});
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(1);
 renderer.render(scene, camera);
+
+export function camRenderDots(arr){
+    for (let i = 0; i < arr.length - 1; i += 2){
+        const dotGeometry = new THREE.SphereGeometry(1, 64, 64)
+        const dotMaterial = new THREE.MeshStandardMaterial({
+            color: '#00ff40',
+            roughness: 0.3,
+        })
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial);
+        dot.position.set(arr[i], arr[i+1], 0);
+        scene.add(dot);
+    }
+    renderer.render(scene, camera);
+}
