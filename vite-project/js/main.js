@@ -4,6 +4,7 @@ import * as THREE from 'three';
 // import * as np from 'numpy';
 import * as CAM from './cam-canvas.js';
 import * as PERS from './pers-canvas.js';
+import * as WORLD from './world-points.js'
 
 const extrinsicMatrixHTML = document.getElementById('extrinsic').getElementsByTagName('span');
 const transMatrixHTML = document.getElementById('transformation').getElementsByTagName('span');
@@ -14,8 +15,6 @@ const persProjMatrixMapHTML = document.getElementById('pers-proj-map').getElemen
 
 const persPointsMatrixHTML = document.getElementById('pers-projected-points').getElementsByTagName('span');
 const camPointsMatrixHTML = document.getElementById('cam-projected-points').getElementsByTagName('span');
-const persWorldPointsHTML = document.getElementById('pers-world-points').getElementsByTagName('span');
-const camWorldPointsHTML = document.getElementById('cam-world-points').getElementsByTagName('span');
 
 const orthoMatrixHTML = document.getElementById('ortho-proj').getElementsByTagName('span');
 const projMatrixHTML = document.getElementById('proj-matrix').getElementsByTagName('span');
@@ -45,6 +44,7 @@ rotateZMatrix.set(1, 0, 0,
 
 CAM.start();
 PERS.start();
+WORLD.buildEventListeners();
 buildEventListeners();
 
 function buildEventListeners(){
@@ -172,7 +172,7 @@ function updatePersMatrix(){
 }
 function updatePersPoints(){
   let persMatrix = buildMatrix44(persProjMatrixMapHTML);
-  let persWorld = buildMatrix44(persWorldPointsHTML);
+  let persWorld = buildMatrix44(WORLD.persWorldPointsHTML);
   let matrix = persMatrix.multiply(persWorld);
   for (let i = 0; i < 4; i ++){
     persPointsMatrixHTML[3 * i].innerHTML = Math.round(matrix.elements[4 * i] * 100) / 100
@@ -182,7 +182,7 @@ function updatePersPoints(){
 }
 function updateCamPoints(){
   let camMatrix = buildMatrix34(cameraMatrixMapHTML);
-  let camWorld = buildMatrix44(camWorldPointsHTML);
+  let camWorld = buildMatrix44(WORLD.camWorldPointsHTML);
   let matrix = camMatrix.multiply(camWorld);
   for (let i = 0; i < 4 ; i ++){
     for (let j = 0; j < 3; j ++){
