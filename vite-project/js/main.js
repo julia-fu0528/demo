@@ -6,7 +6,9 @@ import * as THREE from 'three';
 const extrinsicMatrixHTML = document.getElementById('extrinsic').getElementsByTagName('span');
 const transMatrixHTML = document.getElementById('transformation').getElementsByTagName('span');
 const cameraMatrixHTML = document.getElementById('camera-proj').getElementsByTagName('span');
+const cameraMatrixMapHTML = document.getElementById('camera-proj-map').getElementsByTagName('span');
 const persProjMatrixHTML = document.getElementById('pers-proj').getElementsByTagName('span');
+const persProjMatrixMapHTML = document.getElementById('pers-proj-map').getElementsByTagName('span');
 
 const orthoMatrixHTML = document.getElementById('ortho-proj').getElementsByTagName('span');
 const projMatrixHTML = document.getElementById('proj-matrix').getElementsByTagName('span');
@@ -113,7 +115,8 @@ function updateCamMatrix() {
     for (let i =0; i<12; i ++){
       let row = i % 3;
       let col = parseInt(i / 3);
-      cameraMatrixHTML[col * 3 + row].innerHTML = Math.round(matrix.elements[col * 4 + row] * 100) / 100
+      cameraMatrixHTML[col * 3 + row].innerHTML = Math.round(matrix.elements[col * 4 + row] * 100) / 100;
+      cameraMatrixMapHTML[col * 3 + row].innerHTML = Math.round(matrix.elements[col * 4 + row] * 100) / 100
     }
 }
 function updatePersMatrix(){
@@ -132,6 +135,7 @@ function updatePersMatrix(){
     .multiply(scaleMatrix)
     .multiply(transMatrix);
     buildToHTML44(matrix, persProjMatrixHTML);
+    buildToHTML44(matrix, persProjMatrixMapHTML);
 }
 function buildMatrix33(matrixHTML) {
     let ret = new THREE.Matrix3();
