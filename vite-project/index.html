@@ -292,7 +292,27 @@
                     <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
                 </div>
                 <div class="input-points">
-                  <label for="first-x">First point: </label><input type="text" id="first-x" placeholder="Enter coordinates" maxlength="10">
+                  <h5> Enter a set of 3D world points for projection</h5>
+                  <div class="first-point">
+                    <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
+                    <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
+                    <input type="text" id="first-z" placeholder="Enter z" maxlength="10">
+                  </div>
+                  <div class="second-point">
+                    <label for="second">Second point: </label><input type="text" id="second-x" placeholder="Enter x" maxlength="10">
+                    <input type="text" id="second-y" placeholder="Enter y" maxlength="10">
+                    <input type="text" id="second-z" placeholder="Enter z" maxlength="10">
+                  </div>
+                  <div class="third-point">
+                    <label for="third">Third point: </label><input type="text" id="third-x" placeholder="Enter x" maxlength="10">
+                    <input type="text" id="third-y" placeholder="Enter y" maxlength="10">
+                    <input type="text" id="third-z" placeholder="Enter z" maxlength="10">
+                  </div>
+                  <div class="fourth-point">
+                    <label for="fourth">Fourth point: </label><input type="text" id="fourth-x" placeholder="Enter x" maxlength="10">
+                    <input type="text" id="fourth-y" placeholder="Enter y" maxlength="10">
+                    <input type="text" id="fourth-z" placeholder="Enter z" maxlength="10">
+                  </div>
                   <input type="button" id='coordinate' value="Submit">
                   <p class="output" id="output1"></p>
                 </div>
