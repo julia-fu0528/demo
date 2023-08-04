@@ -10,6 +10,11 @@ const cameraMatrixMapHTML = document.getElementById('camera-proj-map').getElemen
 const persProjMatrixHTML = document.getElementById('pers-proj').getElementsByTagName('span');
 const persProjMatrixMapHTML = document.getElementById('pers-proj-map').getElementsByTagName('span');
 
+const persPointsMatrixHTML = document.getElementById('pers-projected-points').getElementsByTagName('span');
+const camPointsMatrixHTML = document.getElementById('cam-projected-points').getElementsByTagName('span');
+const persWorldPointsHTML = document.getElementById('pers-world-points').getElementsByTagName('span');
+const camWorldPointsHTML = document.getElementById('cam-world-points').getElementsByTagName('span');
+
 const orthoMatrixHTML = document.getElementById('ortho-proj').getElementsByTagName('span');
 const projMatrixHTML = document.getElementById('proj-matrix').getElementsByTagName('span');
 const persMatrixHTML = document.getElementById('pers-matrix').getElementsByTagName('span');
@@ -49,6 +54,8 @@ function buildEventListeners(){
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
+        updatePersPoints();
+        updateCamPoints();
     }
     rotateYSlider.oninput = function(){
       let cos = Math.cos(rotateYSlider.value);
@@ -59,6 +66,8 @@ function buildEventListeners(){
       updateExtrinsicMatrix();
       updateCamMatrix();
       updatePersMatrix();
+      updatePersPoints();
+      updateCamPoints();
     }
     rotateZSlider.oninput = function(){
       let cos = Math.cos(rotateZSlider.value);
@@ -69,24 +78,32 @@ function buildEventListeners(){
       updateExtrinsicMatrix();
       updateCamMatrix();
       updatePersMatrix();
+      updatePersPoints();
+      updateCamPoints();
     }
     translateXSlider.oninput = function(){
       extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
       transMatrixHTML[12].innerHTML = translateXSlider.value;
       updateCamMatrix();
       updatePersMatrix();
+      updatePersPoints();
+      updateCamPoints();
     }
     translateYSlider.oninput = function(){
       extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
       transMatrixHTML[13].innerHTML = translateYSlider.value;
       updateCamMatrix();
       updatePersMatrix();
+      updatePersPoints();
+      updateCamPoints();
     }
     translateZSlider.oninput = function(){
       extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
       transMatrixHTML[14].innerHTML = translateZSlider.value;
       updateCamMatrix();
       updatePersMatrix();
+      updatePersPoints();
+      updateCamPoints();
     }
 }
 function updateExtrinsicMatrix(){
@@ -137,6 +154,26 @@ function updatePersMatrix(){
     buildToHTML44(matrix, persProjMatrixHTML);
     buildToHTML44(matrix, persProjMatrixMapHTML);
 }
+function updatePersPoints(){
+  let persMatrix = buildMatrix44(persProjMatrixMapHTML);
+  let persWorld = buildMatrix44(persWorldPointsHTML);
+  let matrix = persMatrix.multiply(persWorld);
+  for (let i = 0; i < 4; i ++){
+    persPointsMatrixHTML[3 * i].innerHTML = Math.round(matrix.elements[4 * i] * 100) / 100
+    persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(matrix.elements[4 * i + 1] * 100) / 100
+    persPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
+  }
+}
+function updateCamPoints(){
+  let camMatrix = buildMatrix34(cameraMatrixMapHTML);
+  let camWorld = buildMatrix44(camWorldPointsHTML);
+  let matrix = camMatrix.multiply(camWorld);
+  for (let i = 0; i < 4 ; i ++){
+    for (let j = 0; j < 3; j ++){
+      camPointsMatrixHTML[3 * i + j].innerHTML = Math.round(matrix.elements[4 * i + j] * 100) / 100;
+    }
+  }
+}
 function buildMatrix33(matrixHTML) {
     let ret = new THREE.Matrix3();
     let arr = []
@@ -152,16 +189,6 @@ function buildMatrix33(matrixHTML) {
 function buildMatrix3to4(matrixHTML){
   let ret = new THREE.Matrix4();
   let arr = [];
-  // for (let i = 0; i < 3; i ++){
-  //   for (let j = 0; j < 3; j ++ ){
-  //     arr[i * 4 + j] = Math.round(matrixHTML[i * 3 + j].innerHTML * 100) / 100
-  //   }
-  //   arr[i * 4 + 3] = 0
-  // }
-  // for (let j = 0; j < 3; j ++ ){
-  //   arr[12 + j] = 0
-  // }
-  // arr[15] = 1;
   for (let i = 0; i < 9; i++) {
     arr[i] = Math.round(matrixHTML[i].innerHTML * 100) / 100;
   }
@@ -171,16 +198,16 @@ function buildMatrix3to4(matrixHTML){
           0, 0, 0, 1)
   return ret;
 }
-function buildArray(matrixHTML, row, col){
-  let arr = []
-  for (let i = 0; i < row; i ++){
-    let section=[];
-    for (let j = 0; j < col; j ++ ){
-      section[j] = Math.round(matrixHTML[3*j+i] * 100) / 100;
-    }
-    arr[i] = section
-  }
-}
+// function buildArray(matrixHTML, row, col){
+//   let arr = []
+//   for (let i = 0; i < row; i ++){
+//     let section=[];
+//     for (let j = 0; j < col; j ++ ){
+//       section[j] = Math.round(matrixHTML[3*j+i] * 100) / 100;
+//     }
+//     arr[i] = section
+//   }
+// }
 function buildMatrix34(matrixHTML) {
     let ret = new THREE.Matrix4();
 

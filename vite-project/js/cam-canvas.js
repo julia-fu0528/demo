@@ -7,7 +7,7 @@ const sizes = {
     height: 350,
 }
 
-const geometry = new THREE.SphereGeometry(1, 64, 64)
+const geometry = new THREE.SphereGeometry(0.5, 64, 64)
 const material = new THREE.MeshStandardMaterial({
     color: '#00ff40',
     roughness: 0.3,
@@ -37,7 +37,7 @@ renderer.render(scene, camera);
 
 export function camRenderDots(arr){
     for (let i = 0; i < arr.length - 1; i += 2){
-        const dotGeometry = new THREE.SphereGeometry(1, 64, 64)
+        const dotGeometry = new THREE.SphereGeometry(0.5, 64, 64)
         const dotMaterial = new THREE.MeshStandardMaterial({
             color: '#00ff40',
             roughness: 0.3,
