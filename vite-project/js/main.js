@@ -2,6 +2,8 @@ import '../style.css'
 
 import * as THREE from 'three';
 // import * as np from 'numpy';
+import * as CAM from './cam-canvas.js';
+import * as PERS from './pers-canvas.js';
 
 const extrinsicMatrixHTML = document.getElementById('extrinsic').getElementsByTagName('span');
 const transMatrixHTML = document.getElementById('transformation').getElementsByTagName('span');
@@ -41,6 +43,8 @@ rotateZMatrix.set(1, 0, 0,
   0, 1, 0,
   0, 0, 1);
 
+CAM.start();
+PERS.start();
 buildEventListeners();
 
 function buildEventListeners(){
@@ -56,6 +60,8 @@ function buildEventListeners(){
         updatePersMatrix();
         updatePersPoints();
         updateCamPoints();
+        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
     }
     rotateYSlider.oninput = function(){
       let cos = Math.cos(rotateYSlider.value);
@@ -68,6 +74,8 @@ function buildEventListeners(){
       updatePersMatrix();
       updatePersPoints();
       updateCamPoints();
+      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
     }
     rotateZSlider.oninput = function(){
       let cos = Math.cos(rotateZSlider.value);
@@ -80,6 +88,8 @@ function buildEventListeners(){
       updatePersMatrix();
       updatePersPoints();
       updateCamPoints();
+      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
     }
     translateXSlider.oninput = function(){
       extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
@@ -88,6 +98,8 @@ function buildEventListeners(){
       updatePersMatrix();
       updatePersPoints();
       updateCamPoints();
+      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
     }
     translateYSlider.oninput = function(){
       extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
@@ -96,6 +108,8 @@ function buildEventListeners(){
       updatePersMatrix();
       updatePersPoints();
       updateCamPoints();
+      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
     }
     translateZSlider.oninput = function(){
       extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
@@ -104,6 +118,8 @@ function buildEventListeners(){
       updatePersMatrix();
       updatePersPoints();
       updateCamPoints();
+      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
     }
 }
 function updateExtrinsicMatrix(){
@@ -277,4 +293,13 @@ function buildToHTML34(mat, matrixHTML) {
     matrixHTML[9].innerHTML = arr[9];
     matrixHTML[10].innerHTML = arr[10];
     matrixHTML[11].innerHTML = arr[11];
+}
+function matrixToArray(matrixHTML){
+  // for projected points, + dehomogenization
+  let arr = [];
+  for (let i = 0; i < 4; i ++ ){
+    arr[2 * i] = matrixHTML[3 * i].innerHTML;
+    arr[2 * i + 1] = matrixHTML[3 * i + 1].innerHTML;
+  }
+  return arr;
 }
