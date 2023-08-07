@@ -9,17 +9,24 @@ body{
   font-size: 20px;
 }
 .pipeline{
-  display: block;
+  display:block;
   flex-direction: column;
-  position: relative;
+  /* position: relative; */
+  position: absolute;
   text-align: center;
   width: 100%;
 }
 #both{
-  height: auto;
+  /* display: flex; */
+  position: relative;
+  height: auto; 
 }
 h3{
   margin: 0;
+  z-index: 100;
+}
+#cam, #pers{
+  flex: 1;
 }
 #pers{
   float: top;
@@ -61,21 +68,29 @@ h3{
   margin-left: 10px;
   padding:0;
   font-size: 15px;
+  z-index: 3;
 }
 #matrices-2d{
   width:fit-content;
-  position:relative;
+  max-width: 60%;
+  /* position:flex; */
+  position: relative;
   align-items:center;
   display: flex;
   height: auto;
   margin-top: -23%;
   margin-left: 10px;
+  top: 0%;
   padding:0;
   font-size: 15px;
+  z-index: 3;
+  /* align-items: flex-start */
+  /* overflow: auto; */
 }
 .matrix-equation>span {
   position:relative;
-  top:1rem
+  top:1rem;
+  /* margin: 10px */
 }
 .rotation-matrix-wrapper{
   position: relative;
@@ -118,7 +133,18 @@ border-left:none
   grid-auto-flow:column;
   gap:.5ch 3ch
 }
-
+.canvas{
+  width: 40%;
+  max-height: 100%;
+  float: right;
+  position: absolute;
+  margin-top: 0;
+  margin-left: 59%;
+  padding: 0;
+  display:block;
+  top: 24%;
+  right: 1%;;
+}
 .cam-canvas, .pers-canvas{
   margin-top: -10%;
   display: block;
@@ -126,9 +152,11 @@ border-left:none
   height: fit-content;
   max-height: 100%;
   max-width: 100%;
+  width: fit-content;
   overflow: clip;
-  position: relative;
+  position: sticky;
   border: 3px solid blue;
+  z-index: 1;
 }
 .arrow{
   font-size: 20px;

@@ -1,3 +1,5 @@
+import * as CAM from './cam-canvas.js';
+import * as PERS from './pers-canvas.js';
 
 export const persWorldPointsHTML = document.getElementById('pers-world-points').getElementsByTagName('span');
 export const camWorldPointsHTML = document.getElementById('cam-world-points').getElementsByTagName('span');
@@ -20,7 +22,6 @@ const submit = document.getElementById('submit');
 function project(){
     // perspective projection matrix
     persWorldPointsHTML[0].innerHTML = firstX.value;
-    console.log(firstX.value);
     persWorldPointsHTML[1].innerHTML = firstY.value;
     persWorldPointsHTML[2].innerHTML = firstZ.value;
 
@@ -52,6 +53,15 @@ function project(){
     camWorldPointsHTML[12].innerHTML = fourthX.value;
     camWorldPointsHTML[13].innerHTML = fourthY.value;
     camWorldPointsHTML[14].innerHTML = fourthZ.value;
+
+    CAM.camRenderDots([firstX.value, firstY.value, 
+                        secondX.value, secondY.value,
+                    thirdX.value, thirdY.value,
+                        fourthX.value, fourthY.value]);
+    PERS.persRenderDots([firstX.value, firstY.value, 
+                        secondX.value, secondY.value,
+                    thirdX.value, thirdY.value,
+                        fourthX.value, fourthY.value]);              
 }
 
 export function buildEventListeners(){
