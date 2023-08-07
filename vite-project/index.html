@@ -15,7 +15,7 @@
         <div id="pers">
             <h3>Perspective Projection in Graphics</h3>
             
-            <div class="matrix-equation" id="matrices-2d">
+            <div class="matrix-equation pers-matrix-equation" id="matrices-2d">
                 <div id="rotation-matrix-wrapper">
                     <div class="matrix undefined" id="ortho-proj">
                       <div class="matrix-label" style="font-size: 14px;">Orthographic Projection Matrix</div>
@@ -183,7 +183,7 @@
               
               </canvas>
             </div>
-              <div class="matrix-equation" id="dot-mapping">
+              <div class="matrix-equation pers-dot-mapping" id="dot-mapping">
                 
                 <div id="rotation-matrix-wrapper">
                     <div class="matrix undefined" id="pers-proj-map">
@@ -211,7 +211,7 @@
                        </div>
                     </div>
                   </div>
-                  <span class="big">·</span>
+                  <span class="big map-span">·</span>
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="pers-world-points">
                   <div class="matrix-label" style="font-size: 14px;">World Points</div>
@@ -239,7 +239,7 @@
                    </div>
                 </div>
               </div>
-              <p>
+              <p class="drop-z">
                 <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <mo>→</mo>
                   <mrow>
@@ -248,8 +248,8 @@
                   <mo>→</mo>
                 </math>
               </p>
-              <span id="pers-coefficient">1</span>
-              <span class="big">·</span>
+              <span class="map-span" id="pers-coefficient">1</span>
+              <span class="big map-span">·</span>
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="pers-projected-points">
                   <div class="matrix-label" style="font-size: 14px;">Projected Points</div>
@@ -330,7 +330,7 @@
         </div>
         <div id="cam">
             <h3>Camera Projection in Vision</h3>
-            <div class="matrix-equation" id="matrices-2d">
+            <div class="matrix-equation cam-matrix-equation" id="matrices-2d">
                 <div id="rotation-matrix-wrapper">
                     <div class="matrix undefined" id="intrinsic">
                       <div class="matrix-label" style="font-size: 14px;">Intrinsic Matrix</div>
@@ -405,7 +405,7 @@
               
               </canvas>
             </div>
-            <div class="matrix-equation" id="dot-mapping">
+            <div class="matrix-equation cam-dot-mapping" id="dot-mapping">
                 
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="camera-proj-map">
@@ -430,7 +430,7 @@
                    </div>
                 </div>
               </div>
-              <span class="big">·</span>
+              <span class="big map-span">·</span>
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="cam-world-points">
                   <div class="matrix-label" style="font-size: 14px;">World Points</div>
@@ -458,9 +458,9 @@
                    </div>
                 </div>
               </div>
-              <span class="equal">=</span>
-              <span id="cam-coefficient">1</span>
-              <span class="big">·</span>
+              <span class="equal map-span">=</span>
+              <span class="map-span" id="cam-coefficient">1</span>
+              <span class="big map-span">·</span>
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="cam-projected-points">
                   <div class="matrix-label" style="font-size: 14px;">Projected Points</div>

@@ -33,19 +33,9 @@ const translateZSlider = document.getElementById('translateZ')
 const persZ = document.getElementById('pers-coefficient')
 const camZ = document.getElementById('cam-coefficient')
 
-
-let rotateXMatrix = new THREE.Matrix3();
-rotateXMatrix.set(1, 0, 0, 
-                  0, 1, 0,
-                  0, 0, 1);
-let rotateYMatrix = new THREE.Matrix3();
-rotateYMatrix.set(1, 0, 0, 
-  0, 1, 0,
-  0, 0, 1);
-let rotateZMatrix = new THREE.Matrix3();
-rotateZMatrix.set(1, 0, 0, 
-  0, 1, 0,
-  0, 0, 1);
+let rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1);
+let rotateYMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1).clone();
+let rotateZMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1).clone();
 
 CAM.start();
 PERS.start();
@@ -56,10 +46,10 @@ function buildEventListeners(){
     rotateXSlider.oninput = function(){
         let cos = Math.cos(rotateXSlider.value);
         let sin = Math.sin(rotateXSlider.value);
-        rotateXMatrix.set(1, 0, 0, 
+        rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
                           0, 1 * cos.toFixed(2), 1 * sin.toFixed(2),
-                          0, -sin.toFixed(2), 1 * cos.toFixed(2));
-        console.log(rotateXMatrix.elements)
+                          0, - sin.toFixed(2), 1 * cos.toFixed(2));
+        // console.log(rotateXMatrix.elements)
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
@@ -71,9 +61,9 @@ function buildEventListeners(){
     rotateYSlider.oninput = function(){
       let cos = Math.cos(rotateYSlider.value);
       let sin = Math.sin(rotateYSlider.value);
-      rotateYMatrix.set(1 * cos.toFixed(2), 0, -sin.toFixed(2),
+      rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, - sin.toFixed(2),
                         0, 1, 0,
-                        1 * sin.toFixed(2), 0, 1 * cos.toFixed(2));
+                        1 *  sin.toFixed(2), 0, 1 * cos.toFixed(2));
       updateExtrinsicMatrix();
       updateCamMatrix();
       updatePersMatrix();
@@ -85,8 +75,8 @@ function buildEventListeners(){
     rotateZSlider.oninput = function(){
       let cos = Math.cos(rotateZSlider.value);
       let sin = Math.sin(rotateZSlider.value);
-      rotateZMatrix.set(1 * cos.toFixed(2), 1 * sin.toFixed(2), 0, 
-                        -sin.toFixed(2), 1 * cos.toFixed(2), 0, 
+      rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 1 * sin.toFixed(2), 0, 
+                        - sin.toFixed(2), 1 * cos.toFixed(2), 0, 
                         0, 0, 1)
       updateExtrinsicMatrix();
       updateCamMatrix();
@@ -128,6 +118,9 @@ function buildEventListeners(){
     }
 }
 function updateExtrinsicMatrix(){
+  console.log(rotateXMatrix.elements)
+  console.log(rotateYMatrix.elements)
+  console.log(rotateZMatrix.elements)
   let matrix = rotateXMatrix
   .multiply(rotateYMatrix)
   .multiply(rotateZMatrix)
@@ -150,6 +143,7 @@ function updateCamMatrix() {
     let extrinsicMatrix = buildMatrix34( extrinsicMatrixHTML);
     let matrix = intrinsicMatrix
     .multiply(extrinsicMatrix);
+    // (matrix.elements)
     for (let i =0; i<12; i ++){
       let row = i % 3;
       let col = parseInt(i / 3);
@@ -200,8 +194,8 @@ function updateCamPoints(){
     let x = matrix.elements[4 * i];
     let y = matrix.elements[4 * i + 1];
     let z = matrix.elements[4 * i + 2];
-    camPointsMatrixHTML[3 * i].innerHTML = Math.round(x / z * 100) / 100 ;
-    camPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y / z * 100) / 100;
+    camPointsMatrixHTML[3 * i].innerHTML = Math.round(x / z  * 100) / 100 ;
+    camPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y / z  * 100) / 100;
     camZ.innerHTML = Math.round(z * 100) / 100;
     // camPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 2] * 100) / 100;
   }

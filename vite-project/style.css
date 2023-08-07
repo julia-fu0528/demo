@@ -3,6 +3,7 @@
 }
 body{
   height: 100%;
+  overflow: auto;
   margin: 0;
   padding: 0;
   font-family:Arial, Helvetica, sans-serif;
@@ -18,8 +19,12 @@ body{
 }
 #both{
   /* display: flex; */
-  position: relative;
-  height: auto; 
+  /* position: relative; */
+  position: absolute;
+  top: 38%;
+  height: fit-content; 
+  max-height: 100%;
+  margin-bottom: 20px;
 }
 h3{
   margin: 0;
@@ -29,23 +34,28 @@ h3{
   flex: 1;
 }
 #pers{
-  float: top;
-  position: relative; 
+  /* position: relative;  */
+  position: absolute;
   width: 100%;
-  height: 34%;
-  border: 1px solid black;
-  margin: 0;
+  height: 37%;
+  /* height: fit-content; */
+  border-bottom: 4px double rgb(56, 162, 100);
+  top: 0px;;
+  left: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 0;
 }
 #cam{
-  float: bottom;
-  position: relative;
+  /* position: relative; */
+  position: absolute;
   width: 100%;
   height: 34%;
-  border: 1px solid black;
+  border-top: 4px double rgb(56, 162, 100);
   margin-right: 0;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 10px;
+  top: 65%;
 }
 .slideContainer{
   display: flex;
@@ -60,37 +70,67 @@ h3{
 
 #dot-mapping{
   width:fit-content;
-  position:absolute;
-  align-items:center;
-  display: flex;
+  max-width: 60%;
+  position: relative;
+  align-items:left;
+  display: inline-flex;
   height: auto;
-  margin-top: 3%;
-  margin-left: 10px;
+  width: 900px;
+  top: -80%;
+  right: 23%;
   padding:0;
   font-size: 15px;
   z-index: 3;
 }
+.pers-dot-mapping{
+  margin-right: -10%;
+}
+.cam-dot-mapping{
+  margin-right: -10%
+}
 #matrices-2d{
   width:fit-content;
-  max-width: 60%;
-  /* position:flex; */
+  max-width: 50%;
+  /* position: relative; */
   position: relative;
-  align-items:center;
-  display: flex;
+  align-items:left;
+  display: inline-flex;
   height: auto;
-  margin-top: -23%;
-  margin-left: 10px;
-  top: 0%;
+  width: 900px;
+  /* height: 35%; */
+  /* margin-top: -23%; */
+  /* margin-top:10px;
+  margin-bottom: 10%; */
+  /* margin-left: 10px; */
+  /* top: -300px;
+  left: -200px; */
+  top: -85%;
+  right: 10%;
   padding:0;
   font-size: 15px;
   z-index: 3;
   /* align-items: flex-start */
   /* overflow: auto; */
 }
+.pers-matrix-equation{
+  margin-right: 27%
+}
+.cam-matrix-equation{
+  margin-right: 26.5%;
+}
 .matrix-equation>span {
   position:relative;
-  top:1rem;
+  /* top:1rem; */
+  top: 4rem;
   /* margin: 10px */
+}
+.map-span{
+  position: absolute;
+  top: 10px;
+}
+.drop-z{
+  position: relative;
+  top: 3rem;
 }
 .rotation-matrix-wrapper{
   position: relative;
@@ -134,7 +174,7 @@ border-left:none
   gap:.5ch 3ch
 }
 .canvas{
-  width: 40%;
+  width: 30%;
   max-height: 100%;
   float: right;
   position: absolute;
@@ -142,7 +182,7 @@ border-left:none
   margin-left: 59%;
   padding: 0;
   display:block;
-  top: 24%;
+  top: 21.5%;
   right: 1%;;
 }
 .cam-canvas, .pers-canvas{

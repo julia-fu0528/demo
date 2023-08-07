@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { Scene } from 'three';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
@@ -13,19 +14,21 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(1);
 
 const camera = new THREE.PerspectiveCamera(80, sizes.width/sizes.height, 0.1, 100);
-camera.position.set(0, 20, 0)
+camera.position.set(0, 0, 20)
 camera.lookAt(0,0, 0)
 scene.add(camera) 
+// const controls = new OrbitControls(camera, renderer.domElement);
 
 export function start(){
     
-    const light = new THREE.AmbientLight(0xffffff,1, 100 );
+    const light = new THREE.AmbientLight(0xffffff,0.0001, 10000 );
     light.position.set(0, 10, 10)
     light.intensity = 1
     scene.add(light)
 
     const gridHelper = new THREE.GridHelper(60, 30);
     gridHelper.material.color.set('#ff0000');
+    gridHelper.rotation.x = Math.PI/2;
     scene.add(gridHelper);
     renderer.render(scene, camera);
 }
@@ -55,7 +58,7 @@ export function camRenderDots(arr){
             roughness: 0.3,
         })
         const dot = new THREE.Mesh(dotGeometry, dotMaterial);
-        dot.position.set(arr[i], 0, -arr[i+1]);
+        dot.position.set(arr[i], arr[i+1], 0);
         scene.add(dot);
     }
     renderer.render(scene, camera);
