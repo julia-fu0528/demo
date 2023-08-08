@@ -18,12 +18,18 @@
         <div class="slideContainer">
           <div class="rotation">
               <div class="slidecontainer" id="rotation-sliders">
-                  <p>Rotation around x axis</p>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateX" class="slider">
-                  <p>Rotation around y axis</p>
+                  <p class="value"><span id='rotateX-val'>Rotation around x axis: 0</span>&#8508;</p>
+                  <div class="val-left">0</div>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateX" class="slider">
+                  <div class="val-right">2<span>&#8508;</span></div>
+                  <p class="value"><span id='rotateY-val'>Rotation around y axis: 0</span>&#8508;</p>
+                  <div class="val-left">0</div>
                   <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
-                  <p>Rotation around z axis</p>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateZ" class="slider">
+                  <div class="val-right">2<span>&#8508;</span></div>
+                  <p class="value"><span id='rotateZ-val'>Rotation around z axis: 0</span>&#8508;</p>
+                  <div class="val-left">0</div>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateZ" class="slider">
+                  <div class="val-right">2<span>&#8508;</span></div>
               </div>
               <button id="reset-rot-button" type="button"
               style="width: 150px; height: 25px; font-size: 17px;">
@@ -32,13 +38,19 @@
               </div>
             <div class="translation">
               <div class="slidecontainer" id="translation-sliders">
-                  <p>Translation in x direction</p>
+                  <p id="transX-val">Translation in x direction</p>
+                  <div class="val-left">-10</div>
                   <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
-                  <p>Translation in y direction</p>
+                  <div class="val-right">10</div>
+                  <p id="transY-val">Translation in y direction</p>
+                  <div class="val-left">-10</div>
                   <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
-                  <p>Translation in z direction</p>
+                  <div class="val-right">10</div>
+                  <p id="transZ-val">Translation in z direction</p>
+                  <div class="val-left">-10</div>
                   <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
-              </div>
+                  <div class="val-right">10</div>
+                </div>
               <button id="reset-trans-button" type="button"
               style="width: 150px; height: 25px; font-size: 17px;">
                 Reset Translation

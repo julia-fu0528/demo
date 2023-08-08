@@ -36,6 +36,13 @@ const camZ = document.getElementById('cam-coefficient')
 const resetRotButton = document.getElementById('reset-rot-button')
 const resetTransButton = document.getElementById('reset-trans-button')
 
+var rotateXVal =  document.getElementById('rotateX-val')
+var rotateYVal =  document.getElementById('rotateY-val')
+var rotateZVal =  document.getElementById('rotateZ-val')
+var transXVal =  document.getElementById('transX-val')
+var transYVal =  document.getElementById('transY-val')
+var transZVal =  document.getElementById('transY-val')
+
 let rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1);
 let rotateYMatrix = rotateXMatrix.clone();
 let rotateZMatrix = rotateYMatrix.clone();
@@ -51,6 +58,7 @@ function buildEventListeners(){
         if (WORLD.pointsUnready()){
           WORLD.alertPoint();
         }else{
+          rotateXVal.innerHTML = "Rotation around x axis: " + rotateXSlider.value;
           let cos = Math.cos(rotateXSlider.value);
           let sin = Math.sin(rotateXSlider.value);
           rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
@@ -70,6 +78,7 @@ function buildEventListeners(){
       if (WORLD.pointsUnready()){
         WORLD.alertPoint();
       }else{
+        rotateYVal.innerHTML = "Rotation around y axis: " + rotateYSlider.value;
         let cos = Math.cos(rotateYSlider.value);
         let sin = Math.sin(rotateYSlider.value);
         rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, 1 *  sin.toFixed(2),
@@ -88,6 +97,7 @@ function buildEventListeners(){
       if (WORLD.pointsUnready()){
         WORLD.alertPoint();
       }else{
+        rotateZVal.innerHTML = "Rotation around z axis: " + rotateZSlider.value;
         let cos = Math.cos(rotateZSlider.value);
         let sin = Math.sin(rotateZSlider.value);
         rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), - sin.toFixed(2), 0, 
@@ -103,6 +113,10 @@ function buildEventListeners(){
       }
     } 
     resetRotButton.onclick = function(){
+      rotateXVal.innerHTML = "Rotation around x axis: 0";
+      rotateYVal.innerHTML = "Rotation around y axis: 0";
+      rotateZVal.innerHTML = "Rotation around z axis: 0";
+
       rotateXSlider.value = 0;
       rotateYSlider.value = 0;
       rotateZSlider.value = 0;
@@ -123,6 +137,7 @@ function buildEventListeners(){
       if (WORLD.pointsUnready()){
         WORLD.alertPoint();
       }else{
+        transXVal.innerHTML = "Translation in x direction: " + translateXSlider.value;
         extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
         transMatrixHTML[12].innerHTML = translateXSlider.value;
         updateCamMatrix();
@@ -137,6 +152,7 @@ function buildEventListeners(){
       if (WORLD.pointsUnready()){
         WORLD.alertPoint();
       }else{
+        transYVal.innerHTML = "Translation in y direction: " + translateYSlider.value;
         extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
         transMatrixHTML[13].innerHTML = translateYSlider.value;
         updateCamMatrix();
@@ -151,6 +167,7 @@ function buildEventListeners(){
       if (WORLD.pointsUnready()){
         WORLD.alertPoint();
       }else{
+        transZVal.innerHTML = "Translation in z direction: " + translateZSlider.value;
         extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
         transMatrixHTML[14].innerHTML = translateZSlider.value;
         updateCamMatrix();
@@ -162,6 +179,9 @@ function buildEventListeners(){
       }
     }
     resetTransButton.onclick = function(){
+      transXVal.innerHTML = "Translation in x direction: 0";
+      transYVal.innerHTML = "Translation in y direction: 0";
+      transZVal.innerHTML = "Translation in z direction: 0";
       translateXSlider.value = 0;
       translateYSlider.value = 0;
       translateZSlider.value = 0;
