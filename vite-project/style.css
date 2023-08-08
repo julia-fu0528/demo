@@ -20,40 +20,40 @@ body{
 #both{
   /* display: flex; */
   /* position: relative; */
-  position: absolute;
+  position: relative;
   top: 0%;
   height: fit-content; 
   max-height: 100%;
   margin-bottom: 20px;
+  border-bottom: 4px double rgb(56, 162, 100);
 }
-h3{
-  margin: 0;
-  z-index: 100;
-}
+
 #cam, #pers{
   flex: 1;
 }
 #pers{
-  /* position: relative;  */
-  position: absolute;
+  position: static; 
+  /* position: absolute; */
   width: 100%;
-  height: 37%;
-  /* height: fit-content; */
-  border-top: 4px double rgb(56, 162, 100);
-  top: 40%;;
+  /* height: 37%; */
+  height: fit-content;
+  /* border-top: 4px double rgb(56, 162, 100); */
+  top: 40%;
   left: 0px;
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 20px;
   padding: 0;
+  padding-top: 20px;
+  flex-direction: row;
 }
 #cam{
-  /* position: relative; */
-  position: absolute;
+  position: static;
   width: 100%;
-  height: 34%;
+  height: fit-content;
   border-top: 4px double rgb(56, 162, 100);
   margin-right: 0;
   margin-top: 0;
+  padding-top: 10px;
   margin-bottom: 10px;
   top: 80%;
 }
@@ -70,7 +70,7 @@ h3{
 
 #dot-mapping{
   width:fit-content;
-  max-width: 60%;
+  max-width: 50%;
   position: relative;
   align-items:left;
   display: inline-flex;
@@ -83,10 +83,14 @@ h3{
   z-index: 3;
 }
 .pers-dot-mapping{
-  margin-right: -10%;
+  margin-right: 0%;
 }
 .cam-dot-mapping{
-  margin-right: -10%
+  margin-right: 0%
+}
+.matrices-equations{
+  width: fit-content;
+  max-width: 70%;
 }
 #matrices-2d{
   width:fit-content;
@@ -111,6 +115,7 @@ h3{
   z-index: 3;
   /* align-items: flex-start */
   /* overflow: auto; */
+  padding-bottom: 20px;
 }
 .pers-matrix-equation{
   margin-right: 27%
@@ -173,30 +178,54 @@ border-left:none
   grid-auto-flow:column;
   gap:.5ch 3ch
 }
-.canvas{
-  width: 30%;
+.canvas, .canvas-for-pers, .canvas-for-cam{
+  /* height: fit-content;
   max-height: 100%;
-  float: right;
+  float: right; */
   position: absolute;
-  margin-top: 0;
+  /* margin-top: -10%; */
+  /* margin-block: 0%; */
   margin-left: 59%;
   padding: 0;
-  display:block;
-  top: 21.5%;
-  right: 1%;;
+  /* display:block; */
+  top: 50%;
+  transform: translateY(-5%);
+  right: 1%;
+}
+.canvas-for-pers, .canvas-for-cam{
+  position: absolute;
+}
+.canvas-for-cam{
+  top: 63%;
+  padding-top: 10%;
+  right: 1%;
+}
+.canvas-for-pers{
+  top: 43%;
 }
 .cam-canvas, .pers-canvas{
-  margin-top: -10%;
-  display: block;
-  float: right;
-  height: fit-content;
+  /* margin-top: -10%; */
+  /* display: block; */
+  display:inline-block;
+  /* float: right; */
+  /* height: fit-content; */
+  height: 100%;
   max-height: 100%;
   max-width: 100%;
-  width: fit-content;
-  overflow: clip;
-  position: sticky;
+  /* width: fit-content; */
+  width: auto;
+  overflow: hidden;
+  /* position:sticky; */
+  position:relative;
   border: 3px solid blue;
   z-index: 1;
+  top: 0px;
+  left: 0%;
+  margin-bottom: 10px;
+}
+
+.cam-canvas{
+  bottom: 10px;
 }
 .arrow{
   font-size: 20px;
@@ -218,4 +247,9 @@ input[type=button]{
 }
 h5{
   color: blue;
+}
+h3{
+  margin: 0px;
+  z-index: 100;
+  padding-bottom: 10px;
 }

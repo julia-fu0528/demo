@@ -12,9 +12,63 @@
 </head>
 <body>
     <div class="pipeline">
+      <div id="both">
+        <h1>Perspective Projection Matrix | Camera Projection Matrix</h1>
+        <h3>Global Parameters</h3>
+        <div class="slideContainer">
+            <div class="slidecontainer" id="rotation-sliders">
+                <p>Rotation around x axis</p>
+                <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateX" class="slider">
+                <p>Rotation around y axis</p>
+                <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
+                <p>Rotation around z axis</p>
+                <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateZ" class="slider">
+            </div>
+            <div class="slidecontainer" id="translation-sliders">
+                <p>Translation in x direction</p>
+                <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
+                <p>Translation in y direction</p>
+                <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
+                <p>Translation in z direction</p>
+                <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
+            </div>
+            <div class="input-points">
+              <h5> Enter a set of 3D world points for projection</h5>
+              <div class="first-point">
+                <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
+                <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
+                <input type="text" id="first-z" placeholder="Enter z" maxlength="10">
+              </div>
+              <div class="second-point">
+                <label for="second">Second point: </label><input type="text" id="second-x" placeholder="Enter x" maxlength="10">
+                <input type="text" id="second-y" placeholder="Enter y" maxlength="10">
+                <input type="text" id="second-z" placeholder="Enter z" maxlength="10">
+              </div>
+              <div class="third-point">
+                <label for="third">Third point: </label><input type="text" id="third-x" placeholder="Enter x" maxlength="10">
+                <input type="text" id="third-y" placeholder="Enter y" maxlength="10">
+                <input type="text" id="third-z" placeholder="Enter z" maxlength="10">
+              </div>
+              <div class="fourth-point">
+                <label for="fourth">Fourth point: </label><input type="text" id="fourth-x" placeholder="Enter x" maxlength="10">
+                <input type="text" id="fourth-y" placeholder="Enter y" maxlength="10">
+                <input type="text" id="fourth-z" placeholder="Enter z" maxlength="10">
+              </div>
+              <input type="button" id='submit' value="Submit">
+            </div>
+            <div class="constants">
+                <p>fx = fy = 1</p>
+                <p>s = 0</p>
+                <p>far = 1</p>
+                <p> near = 1/2</p>
+                <p> tan (<sup>θ<sub>x</sub></sup>/<sub>2</sub>) = tan (<sup>θ<sub>y</sub></sup>/<sub>2</sub>) = 1</p>
+                where θ<sub>x</sub> and θ<sub>y</sub> are the angles of view along the x and y axes, respectively. 
+            </div>
+        </div>
+    </div>
         <div id="pers">
             <h3>Perspective Projection in Graphics</h3>
-            
+            <div class="matrices-equations">
             <div class="matrix-equation pers-matrix-equation" id="matrices-2d">
                 <div id="rotation-matrix-wrapper">
                     <div class="matrix undefined" id="ortho-proj">
@@ -178,11 +232,7 @@
                     </div>
                   </div>
             </div>
-            <div class="canvas">
-              <canvas  class="pers-canvas" id="shear-2d-cross-section-canvas" width="400" height="150">
-              
-              </canvas>
-            </div>
+            
               <div class="matrix-equation pers-dot-mapping" id="dot-mapping">
                 
                 <div id="rotation-matrix-wrapper">
@@ -273,65 +323,21 @@
                    </div>
                 </div>
               </div>
+              
+            </div>
+          </div>
+            <div class="canvas canvas-for-pers">
+              <canvas  class="pers-canvas" id="shear-2d-cross-section-canvas" width="400" height="150">
+              
+              </canvas>
             </div>
         </div>
         
-        <div id="both">
-            <h1>Perspective Projection Matrix | Camera Projection Matrix</h1>
-            <h3>Global Parameters</h3>
-            <div class="slideContainer">
-                <div class="slidecontainer" id="rotation-sliders">
-                    <p>Rotation around x axis</p>
-                    <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateX" class="slider">
-                    <p>Rotation around y axis</p>
-                    <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
-                    <p>Rotation around z axis</p>
-                    <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateZ" class="slider">
-                </div>
-                <div class="slidecontainer" id="translation-sliders">
-                    <p>Translation in x direction</p>
-                    <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
-                    <p>Translation in y direction</p>
-                    <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
-                    <p>Translation in z direction</p>
-                    <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
-                </div>
-                <div class="input-points">
-                  <h5> Enter a set of 3D world points for projection</h5>
-                  <div class="first-point">
-                    <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
-                    <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
-                    <input type="text" id="first-z" placeholder="Enter z" maxlength="10">
-                  </div>
-                  <div class="second-point">
-                    <label for="second">Second point: </label><input type="text" id="second-x" placeholder="Enter x" maxlength="10">
-                    <input type="text" id="second-y" placeholder="Enter y" maxlength="10">
-                    <input type="text" id="second-z" placeholder="Enter z" maxlength="10">
-                  </div>
-                  <div class="third-point">
-                    <label for="third">Third point: </label><input type="text" id="third-x" placeholder="Enter x" maxlength="10">
-                    <input type="text" id="third-y" placeholder="Enter y" maxlength="10">
-                    <input type="text" id="third-z" placeholder="Enter z" maxlength="10">
-                  </div>
-                  <div class="fourth-point">
-                    <label for="fourth">Fourth point: </label><input type="text" id="fourth-x" placeholder="Enter x" maxlength="10">
-                    <input type="text" id="fourth-y" placeholder="Enter y" maxlength="10">
-                    <input type="text" id="fourth-z" placeholder="Enter z" maxlength="10">
-                  </div>
-                  <input type="button" id='submit' value="Submit">
-                </div>
-                <div class="constants">
-                    <p>fx = fy = 1</p>
-                    <p>s = 0</p>
-                    <p>far = 1</p>
-                    <p> near = 1/2</p>
-                    <p> tan (<sup>θ<sub>x</sub></sup>/<sub>2</sub>) = tan (<sup>θ<sub>y</sub></sup>/<sub>2</sub>) = 1</p>
-                    where θ<sub>x</sub> and θ<sub>y</sub> are the angles of view along the x and y axes, respectively. 
-                </div>
-            </div>
-        </div>
+        
         <div id="cam">
+            
             <h3>Camera Projection in Vision</h3>
+            <div class="matrices-equations">
             <div class="matrix-equation cam-matrix-equation" id="matrices-2d">
                 <div id="rotation-matrix-wrapper">
                     <div class="matrix undefined" id="intrinsic">
@@ -352,6 +358,7 @@
                        </div>
                     </div>
                   </div>
+                  
                   <span class="big">·</span>
                 <div id="rotation-matrix-wrapper">
                   <div class="matrix undefined" id="extrinsic">
@@ -401,12 +408,7 @@
                     </div>
                   </div>
             </div>
-            <div class="canvas">
-            <!-- <div  class="cam-canvas-wrapper"> -->
-              <canvas  class="cam-canvas" id="shear-2d-cross-section-canvas" width="400" height="150">
-              
-              </canvas>
-            </div>
+            
             <div class="matrix-equation cam-dot-mapping" id="dot-mapping">
                 
               <div id="rotation-matrix-wrapper">
@@ -487,6 +489,13 @@
                 </div>
               </div>
           </div>
+        </div>
+          <div class="canvas canvas-for-cam">
+            <!-- <div  class="cam-canvas-wrapper"> -->
+              <canvas  class="cam-canvas" id="shear-2d-cross-section-canvas" width="400" height="150">
+              
+              </canvas>
+            </div>
         </div>
         </div>
     </div>
