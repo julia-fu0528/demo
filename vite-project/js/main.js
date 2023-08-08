@@ -48,12 +48,33 @@ buildEventListeners();
 
 function buildEventListeners(){
     rotateXSlider.oninput = function(){
-        let cos = Math.cos(rotateXSlider.value);
-        let sin = Math.sin(rotateXSlider.value);
-        rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
-                          0, 1 * cos.toFixed(2), 1 * sin.toFixed(2),
-                          0, - sin.toFixed(2), 1 * cos.toFixed(2));
-        // console.log(rotateXMatrix.elements)
+        if (WORLD.pointsUnready()){
+          WORLD.alertPoint();
+        }else{
+          let cos = Math.cos(rotateXSlider.value);
+          let sin = Math.sin(rotateXSlider.value);
+          rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
+                            0, 1 * cos.toFixed(2), 1 * sin.toFixed(2),
+                            0, - sin.toFixed(2), 1 * cos.toFixed(2));
+          // console.log(rotateXMatrix.elements)
+          updateExtrinsicMatrix();
+          updateCamMatrix();
+          updatePersMatrix();
+          updatePersPoints();
+          updateCamPoints();
+          CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+          PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+        }
+    }
+    rotateYSlider.oninput = function(){
+      if (WORLD.pointsUnready()){
+        WORLD.alertPoint();
+      }else{
+        let cos = Math.cos(rotateYSlider.value);
+        let sin = Math.sin(rotateYSlider.value);
+        rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, 1 *  sin.toFixed(2),
+                          0, 1, 0,
+                          -  sin.toFixed(2), 0, 1 * cos.toFixed(2));
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
@@ -61,34 +82,25 @@ function buildEventListeners(){
         updateCamPoints();
         CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
         PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
-    }
-    rotateYSlider.oninput = function(){
-      let cos = Math.cos(rotateYSlider.value);
-      let sin = Math.sin(rotateYSlider.value);
-      rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, 1 *  sin.toFixed(2),
-                        0, 1, 0,
-                        -  sin.toFixed(2), 0, 1 * cos.toFixed(2));
-      updateExtrinsicMatrix();
-      updateCamMatrix();
-      updatePersMatrix();
-      updatePersPoints();
-      updateCamPoints();
-      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      }
     }
     rotateZSlider.oninput = function(){
-      let cos = Math.cos(rotateZSlider.value);
-      let sin = Math.sin(rotateZSlider.value);
-      rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), - sin.toFixed(2), 0, 
-                        1 *  sin.toFixed(2), 1 * cos.toFixed(2), 0, 
-                        0, 0, 1)
-      updateExtrinsicMatrix();
-      updateCamMatrix();
-      updatePersMatrix();
-      updatePersPoints();
-      updateCamPoints();
-      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      if (WORLD.pointsUnready()){
+        WORLD.alertPoint();
+      }else{
+        let cos = Math.cos(rotateZSlider.value);
+        let sin = Math.sin(rotateZSlider.value);
+        rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), - sin.toFixed(2), 0, 
+                          1 *  sin.toFixed(2), 1 * cos.toFixed(2), 0, 
+                          0, 0, 1)
+        updateExtrinsicMatrix();
+        updateCamMatrix();
+        updatePersMatrix();
+        updatePersPoints();
+        updateCamPoints();
+        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      }
     } 
     resetRotButton.onclick = function(){
       rotateXSlider.value = 0;
@@ -108,34 +120,46 @@ function buildEventListeners(){
     }
 
     translateXSlider.oninput = function(){
-      extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
-      transMatrixHTML[12].innerHTML = translateXSlider.value;
-      updateCamMatrix();
-      updatePersMatrix();
-      updatePersPoints();
-      updateCamPoints();
-      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      if (WORLD.pointsUnready()){
+        WORLD.alertPoint();
+      }else{
+        extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
+        transMatrixHTML[12].innerHTML = translateXSlider.value;
+        updateCamMatrix();
+        updatePersMatrix();
+        updatePersPoints();
+        updateCamPoints();
+        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      }
     }
     translateYSlider.oninput = function(){
-      extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
-      transMatrixHTML[13].innerHTML = translateYSlider.value;
-      updateCamMatrix();
-      updatePersMatrix();
-      updatePersPoints();
-      updateCamPoints();
-      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      if (WORLD.pointsUnready()){
+        WORLD.alertPoint();
+      }else{
+        extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
+        transMatrixHTML[13].innerHTML = translateYSlider.value;
+        updateCamMatrix();
+        updatePersMatrix();
+        updatePersPoints();
+        updateCamPoints();
+        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      }
     }
     translateZSlider.oninput = function(){
-      extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
-      transMatrixHTML[14].innerHTML = translateZSlider.value;
-      updateCamMatrix();
-      updatePersMatrix();
-      updatePersPoints();
-      updateCamPoints();
-      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      if (WORLD.pointsUnready()){
+        WORLD.alertPoint();
+      }else{
+        extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
+        transMatrixHTML[14].innerHTML = translateZSlider.value;
+        updateCamMatrix();
+        updatePersMatrix();
+        updatePersPoints();
+        updateCamPoints();
+        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      }
     }
     resetTransButton.onclick = function(){
       translateXSlider.value = 0;

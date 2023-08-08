@@ -19,12 +19,22 @@ const fourthZ = document.getElementById('fourth-z');
 
 const submit = document.getElementById('submit');
 
-function project(){
+export function pointsUnready(){
     if (firstX.value === '' || firstY.value === '' || firstZ.value === ''
      || secondX.value === '' || secondY.value === '' || secondZ.value === ''
      || thirdX.value === '' || thirdY.value === '' || thirdZ.value === ''
      || fourthX.value === '' || fourthY.value === '' || fourthZ.value === ''){
-        alert('Please fill in all coordinates of the four points')
+        return true;
+     }else{
+        return false;
+     }
+}
+export function alertPoint(){
+    alert('Please fill in all coordinates of the four points')
+}
+function project(){
+    if (pointsUnready()){
+        alertPoint();
      }else{
         // perspective projection matrix
         persWorldPointsHTML[0].innerHTML = firstX.value;
