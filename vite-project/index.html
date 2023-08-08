@@ -16,22 +16,34 @@
         <h1>Perspective Projection Matrix | Camera Projection Matrix</h1>
         <h3>Global Parameters</h3>
         <div class="slideContainer">
-            <div class="slidecontainer" id="rotation-sliders">
-                <p>Rotation around x axis</p>
-                <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateX" class="slider">
-                <p>Rotation around y axis</p>
-                <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
-                <p>Rotation around z axis</p>
-                <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateZ" class="slider">
-            </div>
-            <div class="slidecontainer" id="translation-sliders">
-                <p>Translation in x direction</p>
-                <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
-                <p>Translation in y direction</p>
-                <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
-                <p>Translation in z direction</p>
-                <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
-            </div>
+          <div class="rotation">
+              <div class="slidecontainer" id="rotation-sliders">
+                  <p>Rotation around x axis</p>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateX" class="slider">
+                  <p>Rotation around y axis</p>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
+                  <p>Rotation around z axis</p>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.1" id="rotateZ" class="slider">
+              </div>
+              <button id="reset-rot-button" type="button"
+              style="width: 150px; height: 25px; font-size: 17px;">
+                Reset Rotation
+              </button>
+              </div>
+            <div class="translation">
+              <div class="slidecontainer" id="translation-sliders">
+                  <p>Translation in x direction</p>
+                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
+                  <p>Translation in y direction</p>
+                  <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
+                  <p>Translation in z direction</p>
+                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
+              </div>
+              <button id="reset-trans-button" type="button"
+              style="width: 150px; height: 25px; font-size: 17px;">
+                Reset Translation
+              </button>
+              </div>
             <div class="input-points">
               <h5> Enter a set of 3D world points for projection</h5>
               <div class="first-point">

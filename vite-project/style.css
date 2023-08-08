@@ -62,8 +62,14 @@ body{
   flex-direction: row;
   margin-left: 10px;
 }
+.rotation{
+  width: 15%;
+}
+.translation{
+  width: 25%;
+}
 .slidecontainer{
-  width: 20%;
+  width: 100%;
 }
 
 

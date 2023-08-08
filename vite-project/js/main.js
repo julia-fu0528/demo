@@ -33,9 +33,13 @@ const translateZSlider = document.getElementById('translateZ')
 const persZ = document.getElementById('pers-coefficient')
 const camZ = document.getElementById('cam-coefficient')
 
+const resetRotButton = document.getElementById('reset-rot-button')
+const resetTransButton = document.getElementById('reset-trans-button')
+
 let rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1);
 let rotateYMatrix = rotateXMatrix.clone();
 let rotateZMatrix = rotateYMatrix.clone();
+
 
 CAM.start();
 PERS.start();
@@ -85,7 +89,24 @@ function buildEventListeners(){
       updateCamPoints();
       CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
       PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+    } 
+    resetRotButton.onclick = function(){
+      rotateXSlider.value = 0;
+      rotateYSlider.value = 0;
+      rotateZSlider.value = 0;
+      rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
+      rotateYMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
+      rotateZMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+      updateExtrinsicMatrix();
+      updateCamMatrix();
+      updatePersMatrix();
+      updatePersPoints();
+      updateCamPoints();
+      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
     }
+
     translateXSlider.oninput = function(){
       extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
       transMatrixHTML[12].innerHTML = translateXSlider.value;
@@ -109,6 +130,22 @@ function buildEventListeners(){
     translateZSlider.oninput = function(){
       extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
       transMatrixHTML[14].innerHTML = translateZSlider.value;
+      updateCamMatrix();
+      updatePersMatrix();
+      updatePersPoints();
+      updateCamPoints();
+      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
+      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+    }
+    resetTransButton.onclick = function(){
+      translateXSlider.value = 0;
+      translateYSlider.value = 0;
+      translateZSlider.value = 0;
+      for (let i = 9; i < 12; i ++){
+        extrinsicMatrixHTML[i].innerHTML = 0;
+        transMatrixHTML[i + 3].innerHTML = 0;
+      }
+      updateExtrinsicMatrix();
       updateCamMatrix();
       updatePersMatrix();
       updatePersPoints();
