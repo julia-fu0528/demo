@@ -236,11 +236,11 @@ border-left:none
  }
 .matrix-elements {
   margin-top: 0px;
-  padding:.75ch .75ch;
+  padding:.75ch .5ch;
   display:grid;
   place-items:left;
   grid-auto-flow:column;
-  gap:.5ch 3ch
+  gap:.5ch 2ch
 }
 
 /* .canvas, .canvas-for-pers, .canvas-for-cam{
@@ -303,7 +303,7 @@ border-left:none
   height: 34vh;
 }
 .pers-canvas{
-  margin-bottom: 20px;
+  margin-bottom: 100px;
 }
 /* .cam-canvas{
   height: 50vh;
@@ -349,3 +349,7 @@ h3{
   display: inline-block;
   flex-direction: row;
 } */
+.matrices-equations-pers-to-cam, .matrices-equations-cam-to-pers{
+  display: none;
+}
+

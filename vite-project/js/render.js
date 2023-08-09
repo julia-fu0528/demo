@@ -37,6 +37,14 @@ const camZ = document.getElementById('cam-coefficient')
 const resetRotButton = document.getElementById('reset-rot-button')
 const resetTransButton = document.getElementById('reset-trans-button')
 
+const persToCam = document.getElementById('pers-to-cam')
+const camToPers = document.getElementById('cam-to-pers')
+
+
+const matricesEquationsPersToCam = document.querySelector('.matrices-equations-pers-to-cam')
+const matricesEquationsCamToPers = document.querySelector('.matrices-equations-cam-to-pers')
+const persCanvas = document.querySelector('.pers-canvas');
+
 var rotateXVal =  document.getElementById('rotateX-val')
 var rotateYVal =  document.getElementById('rotateY-val')
 var rotateZVal =  document.getElementById('rotateZ-val')
@@ -76,6 +84,7 @@ export function pointsUnready(){
 export function alertPoint(){
     alert('Please fill in all coordinates of the four points')
 }
+
 
 export function buildEventListeners(){
     rotateXSlider.oninput = function(){
@@ -220,6 +229,27 @@ export function buildEventListeners(){
       updateCamPoints();
       CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
       PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+    }
+    persToCam.onclick = function(){
+        if (persToCam.value == "Show Corresponding Camera Projection Pipeline"){
+            persToCam.value = "Hide Corresponding Camera Projection Pipeline"
+            matricesEquationsPersToCam.style.display = "block";
+            // $(".pers-canvas").css("margin-bottom, '100px');
+        }else{
+            persToCam.innerText = "Show Corresponding Camera Projection Pipeline"
+            matricesEquationsPersToCam.style.display = "none";
+            // $('.pers-canvas').css('margin-bottom', '100px');
+        }
+        
+    }
+    camToPers.onclick = function(){
+        if (camToPers.value == "Show Corresponding Perspective Projection Pipeline"){
+            camToPers.value = "Hide Corresponding Perspective Projection Pipeline"
+            matricesEquationsCamToPers.style.display = "block";
+        }else{
+            camToPers.value = "Show Corresponding Perspective Projection Pipeline"
+            matricesEquationsCamToPers.style.display = "none";
+        }
     }
 }
 function updateExtrinsicMatrix(){
