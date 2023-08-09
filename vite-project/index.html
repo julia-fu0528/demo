@@ -11,53 +11,15 @@
     <script type="module" src="js/main.js"></script>
 </head>
 <body>
+    
     <div class="pipeline">
       <div id="both">
         <h1>Perspective Projection Matrix | Camera Projection Matrix</h1>
         <h3>Global Parameters</h3>
         <div class="slideContainer">
-          <div class="rotation">
-              <div class="slidecontainer" id="rotation-sliders">
-                  <p class="value"><span id='rotateX-val'>Rotation around x axis: 0</span>&#8508;</p>
-                  <div class="val-left">0</div>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateX" class="slider">
-                  <div class="val-right">2<span>&#8508;</span></div>
-                  <p class="value"><span id='rotateY-val'>Rotation around y axis: 0</span>&#8508;</p>
-                  <div class="val-left">0</div>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
-                  <div class="val-right">2<span>&#8508;</span></div>
-                  <p class="value"><span id='rotateZ-val'>Rotation around z axis: 0</span>&#8508;</p>
-                  <div class="val-left">0</div>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateZ" class="slider">
-                  <div class="val-right">2<span>&#8508;</span></div>
-              </div>
-              <button id="reset-rot-button" type="button"
-              style="width: 150px; height: 25px; font-size: 17px;">
-                Reset Rotation
-              </button>
-              </div>
-            <div class="translation">
-              <div class="slidecontainer" id="translation-sliders">
-                  <p id="transX-val">Translation in x direction</p>
-                  <div class="val-left">-10</div>
-                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
-                  <div class="val-right">10</div>
-                  <p id="transY-val">Translation in y direction</p>
-                  <div class="val-left">-10</div>
-                  <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
-                  <div class="val-right">10</div>
-                  <p id="transZ-val">Translation in z direction</p>
-                  <div class="val-left">-10</div>
-                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
-                  <div class="val-right">10</div>
-                </div>
-              <button id="reset-trans-button" type="button"
-              style="width: 150px; height: 25px; font-size: 17px;">
-                Reset Translation
-              </button>
-              </div>
+          <div class="text-inputs">
             <div class="input-points">
-              <h5> Enter a set of 3D world points for projection</h5>
+              <h4> Enter a set of 3D world points for projection</h4>
               <div class="first-point">
                 <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
@@ -80,7 +42,67 @@
               </div>
               <input type="button" id='submit' value="Submit">
             </div>
+            <div class="input-intrinsics">
+              <h4> Enter intrinsic parameters for the camera</h4>
+              <div class="focal-x">
+                <label for="focal-x">Focal length (x) =  <sup>1</sup>/<sub>tan (<sup>θ<sub>x</sub></sup>/<sub>2</sub>)</sub>: </label><input type="text" id="focal-x" placeholder="Enter fx" maxlength="10">
+              </div>
+              <div class="focal-y">
+                <label for="focal-y">Focal length (y) =  <sup>1</sup>/<sub>tan (<sup>θ<sub>y</sub></sup>/<sub>2</sub>)</sub>: </label><input type="text" id="focal-y" placeholder="Enter fy" maxlength="10">
+              </div>
+              <div class="far-clipping">
+                <label for="far-clipping"> Far clipping plane: z = </label><input type="text" id="far-clipping" placeholder="Enter far" maxlength="10">
+              </div>
+              <div class="near-clipping">
+                <label for="near-clipping">Near clipping plane: z = </label><input type="text" id="near-clipping" placeholder="Enter near" maxlength="10">
+              </div>
+              <input type="button" id='submit-intrinsics' value="Submit">
+            </div>
+          </div>
+          <div class="rotation">
+            <h4>Step 1: Rotate points first</h4>
+              <div class="slidecontainer" id="rotation-sliders">
+                  <p class="value"><span id='rotateX-val'>Rotation around x axis: 0</span>&#8508;</p>
+                  <div class="val-left">0</div>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateX" class="slider">
+                  <div class="val-right">2<span>&#8508;</span></div>
+                  <p class="value"><span id='rotateY-val'>Rotation around y axis: 0</span>&#8508;</p>
+                  <div class="val-left">0</div>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
+                  <div class="val-right">2<span>&#8508;</span></div>
+                  <p class="value"><span id='rotateZ-val'>Rotation around z axis: 0</span>&#8508;</p>
+                  <div class="val-left">0</div>
+                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateZ" class="slider">
+                  <div class="val-right">2<span>&#8508;</span></div>
+              </div>
+              <button id="reset-rot-button" type="button"
+              style="width: 150px; height: 25px; font-size: 17px;">
+                Reset Rotation
+              </button>
+              </div>
+            <div class="translation">
+              <h4>Step 2: Then translate the points</h4>
+              <div class="slidecontainer" id="translation-sliders">
+                  <p id="transX-val">Translation in x direction</p>
+                  <div class="val-left">-10</div>
+                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
+                  <div class="val-right">10</div>
+                  <p id="transY-val">Translation in y direction</p>
+                  <div class="val-left">-10</div>
+                  <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
+                  <div class="val-right">10</div>
+                  <p id="transZ-val">Translation in z direction</p>
+                  <div class="val-left">-10</div>
+                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
+                  <div class="val-right">10</div>
+                </div>
+              <button id="reset-trans-button" type="button"
+              style="width: 150px; height: 25px; font-size: 17px;">
+                Reset Translation
+              </button>
+            </div>
             <div class="constants">
+                <h4>Default intrinsics: </h4>
                 <p>fx = fy = 1</p>
                 <p>s = 0</p>
                 <p>far = 1</p>
@@ -90,10 +112,25 @@
             </div>
         </div>
     </div>
+    <div class="compare-contents">
+      <div class="demos">
+        <div class="canvas canvas-for-pers">
+          <canvas  class="pers-canvas" id="shear-2d-cross-section-canvas" width="300" height="150">
+          
+          </canvas>
+        </div>
+        <div class="canvas canvas-for-cam">
+          <!-- <div  class="cam-canvas-wrapper"> -->
+            <canvas  class="cam-canvas" id="shear-2d-cross-section-canvas" width="300" height="150">
+            
+            </canvas>
+          </div>
+      </div>
+      <div class="contents">
         <div class="section-container" id="pers">
             <h3>Perspective Projection in Graphics</h3>
             <div class="matrices-equations">
-            <div class="matrix-equation pers-matrix-equation" id="matrices-2d">
+            <div class="matrix-equation pers-matrix-equation wide-screen" id="matrices-2d">
                 <div id="rotation-matrix-wrapper">
                     <div class="matrix undefined" id="ortho-proj">
                       <div class="matrix-label" style="font-size: 14px;">Orthographic Projection Matrix</div>
@@ -257,6 +294,196 @@
                   </div>
             </div>
             
+
+
+
+
+              <!-- <div class="matrix-equation pers-matrix-equation small-screen" id="matrices-2d">
+                <div class="upper-line">
+                  <div id="rotation-matrix-wrapper">
+                    <div class="matrix undefined" id="ortho-proj">
+                      <div class="matrix-label" style="font-size: 14px;">
+                        Orthographic Projection Matrix
+                      </div>
+                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                          <span class="limit-dp elem-2d">1</span>
+                          <span class="limit-dp elem-2d">0</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+
+                          <span class="limit-dp elem-2d">0</span>
+                          <span class="limit-dp elem-2d">1</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+      
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">1</span>
+                      </div>
+                   </div>
+                  </div>
+                  <span class="big">·</span>
+                  <div id="rotation-matrix-wrapper">
+                      <div class="matrix undefined" id="proj-matrix">
+                        <div class="matrix-label" style="font-size: 14px;">
+                          Projection Matrix
+                        </div>
+                        <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                          <span class="limit-dp elem-2d">1</span>
+                          <span class="limit-dp elem-2d">0</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+
+                          <span class="limit-dp elem-2d">0</span>
+                          <span class="limit-dp elem-2d">1</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+      
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-3d">&frac23;</span>
+                          <span class="limit-dp elem-4d">-1</span>
+
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">-&frac13;</span>
+                          <span class="limit-dp elem-4d">0</span>
+                        </div>
+                      </div>
+                    </div>
+                  <span class="big">·</span>
+                  <div id="rotation-matrix-wrapper">
+                    <div class="matrix undefined" id="pers-matrix">
+                      <div class="matrix-label" style="font-size: 14px;">
+                        Perspective Matrix
+                      </div>
+                        <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                          <span class="limit-dp elem-2d">1</span>
+                          <span class="limit-dp elem-2d">0</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+
+                          <span class="limit-dp elem-2d">0</span>
+                          <span class="limit-dp elem-2d">1</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+      
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-3d">0</span>
+                          <span class="limit-dp elem-3d">1</span>
+                          <span class="limit-dp elem-4d">0</span>
+
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">0</span>
+                          <span class="limit-dp elem-4d">1</span>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lower-line">
+                  <span class="big">·</span>
+                  <div id="rotation-matrix-wrapper">
+                    <div class="matrix undefined" id="scale-matrix">
+                      <div class="matrix-label" style="font-size: 14px;">
+                        Scaling Matrix
+                      </div>
+                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-2d">0</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+
+                        <span class="limit-dp elem-2d">0</span>
+                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+    
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-3d">1</span>
+                        <span class="limit-dp elem-4d">0</span>
+
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">1</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="big">·</span>
+                  <div id="rotation-matrix-wrapper">
+                    <div class="matrix undefined" id="transformation">
+                      <div class="matrix-label" style="font-size: 14px;">
+                        Transformation Matrix
+                      </div>
+                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-2d">0</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+
+                        <span class="limit-dp elem-2d">0</span>
+                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-3d">1</span>
+                        <span class="limit-dp elem-4d">0</span>
+
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">1</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="equal">=</span>
+                  <div id="rotation-matrix-wrapper">
+                    <div class="matrix undefined" id="pers-proj">
+                      <div class="matrix-label" style="font-size: 14px;">
+                        Perspective Projection Matrix
+                      </div>
+                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-2d">0</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+
+                        <span class="limit-dp elem-2d">0</span>
+                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+    
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-3d">0</span>
+                        <span class="limit-dp elem-3d">1</span>
+                        <span class="limit-dp elem-4d">0</span>
+
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">0</span>
+                        <span class="limit-dp elem-4d">1</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div> -->
+
+
+
+
+
+
+
               <div class="matrix-equation pers-dot-mapping" id="dot-mapping">
                 
                 <div id="rotation-matrix-wrapper">
@@ -350,11 +577,7 @@
               
             </div>
           </div>
-            <div class="canvas canvas-for-pers">
-              <canvas  class="pers-canvas" id="shear-2d-cross-section-canvas" width="400" height="150">
-              
-              </canvas>
-            </div>
+          
         </div>
         
         
@@ -514,14 +737,10 @@
               </div>
           </div>
         </div>
-          <div class="canvas canvas-for-cam">
-            <!-- <div  class="cam-canvas-wrapper"> -->
-              <canvas  class="cam-canvas" id="shear-2d-cross-section-canvas" width="400" height="150">
-              
-              </canvas>
-            </div>
         </div>
         </div>
+      </div>
+      </div>
     </div>
 </body>
 </html>
