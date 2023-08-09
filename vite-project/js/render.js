@@ -82,7 +82,7 @@ export function buildEventListeners(){
         if (pointsUnready()){
           alertPoint();
         }else{
-          rotateXVal.innerHTML = "Rotation around x axis: " + rotateXSlider.value;
+          rotateXVal.innerHTML = "Rotation around x axis: " + Math.round(rotateXSlider.value / Math.PI * 100) / 100;
           let cos = Math.cos(rotateXSlider.value);
           let sin = Math.sin(rotateXSlider.value);
           rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
@@ -102,7 +102,7 @@ export function buildEventListeners(){
       if (pointsUnready()){
         alertPoint();
       }else{
-        rotateYVal.innerHTML = "Rotation around y axis: " + rotateYSlider.value;
+        rotateYVal.innerHTML = "Rotation around y axis: " + Math.round(rotateYSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateYSlider.value);
         let sin = Math.sin(rotateYSlider.value);
         rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, 1 *  sin.toFixed(2),
@@ -121,7 +121,7 @@ export function buildEventListeners(){
       if (pointsUnready()){
         alertPoint();
       }else{
-        rotateZVal.innerHTML = "Rotation around z axis: " + rotateZSlider.value;
+        rotateZVal.innerHTML = "Rotation around z axis: " + Math.round(rotateZSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateZSlider.value);
         let sin = Math.sin(rotateZSlider.value);
         rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), - sin.toFixed(2), 0, 
