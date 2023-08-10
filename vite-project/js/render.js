@@ -95,7 +95,7 @@ export function buildEventListeners(){
         if (pointsUnready()){
           alertPoint();
         }else{
-          rotateXVal.innerHTML = "Rotation around x axis: " + Math.round(rotateXSlider.value / Math.PI * 100) / 100;
+          rotateXVal.innerHTML = "Rotate x: " + Math.round(rotateXSlider.value / Math.PI * 100) / 100;
           let cos = Math.cos(rotateXSlider.value);
           let sin = Math.sin(rotateXSlider.value);
           
@@ -120,7 +120,7 @@ export function buildEventListeners(){
       if (pointsUnready()){
         alertPoint();
       }else{
-        rotateYVal.innerHTML = "Rotation around y axis: " + Math.round(rotateYSlider.value / Math.PI * 100) / 100;
+        rotateYVal.innerHTML = "Rotate y: " + Math.round(rotateYSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateYSlider.value);
         let sin = Math.sin(rotateYSlider.value);
         rotateYMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
@@ -143,7 +143,7 @@ export function buildEventListeners(){
       if (pointsUnready()){
         alertPoint();
       }else{
-        rotateZVal.innerHTML = "Rotation around z axis: " + Math.round(rotateZSlider.value / Math.PI * 100) / 100;
+        rotateZVal.innerHTML = "Rotate z: " + Math.round(rotateZSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateZSlider.value);
         let sin = Math.sin(rotateZSlider.value);
         rotateZMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
@@ -163,28 +163,28 @@ export function buildEventListeners(){
       }
     } 
     resetRotButton.onclick = function(){
-      rotateXVal.innerHTML = "Rotation around x axis: 0";
-      rotateYVal.innerHTML = "Rotation around y axis: 0";
-      rotateZVal.innerHTML = "Rotation around z axis: 0";
+      rotateXVal.innerHTML = "Rotate x: 0";
+      rotateYVal.innerHTML = "Rotate y: 0";
+      rotateZVal.innerHTML = "Rotate z: 0";
 
       rotateXSlider.value = 0;
       rotateYSlider.value = 0;
       rotateZSlider.value = 0;
 
-      rotateXMatrixHTML[4].innerHTML = Math.round(cos * 100) / 100;
-      rotateXMatrixHTML[5].innerHTML = Math.round(sin * 100) / 100;
-      rotateXMatrixHTML[7].innerHTML = Math.round(-sin * 100) / 100;
-      rotateXMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
+      rotateXMatrixHTML[4].innerHTML = 1;
+      rotateXMatrixHTML[5].innerHTML = 0;
+      rotateXMatrixHTML[7].innerHTML = 0;
+      rotateXMatrixHTML[8].innerHTML = 1;
 
-      rotateYMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
-      rotateYMatrixHTML[2].innerHTML = Math.round(-sin * 100) / 100;
-      rotateYMatrixHTML[6].innerHTML = Math.round(sin * 100) / 100;
-      rotateYMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
+      rotateYMatrixHTML[0].innerHTML = 1;
+      rotateYMatrixHTML[2].innerHTML = 0;
+      rotateYMatrixHTML[6].innerHTML = 0;
+      rotateYMatrixHTML[8].innerHTML = 1;
 
-      rotateZMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
-      rotateZMatrixHTML[1].innerHTML = Math.round(sin * 100) / 100;
-      rotateZMatrixHTML[3].innerHTML = Math.round(-sin * 100) / 100;
-      rotateZMatrixHTML[4].innerHTML = Math.round(cos * 100) / 100;
+      rotateZMatrixHTML[0].innerHTML = 1;
+      rotateZMatrixHTML[1].innerHTML = 0;
+      rotateZMatrixHTML[3].innerHTML = 0;
+      rotateZMatrixHTML[4].innerHTML = 1;
     //   rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
     //   rotateYMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
     //   rotateZMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
@@ -202,7 +202,7 @@ export function buildEventListeners(){
       if (pointsUnready()){
         alertPoint();
       }else{
-        transXVal.innerHTML = "Translation in x direction: " + translateXSlider.value;
+        transXVal.innerHTML = "Translate x: " + translateXSlider.value;
         extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
         transMatrixHTML[12].innerHTML = translateXSlider.value;
         updateCamMatrix();
@@ -217,7 +217,7 @@ export function buildEventListeners(){
       if (pointsUnready()){
         alertPoint();
       }else{
-        transYVal.innerHTML = "Translation in y direction: " + translateYSlider.value;
+        transYVal.innerHTML = "Translate y: " + translateYSlider.value;
         extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
         transMatrixHTML[13].innerHTML = translateYSlider.value;
         updateCamMatrix();
@@ -232,7 +232,7 @@ export function buildEventListeners(){
       if (pointsUnready()){
         alertPoint();
       }else{
-        transZVal.innerHTML = "Translation in z direction: " + translateZSlider.value;
+        transZVal.innerHTML = "Translate z: " + translateZSlider.value;
         extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
         transMatrixHTML[14].innerHTML = translateZSlider.value;
         updateCamMatrix();

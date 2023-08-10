@@ -27,8 +27,8 @@ export function start(){
     light.intensity = 1
     scene.add(light)
 
-    // const gridHelper = new THREE.GridHelper(60, 30);
-    const gridHelper = new THREE.GridHelper(30);
+    const gridHelper = new THREE.GridHelper(60, 60);
+    // const gridHelper = new THREE.GridHelper(30);
     gridHelper.material.color.set('#ff0000');
     gridHelper.rotation.x = Math.PI/2;
     scene.add(gridHelper);
@@ -54,7 +54,7 @@ export function camRenderDots(arr){
     clearScene();
     start();
     for (let i = 0; i < arr.length - 1; i += 2){
-        const dotGeometry = new THREE.SphereGeometry(0.5, 64, 64)
+        const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
         const dotMaterial = new THREE.MeshStandardMaterial({
             color: '#00ff40',
             roughness: 0.3,
