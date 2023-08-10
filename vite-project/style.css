@@ -267,6 +267,23 @@ border-left:none
 .help{
   display: none;
 }
+.matrices-equations-pers-to-cam .matrix-elements, 
+.matrices-equations-pers-to-cam .matrix-label{
+  color: rgb(3, 3, 96);
+}
+.matrices-equations-pers-to-cam .matrix::before,
+.matrices-equations-pers-to-cam .matrix::after{
+  border: 1px solid rgb(3, 3, 96);
+}
+.matrices-equations-pers-to-cam .matrix::before{
+  border-right: none;
+}
+.matrices-equations-pers-to-cam .matrix::after{
+  border-left: none;
+}
+.matrices-equations-pers-to-cam .matrix-equation>span{
+  color: rgb(3, 3, 96);
+}
 /* .canvas, .canvas-for-pers, .canvas-for-cam{
   height: fit-content;
   position:static;
@@ -342,7 +359,7 @@ border-left:none
 }
 input[type=text], button{
   font-size: 0.8em;
-  width: 60px;
+  width: 64px;
   margin: 8px;
 }
 input[type=button]{

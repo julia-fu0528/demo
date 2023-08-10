@@ -24,6 +24,9 @@ function enter(){
     RENDER.scaleMatrixHTML[5].innerHTML = Math.round(1 / far.value * 100) / 100;
     RENDER.scaleMatrixHTML[10].innerHTML = Math.round(1 / far.value * 100) / 100;
 
+    RENDER.intrinsicMatrixFromPersHTML[0].innerHTML = Math.round(fx.value * 1 / far.value * 100) / 100
+    RENDER.intrinsicMatrixFromPersHTML[4].innerHTML = Math.round(fy.value * 1 / far.value * 100) / 100
+
     RENDER.updateCamMatrix();
     RENDER.updatePersMatrix();
     RENDER.updateCamPoints();

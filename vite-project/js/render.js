@@ -49,6 +49,10 @@ const rotateXMatrixHTML = document.getElementById('rotate-x-matrix').getElements
 const rotateYMatrixHTML = document.getElementById('rotate-y-matrix').getElementsByTagName('span');
 const rotateZMatrixHTML = document.getElementById('rotate-z-matrix').getElementsByTagName('span');
 
+export const intrinsicMatrixFromPersHTML = document.getElementById('intrinsic-from-pers').getElementsByTagName('span');
+export const extrinsicMatrixFromPersHTML = document.getElementById('extrinsic-from-pers').getElementsByTagName('span');
+export const cameraMatrixFromPersHTML = document.getElementById('camera-proj-from-pers').getElementsByTagName('span');
+
 var rotateXVal =  document.getElementById('rotateX-val')
 var rotateYVal =  document.getElementById('rotateY-val')
 var rotateZVal =  document.getElementById('rotateZ-val')
@@ -291,12 +295,10 @@ function updateExtrinsicMatrix(){
   let matrix = rotateXMatrix
   .multiply(rotateYMatrix)
   .multiply(rotateZMatrix)
-  console.log(rotateXMatrix.elements)
-  console.log(rotateYMatrix.elements)
-  console.log(rotateZMatrix.elements)
   let elts = matrix.elements
   for (let i = 0; i < 9; i++) {
       extrinsicMatrixHTML[i].innerHTML = Math.round(elts[i] * 100) / 100;
+      extrinsicMatrixFromPersHTML[i].innerHTML = Math.round(elts[i] * 100) / 100;
   }
   transMatrixHTML[0].innerHTML = Math.round(elts[0] * 100) / 100;
   transMatrixHTML[1].innerHTML = Math.round(elts[1] * 100) / 100;
@@ -311,13 +313,16 @@ function updateExtrinsicMatrix(){
 export function updateCamMatrix() {
     let intrinsicMatrix = buildMatrix3to4( intrinsicMatrixHTML );
     let extrinsicMatrix = buildMatrix34( extrinsicMatrixHTML);
+    let intrinsicFromPersMatrix = buildMatrix3to4(intrinsicMatrixFromPersHTML);
     let matrix = intrinsicMatrix
     .multiply(extrinsicMatrix);
-    // (matrix.elements)
+    let matrixFromPers = intrinsicFromPersMatrix.multiply(extrinsicMatrix);
+    console.log(matrixFromPers.elements)
     for (let i =0; i<12; i ++){
       let row = i % 3;
       let col = parseInt(i / 3);
       cameraMatrixHTML[col * 3 + row].innerHTML = Math.round(matrix.elements[col * 4 + row] * 100) / 100;
+      cameraMatrixFromPersHTML[col * 3 + row].innerHTML = Math.round(matrixFromPers.elements[col * 4 + row] * 100) / 100;
       cameraMatrixMapHTML[col * 3 + row].innerHTML = Math.round(matrix.elements[col * 4 + row] * 100) / 100
     }
 }
