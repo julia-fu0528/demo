@@ -96,19 +96,24 @@ body{
 }
 .slider{
   height: 10px;
-  width: 150px;
+  width: 130px;
   position: relative;
   margin: 0;
   padding: 0;
   border: 1px solid black;
 }
 .rotation{
-  width: fit-content;
-  max-width: 50%;
+  /* width: fit-content;
+  max-width: 50%; */
+  width: 50%;
+  border-top: 1px dashed rgb(68, 48, 3);;
+  border-right: 1px dashed rgb(68, 48, 3);;
 }
 .translation{
-  width: fit-content;
-  max-width: 50%;
+  /* width: fit-content;
+  max-width: 50%; */
+  width: 50%;
+  border-top: 1px dashed rgb(68, 48, 3);;
 }
 .row{
   display: flex;
@@ -116,6 +121,12 @@ body{
 }
 .input-points{
   width: 35%;
+  border-right: 1px dashed rgb(68, 48, 3);
+  border-top: 1px dashed rgb(68, 48, 3);;
+}
+.input-intrinsics{
+  width:40%;
+  border-top: 1px dashed rgb(68, 48, 3);;
 }
 .text-inputs{
   /* background:rgb(187, 240, 234); */
@@ -124,11 +135,14 @@ body{
   width: 100%;
 }
 .constants{
-  width: fit-content;
-  max-width: 100%;
+  /* width: fit-content;
+  max-width: 100%; */
+  width: 40%;
   /* background:rgb(187, 240, 234);
   padding-bottom: 205px;
   border: 1 */
+  border-left: 1px dashed rgb(68, 48, 3);;
+  border-top: 1px dashed rgb(68, 48, 3);;
 }
 .parameter-name{
   color: rgb(121, 6, 6)
