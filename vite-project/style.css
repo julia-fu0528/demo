@@ -90,7 +90,7 @@ body{
 }
 .slideContainer{
   display: flex;
-  flex-direction: row;
+  flex-direction:  column;
   margin-left: 10px;
   font-size: 17px;
 }
@@ -110,15 +110,22 @@ body{
   width: fit-content;
   max-width: 50%;
 }
+.row{
+  display: flex;
+  flex-direction: row;
+}
 .input-points{
   width: 35%;
 }
-/* .text-inputs{
-  background:rgb(187, 240, 234);
-} */
+.text-inputs{
+  /* background:rgb(187, 240, 234); */
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 .constants{
   width: fit-content;
-  max-width: 50%;
+  max-width: 100%;
   /* background:rgb(187, 240, 234);
   padding-bottom: 205px;
   border: 1 */
