@@ -242,7 +242,9 @@ border-left:none
   grid-auto-flow:column;
   gap:.5ch 2ch
 }
-
+.help{
+  display: none;
+}
 /* .canvas, .canvas-for-pers, .canvas-for-cam{
   height: fit-content;
   position:static;
