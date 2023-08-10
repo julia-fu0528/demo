@@ -268,20 +268,27 @@ border-left:none
   display: none;
 }
 .matrices-equations-pers-to-cam .matrix-elements, 
-.matrices-equations-pers-to-cam .matrix-label{
+.matrices-equations-pers-to-cam .matrix-label,
+.matrices-equations-cam-to-pers .matrix-elements, 
+.matrices-equations-cam-to-pers .matrix-label{
   color: rgb(3, 3, 96);
 }
 .matrices-equations-pers-to-cam .matrix::before,
-.matrices-equations-pers-to-cam .matrix::after{
+.matrices-equations-pers-to-cam .matrix::after,
+.matrices-equations-cam-to-pers .matrix::before,
+.matrices-equations-cam-to-pers .matrix::after{
   border: 1px solid rgb(3, 3, 96);
 }
-.matrices-equations-pers-to-cam .matrix::before{
+.matrices-equations-pers-to-cam .matrix::before,
+.matrices-equations-cam-to-pers .matrix::before{
   border-right: none;
 }
-.matrices-equations-pers-to-cam .matrix::after{
+.matrices-equations-pers-to-cam .matrix::after,
+.matrices-equations-cam-to-pers .matrix::after{
   border-left: none;
 }
-.matrices-equations-pers-to-cam .matrix-equation>span{
+.matrices-equations-pers-to-cam .matrix-equation>span,
+.matrices-equations-cam-to-pers .matrix-equation>span{
   color: rgb(3, 3, 96);
 }
 /* .canvas, .canvas-for-pers, .canvas-for-cam{
