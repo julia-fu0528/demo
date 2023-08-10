@@ -1,6 +1,6 @@
-import * as RENDER from './render.js'
-import * as CAM from './cam-canvas.js'
-import * as PERS from './pers-canvas.js'
+import * as RENDER from '../render.js'
+import * as CAM from '../canvas/cam-canvas.js'
+import * as PERS from '../canvas/pers-canvas.js'
 import { RenderTarget } from 'three'
 
 const fx = document.getElementById('focal-x')

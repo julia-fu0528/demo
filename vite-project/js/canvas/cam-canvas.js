@@ -53,6 +53,11 @@ function clearScene(){
 export function camRenderDots(arr){
     clearScene();
     start();
+    const points = [];
+    const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x00ff40,
+    })
+    // arr.length is 8 for here, 4 points
     for (let i = 0; i < arr.length - 1; i += 2){
         const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
         const dotMaterial = new THREE.MeshStandardMaterial({
@@ -63,5 +68,21 @@ export function camRenderDots(arr){
         dot.position.set(arr[i], arr[i+1], 0);
         scene.add(dot);
     }
+    // between 1st and 2nd points
+    points.push(new THREE.Vector2(arr[0], arr[1]));
+    points.push(new THREE.Vector2(arr[2], arr[3]));
+    // between 2nd and 3rd points
+    points.push(new THREE.Vector2(arr[2], arr[3]));
+    points.push(new THREE.Vector2(arr[4], arr[5]));
+    // between 3rd and 4th points
+    points.push(new THREE.Vector2(arr[4], arr[5]));
+    points.push(new THREE.Vector2(arr[6], arr[7]));
+    // between 4th and 1st points
+    points.push(new THREE.Vector2(arr[6], arr[7]));
+    points.push(new THREE.Vector2(arr[0], arr[1]));
+    
+    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+    const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+    scene.add(lineMesh)
     renderer.render(scene, camera);
 }

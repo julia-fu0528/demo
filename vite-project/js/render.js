@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import * as CAM from './cam-canvas.js';
-import * as PERS from './pers-canvas.js';
+import * as CAM from './canvas/cam-canvas.js';
+import * as PERS from './canvas/pers-canvas.js';
 
 
 export const projMatrixHTML = document.getElementById('proj-matrix').getElementsByTagName('span');
@@ -113,10 +113,6 @@ export function buildEventListeners(){
           rotateXMatrixHTML[5].innerHTML = Math.round(sin * 100) / 100;
           rotateXMatrixHTML[7].innerHTML = Math.round(-sin * 100) / 100;
           rotateXMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
-        //   rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
-        //                     0, 1 * cos.toFixed(2), 1 * sin.toFixed(2),
-        //                     0, - sin.toFixed(2), 1 * cos.toFixed(2));
-          // console.log(rotateXMatrix.elements)
           updateExtrinsicMatrix();
           updateCamMatrix();
           updatePersMatrix();
@@ -138,9 +134,6 @@ export function buildEventListeners(){
         rotateYMatrixHTML[2].innerHTML = Math.round(-sin * 100) / 100;
         rotateYMatrixHTML[6].innerHTML = Math.round(sin * 100) / 100;
         rotateYMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
-        // rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, 1 *  sin.toFixed(2),
-        //                   0, 1, 0,
-        //                   -  sin.toFixed(2), 0, 1 * cos.toFixed(2));
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
@@ -162,9 +155,6 @@ export function buildEventListeners(){
         rotateZMatrixHTML[1].innerHTML = Math.round(sin * 100) / 100;
         rotateZMatrixHTML[3].innerHTML = Math.round(-sin * 100) / 100;
         rotateZMatrixHTML[4].innerHTML = Math.round(cos * 100) / 100;
-        // rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), - sin.toFixed(2), 0, 
-        //                   1 *  sin.toFixed(2), 1 * cos.toFixed(2), 0, 
-        //                   0, 0, 1)
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
@@ -198,9 +188,6 @@ export function buildEventListeners(){
       rotateZMatrixHTML[1].innerHTML = 0;
       rotateZMatrixHTML[3].innerHTML = 0;
       rotateZMatrixHTML[4].innerHTML = 1;
-    //   rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
-    //   rotateYMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
-    //   rotateZMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
 
       updateExtrinsicMatrix();
       updateCamMatrix();
@@ -322,15 +309,6 @@ function updateExtrinsicMatrix(){
     transMatrixHTML[i + 8].innerHTML = Math.round(elts[i + 6] * 100) / 100;
     transMatrixFromCamHTML[i + 8].innerHTML = Math.round(elts[i + 6] * 100) / 100;
   }
-//   transMatrixHTML[0].innerHTML = Math.round(elts[0] * 100) / 100;
-//   transMatrixHTML[1].innerHTML = Math.round(elts[1] * 100) / 100;
-//   transMatrixHTML[2].innerHTML = Math.round(elts[2] * 100) / 100;
-//   transMatrixHTML[4].innerHTML = Math.round(elts[3] * 100) / 100;
-//   transMatrixHTML[5].innerHTML = Math.round(elts[4] * 100) / 100;
-//   transMatrixHTML[6].innerHTML = Math.round(elts[5] * 100) / 100;
-//   transMatrixHTML[8].innerHTML = Math.round(elts[6] * 100) / 100;
-//   transMatrixHTML[9].innerHTML = Math.round(elts[7] * 100) / 100;
-//   transMatrixHTML[10].innerHTML = Math.round(elts[8] * 100) / 100;
 }
 export function updateCamMatrix() {
     let intrinsicMatrix = buildMatrix3to4( intrinsicMatrixHTML );
@@ -363,11 +341,6 @@ export function updatePersMatrix(){
     .multiply(scaleMatrix)
     .multiply(transMatrix);
     console.log(matrix.elements)
-    // for (let i =0; i < 16; i ++){
-    //     persProjMatrixHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
-    //     persProjMatrixMapHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
-    //     persProjMatrixFromCamHTML[i].innerHTML = Math.round(matrixFromCam.elements[i] * 100) / 100;
-    // }
     buildToHTML44(matrix, persProjMatrixHTML);
     buildToHTML44(matrix, persProjMatrixMapHTML);
 }
@@ -389,15 +362,15 @@ export function updatePersPoints(){
   let persWorld = buildMatrix44(persWorldPointsHTML);
   let matrix = persMatrix.multiply(persWorld);
   for (let i = 0; i < 4; i ++){
-    // x = matrix.elements[4 * i]
-    // y = matrix.elements[4 * i + 1]
-    // z = matrix.elements[4 * i + 3]
+    let x = matrix.elements[4 * i]
+    let y = matrix.elements[4 * i + 1]
+    let z = matrix.elements[4 * i + 3]
     // persPointsMatrixHTML[3 * i].innerHTML = Math.round(x / z * 100) / 100
     // persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y / z * 100) / 100
     // persZ.innerHTML = Math.round(z * 100) / 100
-    persPointsMatrixHTML[3 * i].innerHTML = Math.round(matrix.elements[4 * i] * 100) / 100
-    persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(matrix.elements[4 * i + 1] * 100) / 100
-    persZ.innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
+    persPointsMatrixHTML[3 * i].innerHTML = Math.round(x * 100) / 100
+    persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y * 100) / 100
+    persZ.innerHTML = Math.round(z * 100) / 100
     // persPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
   }
 }
@@ -414,8 +387,8 @@ export function updateCamPoints(){
     //   camPointsMatrixHTML[3 * i + 1].innerHTML = 0;
     //   camPointsMatrixHTML[3 * i + 2].innerHTML = 0;
     // }else{
-      camPointsMatrixHTML[3 * i].innerHTML = Math.round(x   * 100) / 100 ;
-      camPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y   * 100) / 100;
+      camPointsMatrixHTML[3 * i].innerHTML = Math.round(x / z * 100) / 100 ;
+      camPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y / z * 100) / 100;
       camZ.innerHTML = Math.round(z * 100) / 100;
     // }
     // camPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 2] * 100) / 100;
