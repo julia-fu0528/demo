@@ -56,6 +56,7 @@ export function camRenderDots(arr){
     const points = [];
     const lineMaterial = new THREE.LineBasicMaterial({
         color: 0x00ff40,
+        linewidth: 10,
     })
     // arr.length is 8 for here, 4 points
     for (let i = 0; i < arr.length - 1; i += 2){
@@ -80,7 +81,7 @@ export function camRenderDots(arr){
     // between 4th and 1st points
     points.push(new THREE.Vector2(arr[6], arr[7]));
     points.push(new THREE.Vector2(arr[0], arr[1]));
-    
+
     const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
     const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lineMesh)

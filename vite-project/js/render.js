@@ -64,7 +64,7 @@ var rotateYVal =  document.getElementById('rotateY-val')
 var rotateZVal =  document.getElementById('rotateZ-val')
 var transXVal =  document.getElementById('transX-val')
 var transYVal =  document.getElementById('transY-val')
-var transZVal =  document.getElementById('transY-val')
+var transZVal =  document.getElementById('transZ-val')
 
 
 export const firstX = document.getElementById('first-x');

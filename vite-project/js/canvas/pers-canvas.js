@@ -16,7 +16,7 @@ const sizes = {
 // scene.add(mesh)
 
 const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height, 0.1, 100);
-camera.position.set(0, 20, 0)
+camera.position.set(0, 0, 20)
 camera.lookAt(0,0, 0)
 scene.add(camera)
 
@@ -34,6 +34,7 @@ export function start(){
     const gridHelper = new THREE.GridHelper(60, 60);
     // const gridHelper = new THREE.GridHelper(30);
     gridHelper.material.color.set('#ff0000');
+    gridHelper.rotation.x = Math.PI/2;
     scene.add(gridHelper);
 
     renderer.render(scene, camera);
@@ -50,6 +51,12 @@ function clearScene(){
 export function persRenderDots(arr){
     clearScene();
     start();
+    const points = [];
+    const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x00ff40,
+        linewidth: 10,
+    })
+    // arr.length is 8 for here, 4 points
     for (let i = 0; i < arr.length - 1; i += 2){
         const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
         const dotMaterial = new THREE.MeshStandardMaterial({
@@ -57,8 +64,24 @@ export function persRenderDots(arr){
             roughness: 0.3,
         })
         const dot = new THREE.Mesh(dotGeometry, dotMaterial);
-        dot.position.set(arr[i], 0 , -arr[i+1]);
+        dot.position.set(arr[i], arr[i+1], 0);
         scene.add(dot);
     }
+    // between 1st and 2nd points
+    points.push(new THREE.Vector2(arr[0], arr[1]));
+    points.push(new THREE.Vector2(arr[2], arr[3]));
+    // between 2nd and 3rd points
+    points.push(new THREE.Vector2(arr[2], arr[3]));
+    points.push(new THREE.Vector2(arr[4], arr[5]));
+    // between 3rd and 4th points
+    points.push(new THREE.Vector2(arr[4], arr[5]));
+    points.push(new THREE.Vector2(arr[6], arr[7]));
+    // between 4th and 1st points
+    points.push(new THREE.Vector2(arr[6], arr[7]));
+    points.push(new THREE.Vector2(arr[0], arr[1]));
+
+    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+    const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+    scene.add(lineMesh)
     renderer.render(scene, camera);
 }
