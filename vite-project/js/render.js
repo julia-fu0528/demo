@@ -45,6 +45,10 @@ const matricesEquationsPersToCam = document.querySelector('.matrices-equations-p
 const matricesEquationsCamToPers = document.querySelector('.matrices-equations-cam-to-pers')
 const persCanvas = document.querySelector('.pers-canvas');
 
+const rotateXMatrixHTML = document.getElementById('rotate-x-matrix').getElementsByTagName('span');
+const rotateYMatrixHTML = document.getElementById('rotate-y-matrix').getElementsByTagName('span');
+const rotateZMatrixHTML = document.getElementById('rotate-z-matrix').getElementsByTagName('span');
+
 var rotateXVal =  document.getElementById('rotateX-val')
 var rotateYVal =  document.getElementById('rotateY-val')
 var rotateZVal =  document.getElementById('rotateZ-val')
@@ -67,9 +71,9 @@ export const fourthY = document.getElementById('fourth-y');
 export const fourthZ = document.getElementById('fourth-z');
 
 
-let rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1);
-let rotateYMatrix = rotateXMatrix.clone();
-let rotateZMatrix = rotateYMatrix.clone();
+// let rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1);
+// let rotateYMatrix = rotateXMatrix.clone();
+// let rotateZMatrix = rotateYMatrix.clone();
 
 export function pointsUnready(){
     if (firstX.value === '' || firstY.value === '' || firstZ.value === ''
@@ -94,9 +98,14 @@ export function buildEventListeners(){
           rotateXVal.innerHTML = "Rotation around x axis: " + Math.round(rotateXSlider.value / Math.PI * 100) / 100;
           let cos = Math.cos(rotateXSlider.value);
           let sin = Math.sin(rotateXSlider.value);
-          rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
-                            0, 1 * cos.toFixed(2), 1 * sin.toFixed(2),
-                            0, - sin.toFixed(2), 1 * cos.toFixed(2));
+          
+          rotateXMatrixHTML[4].innerHTML = Math.round(cos * 100) / 100;
+          rotateXMatrixHTML[5].innerHTML = Math.round(sin * 100) / 100;
+          rotateXMatrixHTML[7].innerHTML = Math.round(-sin * 100) / 100;
+          rotateXMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
+        //   rotateXMatrix = new THREE.Matrix3().clone().set(1, 0, 0, 
+        //                     0, 1 * cos.toFixed(2), 1 * sin.toFixed(2),
+        //                     0, - sin.toFixed(2), 1 * cos.toFixed(2));
           // console.log(rotateXMatrix.elements)
           updateExtrinsicMatrix();
           updateCamMatrix();
@@ -114,9 +123,13 @@ export function buildEventListeners(){
         rotateYVal.innerHTML = "Rotation around y axis: " + Math.round(rotateYSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateYSlider.value);
         let sin = Math.sin(rotateYSlider.value);
-        rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, 1 *  sin.toFixed(2),
-                          0, 1, 0,
-                          -  sin.toFixed(2), 0, 1 * cos.toFixed(2));
+        rotateYMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
+        rotateYMatrixHTML[2].innerHTML = Math.round(-sin * 100) / 100;
+        rotateYMatrixHTML[6].innerHTML = Math.round(sin * 100) / 100;
+        rotateYMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
+        // rotateYMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), 0, 1 *  sin.toFixed(2),
+        //                   0, 1, 0,
+        //                   -  sin.toFixed(2), 0, 1 * cos.toFixed(2));
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
@@ -133,9 +146,13 @@ export function buildEventListeners(){
         rotateZVal.innerHTML = "Rotation around z axis: " + Math.round(rotateZSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateZSlider.value);
         let sin = Math.sin(rotateZSlider.value);
-        rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), - sin.toFixed(2), 0, 
-                          1 *  sin.toFixed(2), 1 * cos.toFixed(2), 0, 
-                          0, 0, 1)
+        rotateZMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
+        rotateZMatrixHTML[1].innerHTML = Math.round(sin * 100) / 100;
+        rotateZMatrixHTML[3].innerHTML = Math.round(-sin * 100) / 100;
+        rotateZMatrixHTML[4].innerHTML = Math.round(cos * 100) / 100;
+        // rotateZMatrix = new THREE.Matrix3().clone().set(1 * cos.toFixed(2), - sin.toFixed(2), 0, 
+        //                   1 *  sin.toFixed(2), 1 * cos.toFixed(2), 0, 
+        //                   0, 0, 1)
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
@@ -153,9 +170,24 @@ export function buildEventListeners(){
       rotateXSlider.value = 0;
       rotateYSlider.value = 0;
       rotateZSlider.value = 0;
-      rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
-      rotateYMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
-      rotateZMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+      rotateXMatrixHTML[4].innerHTML = Math.round(cos * 100) / 100;
+      rotateXMatrixHTML[5].innerHTML = Math.round(sin * 100) / 100;
+      rotateXMatrixHTML[7].innerHTML = Math.round(-sin * 100) / 100;
+      rotateXMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
+
+      rotateYMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
+      rotateYMatrixHTML[2].innerHTML = Math.round(-sin * 100) / 100;
+      rotateYMatrixHTML[6].innerHTML = Math.round(sin * 100) / 100;
+      rotateYMatrixHTML[8].innerHTML = Math.round(cos * 100) / 100;
+
+      rotateZMatrixHTML[0].innerHTML = Math.round(cos * 100) / 100;
+      rotateZMatrixHTML[1].innerHTML = Math.round(sin * 100) / 100;
+      rotateZMatrixHTML[3].innerHTML = Math.round(-sin * 100) / 100;
+      rotateZMatrixHTML[4].innerHTML = Math.round(cos * 100) / 100;
+    //   rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
+    //   rotateYMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
+    //   rotateZMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1)
 
       updateExtrinsicMatrix();
       updateCamMatrix();
@@ -253,12 +285,15 @@ export function buildEventListeners(){
     }
 }
 function updateExtrinsicMatrix(){
-  console.log(rotateXMatrix.elements)
-  console.log(rotateYMatrix.elements)
-  console.log(rotateZMatrix.elements)
+  let rotateXMatrix= buildMatrix33(rotateXMatrixHTML);
+  let rotateYMatrix= buildMatrix33(rotateYMatrixHTML);
+  let rotateZMatrix= buildMatrix33(rotateZMatrixHTML);
   let matrix = rotateXMatrix
   .multiply(rotateYMatrix)
   .multiply(rotateZMatrix)
+  console.log(rotateXMatrix.elements)
+  console.log(rotateYMatrix.elements)
+  console.log(rotateZMatrix.elements)
   let elts = matrix.elements
   for (let i = 0; i < 9; i++) {
       extrinsicMatrixHTML[i].innerHTML = Math.round(elts[i] * 100) / 100;
