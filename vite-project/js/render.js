@@ -8,21 +8,27 @@ export const persMatrixHTML = document.getElementById('pers-matrix').getElements
 export const scaleMatrixHTML = document.getElementById('scale-matrix').getElementsByTagName('span');
 export const intrinsicMatrixHTML = document.getElementById('intrinsic').getElementsByTagName('span');
 
+export const projMatrixFromCamHTML = document.getElementById('proj-matrix-from-cam').getElementsByTagName('span');
+export const persMatrixFromCamHTML = document.getElementById('pers-matrix-from-cam').getElementsByTagName('span');
+export const scaleMatrixFromCamHTML = document.getElementById('scale-matrix-from-cam').getElementsByTagName('span');
+
 export const persWorldPointsHTML = document.getElementById('pers-world-points').getElementsByTagName('span');
 export const camWorldPointsHTML = document.getElementById('cam-world-points').getElementsByTagName('span');
 
 const extrinsicMatrixHTML = document.getElementById('extrinsic').getElementsByTagName('span');
 const transMatrixHTML = document.getElementById('transformation').getElementsByTagName('span');
+export const transMatrixFromCamHTML = document.getElementById('transformation-from-cam').getElementsByTagName('span');
+
 const cameraMatrixHTML = document.getElementById('camera-proj').getElementsByTagName('span');
 const cameraMatrixMapHTML = document.getElementById('camera-proj-map').getElementsByTagName('span');
 const persProjMatrixHTML = document.getElementById('pers-proj').getElementsByTagName('span');
+const persProjMatrixFromCamHTML = document.getElementById('pers-proj-from-cam').getElementsByTagName('span');
 const persProjMatrixMapHTML = document.getElementById('pers-proj-map').getElementsByTagName('span');
 
 export const persPointsMatrixHTML = document.getElementById('pers-projected-points').getElementsByTagName('span');
 export const camPointsMatrixHTML = document.getElementById('cam-projected-points').getElementsByTagName('span');
 
 const orthoMatrixHTML = document.getElementById('ortho-proj').getElementsByTagName('span');
-
 
 const rotateXSlider = document.getElementById('rotateX')
 const rotateYSlider = document.getElementById('rotateY')
@@ -114,6 +120,7 @@ export function buildEventListeners(){
           updateExtrinsicMatrix();
           updateCamMatrix();
           updatePersMatrix();
+          updatePersMatrixFromCam();
           updatePersPoints();
           updateCamPoints();
           CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -137,6 +144,7 @@ export function buildEventListeners(){
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
+        updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
         CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -160,6 +168,7 @@ export function buildEventListeners(){
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
+        updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
         CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -196,6 +205,7 @@ export function buildEventListeners(){
       updateExtrinsicMatrix();
       updateCamMatrix();
       updatePersMatrix();
+      updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
       CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -211,6 +221,7 @@ export function buildEventListeners(){
         transMatrixHTML[12].innerHTML = translateXSlider.value;
         updateCamMatrix();
         updatePersMatrix();
+        updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
         CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -226,6 +237,7 @@ export function buildEventListeners(){
         transMatrixHTML[13].innerHTML = translateYSlider.value;
         updateCamMatrix();
         updatePersMatrix();
+        updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
         CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -241,6 +253,7 @@ export function buildEventListeners(){
         transMatrixHTML[14].innerHTML = translateZSlider.value;
         updateCamMatrix();
         updatePersMatrix();
+        updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
         CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -261,6 +274,7 @@ export function buildEventListeners(){
       updateExtrinsicMatrix();
       updateCamMatrix();
       updatePersMatrix();
+      updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
       CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
@@ -300,15 +314,23 @@ function updateExtrinsicMatrix(){
       extrinsicMatrixHTML[i].innerHTML = Math.round(elts[i] * 100) / 100;
       extrinsicMatrixFromPersHTML[i].innerHTML = Math.round(elts[i] * 100) / 100;
   }
-  transMatrixHTML[0].innerHTML = Math.round(elts[0] * 100) / 100;
-  transMatrixHTML[1].innerHTML = Math.round(elts[1] * 100) / 100;
-  transMatrixHTML[2].innerHTML = Math.round(elts[2] * 100) / 100;
-  transMatrixHTML[4].innerHTML = Math.round(elts[3] * 100) / 100;
-  transMatrixHTML[5].innerHTML = Math.round(elts[4] * 100) / 100;
-  transMatrixHTML[6].innerHTML = Math.round(elts[5] * 100) / 100;
-  transMatrixHTML[8].innerHTML = Math.round(elts[6] * 100) / 100;
-  transMatrixHTML[9].innerHTML = Math.round(elts[7] * 100) / 100;
-  transMatrixHTML[10].innerHTML = Math.round(elts[8] * 100) / 100;
+  for (let i = 0; i < 3; i ++){
+    transMatrixHTML[i].innerHTML = Math.round(elts[i] * 100) / 100;
+    transMatrixFromCamHTML[i].innerHTML = Math.round(elts[i] * 100) / 100;
+    transMatrixHTML[i + 4].innerHTML = Math.round(elts[i + 3] * 100) / 100;
+    transMatrixFromCamHTML[i + 4].innerHTML = Math.round(elts[i + 3] * 100) / 100;
+    transMatrixHTML[i + 8].innerHTML = Math.round(elts[i + 6] * 100) / 100;
+    transMatrixFromCamHTML[i + 8].innerHTML = Math.round(elts[i + 6] * 100) / 100;
+  }
+//   transMatrixHTML[0].innerHTML = Math.round(elts[0] * 100) / 100;
+//   transMatrixHTML[1].innerHTML = Math.round(elts[1] * 100) / 100;
+//   transMatrixHTML[2].innerHTML = Math.round(elts[2] * 100) / 100;
+//   transMatrixHTML[4].innerHTML = Math.round(elts[3] * 100) / 100;
+//   transMatrixHTML[5].innerHTML = Math.round(elts[4] * 100) / 100;
+//   transMatrixHTML[6].innerHTML = Math.round(elts[5] * 100) / 100;
+//   transMatrixHTML[8].innerHTML = Math.round(elts[6] * 100) / 100;
+//   transMatrixHTML[9].innerHTML = Math.round(elts[7] * 100) / 100;
+//   transMatrixHTML[10].innerHTML = Math.round(elts[8] * 100) / 100;
 }
 export function updateCamMatrix() {
     let intrinsicMatrix = buildMatrix3to4( intrinsicMatrixHTML );
@@ -317,7 +339,6 @@ export function updateCamMatrix() {
     let matrix = intrinsicMatrix
     .multiply(extrinsicMatrix);
     let matrixFromPers = intrinsicFromPersMatrix.multiply(extrinsicMatrix);
-    console.log(matrixFromPers.elements)
     for (let i =0; i<12; i ++){
       let row = i % 3;
       let col = parseInt(i / 3);
@@ -341,8 +362,27 @@ export function updatePersMatrix(){
     .multiply(persMatrix)
     .multiply(scaleMatrix)
     .multiply(transMatrix);
+    console.log(matrix.elements)
+    // for (let i =0; i < 16; i ++){
+    //     persProjMatrixHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
+    //     persProjMatrixMapHTML[i].innerHTML = Math.round(matrix.elements[i] * 100) / 100;
+    //     persProjMatrixFromCamHTML[i].innerHTML = Math.round(matrixFromCam.elements[i] * 100) / 100;
+    // }
     buildToHTML44(matrix, persProjMatrixHTML);
     buildToHTML44(matrix, persProjMatrixMapHTML);
+}
+export function updatePersMatrixFromCam(){
+    let orthoMatrix = buildMatrix44(orthoMatrixHTML);
+    let projFromCamMatrix = buildMatrix44(projMatrixFromCamHTML);
+    let persMatrix = buildMatrix44(persMatrixHTML);
+    let scaleFromCamMatrix = buildMatrix44(scaleMatrixFromCamHTML);
+    let transMatrix = buildMatrix44(transMatrixHTML);
+    let matrixFromCam = orthoMatrix
+    .multiply(projFromCamMatrix)
+    .multiply(persMatrix)
+    .multiply(scaleFromCamMatrix)
+    .multiply(transMatrix);
+    buildToHTML44(matrixFromCam, persProjMatrixFromCamHTML);
 }
 export function updatePersPoints(){
   let persMatrix = buildMatrix44(persProjMatrixMapHTML);

@@ -1,6 +1,7 @@
 import * as RENDER from './render.js'
 import * as CAM from './cam-canvas.js'
 import * as PERS from './pers-canvas.js'
+import { RenderTarget } from 'three'
 
 const fx = document.getElementById('focal-x')
 const fy = document.getElementById('focal-y')
@@ -27,8 +28,12 @@ function enter(){
     RENDER.intrinsicMatrixFromPersHTML[0].innerHTML = Math.round(fx.value * 1 / far.value * 100) / 100
     RENDER.intrinsicMatrixFromPersHTML[4].innerHTML = Math.round(fy.value * 1 / far.value * 100) / 100
 
+    RENDER.persMatrixFromCamHTML[0].innerHTML = Math.round(fx.value * 100) / 100;
+    RENDER.persMatrixFromCamHTML[5].innerHTML = Math.round(fy.value * 100) / 100;
+
     RENDER.updateCamMatrix();
     RENDER.updatePersMatrix();
+    RENDER.updatePersMatrixFromCam();
     RENDER.updateCamPoints();
     RENDER.updatePersPoints();
     CAM.camRenderDots(RENDER.matrixToArray(RENDER.camPointsMatrixHTML));
