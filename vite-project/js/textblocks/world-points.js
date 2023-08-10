@@ -61,5 +61,66 @@ function project(){
 
 export function buildEventListeners(){
     submit.addEventListener('click', project);
+
+    RENDER.firstX.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.firstY.focus();
+        }
+    })
+    RENDER.firstY.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.firstZ.focus();
+        }
+    })
+    RENDER.firstZ.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.secondX.focus();
+        }
+    })
+    RENDER.secondX.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.secondY.focus();
+        }
+    })
+    RENDER.secondY.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.secondZ.focus();
+        }
+    })
+    RENDER.secondZ.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.thirdX.focus();
+        }
+    })
+    RENDER.thirdX.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.thirdY.focus();
+        }
+    })
+    RENDER.thirdY.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.thirdZ.focus();
+        }
+    })
+    RENDER.thirdZ.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.fourthX.focus();
+        }
+    })
+    RENDER.fourthX.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.fourthY.focus();
+        }
+    })
+    RENDER.fourthY.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            RENDER.fourthZ.focus();
+        }
+    })
+    RENDER.fourthZ.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            submit.click();
+        }
+    })
 }
 

@@ -41,4 +41,25 @@ function enter(){
 }
 export function buildEventListeners(){
     submit.addEventListener('click', enter);
+
+    fx.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            fy.focus();
+        }
+    })
+    fy.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            far.focus();
+        }
+    })
+    far.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            near.focus();
+        }
+    })
+    near.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            submit.click();
+        }
+    })
 }
