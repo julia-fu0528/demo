@@ -268,7 +268,7 @@ export function buildEventListeners(){
             matricesEquationsPersToCam.style.display = "block";
             // $(".pers-canvas").css("margin-bottom, '100px');
         }else{
-            persToCam.innerText = "Show Corresponding Camera Projection Pipeline"
+            persToCam.value = "Show Corresponding Camera Projection Pipeline"
             matricesEquationsPersToCam.style.display = "none";
             // $('.pers-canvas').css('margin-bottom', '100px');
         }
