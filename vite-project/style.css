@@ -103,10 +103,12 @@ body{
   border: 1px solid black;
 }
 .rotation{
-  width: 90%;
+  width: fit-content;
+  max-width: 50%;
 }
 .translation{
-  width: 90%;
+  width: fit-content;
+  max-width: 50%;
 }
 .input-points{
   width: 35%;
@@ -115,7 +117,8 @@ body{
   background:rgb(187, 240, 234);
 } */
 .constants{
-  width: 90%;
+  width: fit-content;
+  max-width: 50%;
   /* background:rgb(187, 240, 234);
   padding-bottom: 205px;
   border: 1 */
