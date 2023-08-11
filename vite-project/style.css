@@ -393,6 +393,9 @@ input[type=text], button{
   width: 65px;
   margin: 8px;
 }
+#far-clipping, #near-clipping{
+  width: 165px;
+}
 input[type=button]{
   margin: 10px;
   cursor: pointer;
