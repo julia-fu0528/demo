@@ -8,6 +8,9 @@ const submit = document.getElementById('submit');
 function project(){
     if (RENDER.pointsUnready()){
         RENDER.alertPoint();
+     }else if (RENDER.firstZ.value === '0' || RENDER.secondZ.value === '0' 
+            || RENDER.thirdZ.value === '0' || RENDER.fourthZ.value === '0'){
+        alert('0 for z can be dehomogenizable. Please enter another z coordinate.')
      }else{
         // perspective projection matrix
         RENDER.persWorldPointsHTML[0].innerHTML = RENDER.firstX.value;

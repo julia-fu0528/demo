@@ -390,7 +390,7 @@ border-left:none
 }
 input[type=text], button{
   font-size: 0.8em;
-  width: 64px;
+  width: 65px;
   margin: 8px;
 }
 input[type=button]{
