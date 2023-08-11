@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 
+export const persPoint1 = document.getElementById('pers-point1').getElementsByTagName('span');
+export const persPoint2 = document.getElementById('pers-point2').getElementsByTagName('span');
+export const persPoint3 = document.getElementById('pers-point3').getElementsByTagName('span');
+export const persPoint4 = document.getElementById('pers-point4').getElementsByTagName('span');
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
 const sizes = {
@@ -48,7 +53,7 @@ function clearScene(){
 }
 
 
-export function persRenderDots(arr){
+export function persRenderDots(){
     clearScene();
     start();
     const points = [];
@@ -56,6 +61,10 @@ export function persRenderDots(arr){
         color: 0x00ff40,
         linewidth: 10,
     })
+    const arr = [persPoint1[0].innerHTML, persPoint1[1].innerHTML, 
+                 persPoint2[0].innerHTML, persPoint2[1].innerHTML, 
+                 persPoint3[0].innerHTML, persPoint3[1].innerHTML, 
+                 persPoint4[0].innerHTML, persPoint4[1].innerHTML, ]
     // arr.length is 8 for here, 4 points
     for (let i = 0; i < arr.length - 1; i += 2){
         const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)

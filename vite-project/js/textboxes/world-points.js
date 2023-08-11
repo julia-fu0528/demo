@@ -54,8 +54,8 @@ function project(){
         //                     secondX.value, secondY.value,
         //                 thirdX.value, thirdY.value,
         //                     fourthX.value, fourthY.value]); 
-        CAM.camRenderDots(RENDER.matrixToArray(RENDER.camPointsMatrixHTML));
-        PERS.persRenderDots(RENDER.matrixToArray(RENDER.persPointsMatrixHTML));
+        CAM.camRenderDots();
+        PERS.persRenderDots();
         }             
 }
 

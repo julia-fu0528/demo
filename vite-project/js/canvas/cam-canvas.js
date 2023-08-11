@@ -2,6 +2,11 @@ import * as THREE from 'three';
 import { Scene } from 'three';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
 
+export const camPoint1 = document.getElementById('cam-point1').getElementsByTagName('span');
+export const camPoint2 = document.getElementById('cam-point2').getElementsByTagName('span');
+export const camPoint3 = document.getElementById('cam-point3').getElementsByTagName('span');
+export const camPoint4 = document.getElementById('cam-point4').getElementsByTagName('span');
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
 const sizes = {
@@ -50,7 +55,7 @@ function clearScene(){
     }
 }
 
-export function camRenderDots(arr){
+export function camRenderDots(){
     clearScene();
     start();
     const points = [];
@@ -58,6 +63,10 @@ export function camRenderDots(arr){
         color: 0x00ff40,
         linewidth: 10,
     })
+    const arr = [camPoint1[0].innerHTML, camPoint1[1].innerHTML, 
+                 camPoint2[0].innerHTML, camPoint2[1].innerHTML, 
+                 camPoint3[0].innerHTML, camPoint3[1].innerHTML, 
+                 camPoint4[0].innerHTML, camPoint4[1].innerHTML, ]
     // arr.length is 8 for here, 4 points
     for (let i = 0; i < arr.length - 1; i += 2){
         const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)

@@ -20,6 +20,7 @@
           <div class="text-inputs">
             <div class="input-points">
               <h4> Enter a set of 3D world points for projection</h4>
+              <h5> (Note! 0 for z can be dehomogenizable)</h5>
               <div class="first-point">
                 <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
@@ -62,6 +63,7 @@
               <h4>Default intrinsics: </h4>
               <p><b class="parameter-name">Focal lengths</b> : fx = fy = 1 </p>
               <p><b class="parameter-name">Skew</b> : s = 0</p>
+              <p><b class="parameter-name">Principal point</b> : (x<sub>0</sub>, y<sub>0</sub>) = (0, 0)</p>
               <p><b class="parameter-name">Clipping planes</b> : far = 1, near = 1/2</p>
               <p><b class="parameter-name">Angle of view</b> : tan (<sup>θ<sub>x</sub></sup>/<sub>2</sub>) = tan (<sup>θ<sub>y</sub></sup>/<sub>2</sub>) = 1</p>
               <p><em>where θ<sub>x</sub> and θ<sub>y</sub> are the angles of view along the x and y axes, respectively. </em></p>
@@ -614,11 +616,9 @@
                   <mrow>
                     <mi class="arrow">drop z</mi>
                   </mrow>
-                  <mo>→</mo>
-                </math>
+                  <mo>→&nbsp;&nbsp;&nbsp;</mo>
+                </math> 
               </p>
-              <span class="map-span" id="pers-coefficient">1</span>
-              <span class="big map-span">·</span>
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="pers-projected-points">
                   <div class="matrix-label" style="font-size: 14px;">Projected Points</div>
@@ -642,7 +642,62 @@
                    </div>
                 </div>
               </div>
-              
+              <p class="drop-z">
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <mo>→</mo>
+                </math>
+              </p>
+              <span class="map-span" id="pers-coefficient1">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="pers-point1">
+                  <div class="matrix-label" style="font-size: 14px;">Point 1</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
+              <span class="big map-span">,</span>
+              <span class="map-span" id="pers-coefficient2">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="pers-point2">
+                  <div class="matrix-label" style="font-size: 14px;">Point 2</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
+              <span class="big map-span">,</span>
+              <span class="map-span" id="pers-coefficient3">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="pers-point3">
+                  <div class="matrix-label" style="font-size: 14px;">Point 3</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
+              <span class="big map-span">,</span>
+              <span class="map-span" id="pers-coefficient4">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="pers-point4">
+                  <div class="matrix-label" style="font-size: 14px;">Point 4</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
             </div>
             
           </div>
@@ -860,8 +915,6 @@
                 </div>
               </div>
               <span class="equal map-span">=</span>
-              <span class="map-span" id="cam-coefficient">1</span>
-              <span class="big map-span">·</span>
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="cam-projected-points">
                   <div class="matrix-label" style="font-size: 14px;">Projected Points</div>
@@ -885,6 +938,63 @@
                    </div>
                 </div>
               </div>
+              <p class="drop-z">
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <mo>→</mo>
+                </math>
+              </p>
+              <span class="map-span" id="cam-coefficient1">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="cam-point1">
+                  <div class="matrix-label" style="font-size: 14px;">Point 1</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
+              <span class="big map-span">,</span>
+              <span class="map-span" id="cam-coefficient2">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="cam-point2">
+                  <div class="matrix-label" style="font-size: 14px;">Point 2</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
+              <span class="big map-span">,</span>
+              <span class="map-span" id="cam-coefficient3">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="cam-point3">
+                  <div class="matrix-label" style="font-size: 14px;">Point 3</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
+              <span class="big map-span">,</span>
+              <span class="map-span" id="cam-coefficient4">1</span>
+              <span class="big map-span">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="cam-point4">
+                  <div class="matrix-label" style="font-size: 14px;">Point 4</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(1, auto);">
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                   </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <input type="button" id='cam-to-pers' value="Show Corresponding Perspective Projection Pipeline">

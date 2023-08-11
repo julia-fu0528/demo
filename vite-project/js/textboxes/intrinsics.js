@@ -36,8 +36,8 @@ function enter(){
     RENDER.updatePersMatrixFromCam();
     RENDER.updateCamPoints();
     RENDER.updatePersPoints();
-    CAM.camRenderDots(RENDER.matrixToArray(RENDER.camPointsMatrixHTML));
-    PERS.persRenderDots(RENDER.matrixToArray(RENDER.persPointsMatrixHTML));
+    CAM.camRenderDots();
+    PERS.persRenderDots();
 }
 export function buildEventListeners(){
     submit.addEventListener('click', enter);

@@ -37,8 +37,14 @@ const translateXSlider = document.getElementById('translateX')
 const translateYSlider = document.getElementById('translateY')
 const translateZSlider = document.getElementById('translateZ')
 
-const persZ = document.getElementById('pers-coefficient')
-const camZ = document.getElementById('cam-coefficient')
+const persZ1 = document.getElementById('pers-coefficient1')
+const persZ2 = document.getElementById('pers-coefficient2')
+const persZ3 = document.getElementById('pers-coefficient3')
+const persZ4 = document.getElementById('pers-coefficient4')
+const camZ1 = document.getElementById('cam-coefficient1')
+const camZ2 = document.getElementById('cam-coefficient2')
+const camZ3 = document.getElementById('cam-coefficient3')
+const camZ4 = document.getElementById('cam-coefficient4')
 
 const resetRotButton = document.getElementById('reset-rot-button')
 const resetTransButton = document.getElementById('reset-trans-button')
@@ -119,8 +125,8 @@ export function buildEventListeners(){
           updatePersMatrixFromCam();
           updatePersPoints();
           updateCamPoints();
-          CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-          PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+          CAM.camRenderDots();
+          PERS.persRenderDots();
         }
     }
     rotateYSlider.oninput = function(){
@@ -140,8 +146,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+        CAM.camRenderDots();
+        PERS.persRenderDots();
       }
     }
     rotateZSlider.oninput = function(){
@@ -161,8 +167,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+        CAM.camRenderDots();
+        PERS.persRenderDots();
       }
     } 
     resetRotButton.onclick = function(){
@@ -195,8 +201,8 @@ export function buildEventListeners(){
       updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
-      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      CAM.camRenderDots();
+      PERS.persRenderDots();
     }
 
     translateXSlider.oninput = function(){
@@ -211,8 +217,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+        CAM.camRenderDots();
+        PERS.persRenderDots();
       }
     }
     translateYSlider.oninput = function(){
@@ -227,8 +233,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+        CAM.camRenderDots();
+        PERS.persRenderDots();
       }
     }
     translateZSlider.oninput = function(){
@@ -243,8 +249,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-        PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+        CAM.camRenderDots();
+        PERS.persRenderDots();
       }
     }
     resetTransButton.onclick = function(){
@@ -264,8 +270,8 @@ export function buildEventListeners(){
       updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
-      CAM.camRenderDots(matrixToArray(camPointsMatrixHTML));
-      PERS.persRenderDots(matrixToArray(persPointsMatrixHTML));
+      CAM.camRenderDots();
+      PERS.persRenderDots();
     }
     persToCam.onclick = function(){
         if (persToCam.value == "Show Corresponding Camera Projection Pipeline"){
@@ -362,37 +368,52 @@ export function updatePersPoints(){
   let persWorld = buildMatrix44(persWorldPointsHTML);
   let matrix = persMatrix.multiply(persWorld);
   for (let i = 0; i < 4; i ++){
-    let x = matrix.elements[4 * i]
-    let y = matrix.elements[4 * i + 1]
-    let z = matrix.elements[4 * i + 3]
-    // persPointsMatrixHTML[3 * i].innerHTML = Math.round(x / z * 100) / 100
-    // persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y / z * 100) / 100
-    // persZ.innerHTML = Math.round(z * 100) / 100
-    persPointsMatrixHTML[3 * i].innerHTML = Math.round(x * 100) / 100
-    persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y * 100) / 100
-    persZ.innerHTML = Math.round(z * 100) / 100
-    // persPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
+    persPointsMatrixHTML[3 * i].innerHTML = Math.round(matrix.elements[4 * i] * 100) / 100
+    persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(matrix.elements[4 * i + 1] * 100) / 100
+    persPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
   }
+  // point 1
+  persZ1.innerHTML = persPointsMatrixHTML[2].innerHTML;
+  PERS.persPoint1[0].innerHTML = Math.round(persPointsMatrixHTML[0].innerHTML / persZ1.innerHTML * 100) / 100;
+  PERS.persPoint1[1].innerHTML = Math.round(persPointsMatrixHTML[1].innerHTML / persZ1.innerHTML * 100) / 100;
+  // point 2
+  persZ2.innerHTML = persPointsMatrixHTML[5].innerHTML;
+  PERS.persPoint2[0].innerHTML = Math.round(persPointsMatrixHTML[3].innerHTML / persZ2.innerHTML * 100) / 100;
+  PERS.persPoint2[1].innerHTML = Math.round(persPointsMatrixHTML[4].innerHTML / persZ2.innerHTML * 100) / 100;
+  // point 3
+  persZ3.innerHTML = persPointsMatrixHTML[8].innerHTML;
+  PERS.persPoint3[0].innerHTML = Math.round(persPointsMatrixHTML[6].innerHTML / persZ3.innerHTML * 100) / 100;
+  PERS.persPoint3[1].innerHTML = Math.round(persPointsMatrixHTML[7].innerHTML / persZ3.innerHTML * 100) / 100;
+  // point 4
+  persZ4.innerHTML = persPointsMatrixHTML[11].innerHTML;
+  PERS.persPoint4[0].innerHTML = Math.round(persPointsMatrixHTML[9].innerHTML / persZ4.innerHTML * 100) / 100;
+  PERS.persPoint4[1].innerHTML = Math.round(persPointsMatrixHTML[10].innerHTML / persZ4.innerHTML * 100) / 100;
 }
 export function updateCamPoints(){
   let camMatrix = buildMatrix34(cameraMatrixMapHTML);
   let camWorld = buildMatrix44(camWorldPointsHTML);
   let matrix = camMatrix.multiply(camWorld);
   for (let i = 0; i < 4 ; i ++){
-    let x = matrix.elements[4 * i];
-    let y = matrix.elements[4 * i + 1];
-    let z = matrix.elements[4 * i + 2];
-    // if (z == 0){
-    //   camZ.innerHTML = 1;
-    //   camPointsMatrixHTML[3 * i + 1].innerHTML = 0;
-    //   camPointsMatrixHTML[3 * i + 2].innerHTML = 0;
-    // }else{
-      camPointsMatrixHTML[3 * i].innerHTML = Math.round(x / z * 100) / 100 ;
-      camPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(y / z * 100) / 100;
-      camZ.innerHTML = Math.round(z * 100) / 100;
-    // }
-    // camPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 2] * 100) / 100;
+    for (let j = 0; j < 3; j ++){
+        camPointsMatrixHTML[3 * i + j].innerHTML = Math.round(matrix.elements[4 * i + j] * 100) / 100
+    }
   }
+  // point 1
+  camZ1.innerHTML = camPointsMatrixHTML[2].innerHTML;
+  CAM.camPoint1[0].innerHTML = Math.round(camPointsMatrixHTML[0].innerHTML / camZ1.innerHTML * 100) / 100;
+  CAM.camPoint1[1].innerHTML = Math.round(camPointsMatrixHTML[1].innerHTML / camZ1.innerHTML * 100) / 100;
+  // point 2
+  camZ2.innerHTML = camPointsMatrixHTML[5].innerHTML;
+  CAM.camPoint2[0].innerHTML = Math.round(camPointsMatrixHTML[3].innerHTML / camZ2.innerHTML * 100) / 100;
+  CAM.camPoint2[1].innerHTML = Math.round(camPointsMatrixHTML[4].innerHTML / camZ2.innerHTML * 100) / 100;
+  // point 3
+  camZ3.innerHTML = camPointsMatrixHTML[8].innerHTML;
+  CAM.camPoint3[0].innerHTML = Math.round(camPointsMatrixHTML[6].innerHTML / camZ3.innerHTML * 100) / 100;
+  CAM.camPoint3[1].innerHTML = Math.round(camPointsMatrixHTML[7].innerHTML / camZ3.innerHTML * 100) / 100;
+  // point 4
+  camZ4.innerHTML = camPointsMatrixHTML[11].innerHTML;
+  CAM.camPoint4[0].innerHTML = Math.round(camPointsMatrixHTML[9].innerHTML / camZ4.innerHTML * 100) / 100;
+  CAM.camPoint4[1].innerHTML = Math.round(camPointsMatrixHTML[10].innerHTML / camZ4.innerHTML * 100) / 100;
 }
 function buildMatrix33(matrixHTML) {
     let ret = new THREE.Matrix3();
