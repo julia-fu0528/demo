@@ -334,10 +334,6 @@ export function updateCamMatrix() {
 export function updatePersMatrix(){
     let orthoMatrix = buildMatrix44(orthoMatrixHTML);
     let projMatrix = buildMatrix44(projMatrixHTML);
-    projMatrix.set(1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, Math.round(2/3 * 100) / 100, -Math.round(1/3 * 100) / 100,
-      0, 0, - 1, 0);
     let persMatrix = buildMatrix44(persMatrixHTML);
     let scaleMatrix = buildMatrix44(scaleMatrixHTML);
     let transMatrix = buildMatrix44(transMatrixHTML);
