@@ -366,7 +366,7 @@ export function updatePersPoints(){
   for (let i = 0; i < 4; i ++){
     persPointsMatrixHTML[3 * i].innerHTML = Math.round(matrix.elements[4 * i] * 100) / 100
     persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(matrix.elements[4 * i + 1] * 100) / 100
-    persPointsMatrixHTML[3 * i + 2].innerHTML = - Math.round(matrix.elements[4 * i + 3] * 100) / 100
+    persPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
   }
   // point 1
   persZ1.innerHTML = persPointsMatrixHTML[2].innerHTML;
@@ -390,9 +390,9 @@ export function updateCamPoints(){
   let camWorld = buildMatrix44(camWorldPointsHTML);
   let matrix = camMatrix.multiply(camWorld);
   for (let i = 0; i < 4 ; i ++){
-    for (let j = 0; j < 3; j ++){
-        camPointsMatrixHTML[3 * i + j].innerHTML = Math.round(matrix.elements[4 * i + j] * 100) / 100
-    }
+    camPointsMatrixHTML[3 * i].innerHTML = Math.round(matrix.elements[4 * i] * 100) / 100
+    camPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(matrix.elements[4 * i + 1] * 100) / 100
+    camPointsMatrixHTML[3 * i + 2].innerHTML = - Math.round(matrix.elements[4 * i + 2] * 100) / 100
   }
   // point 1
   camZ1.innerHTML = camPointsMatrixHTML[2].innerHTML;
