@@ -8,9 +8,9 @@ const submit = document.getElementById('submit');
 function project(){
     if (RENDER.pointsUnready()){
         RENDER.alertPoint();
-     }else if (RENDER.firstZ.value === '0' || RENDER.secondZ.value === '0' 
-            || RENDER.thirdZ.value === '0' || RENDER.fourthZ.value === '0'){
-        alert('0 for z can be dehomogenizable. Please enter another z coordinate.')
+     }else if (RENDER.firstZ.value >= '0' || RENDER.secondZ.value >= '0' 
+            || RENDER.thirdZ.value >= '0' || RENDER.fourthZ.value >= '0'){
+        alert('z should be negative. Please reenter z.')
      }else{
         // perspective projection matrix
         RENDER.persWorldPointsHTML[0].innerHTML = RENDER.firstX.value;
@@ -77,7 +77,11 @@ export function buildEventListeners(){
     })
     RENDER.firstZ.addEventListener('keydown', function(e){
         if (e.key === 'Enter'){
-            RENDER.secondX.focus();
+            if (RENDER.firstZ.value >= '0'){
+                alert('z should be negative. Please reenter z.')
+            }else{
+                RENDER.secondX.focus();
+            }
         }
     })
     RENDER.secondX.addEventListener('keydown', function(e){
@@ -92,7 +96,11 @@ export function buildEventListeners(){
     })
     RENDER.secondZ.addEventListener('keydown', function(e){
         if (e.key === 'Enter'){
-            RENDER.thirdX.focus();
+            if (RENDER.secondZ.value >= '0'){
+                alert('z should be negative. Please reenter z.')
+            }else{
+                RENDER.thirdX.focus();
+            }
         }
     })
     RENDER.thirdX.addEventListener('keydown', function(e){
@@ -107,7 +115,11 @@ export function buildEventListeners(){
     })
     RENDER.thirdZ.addEventListener('keydown', function(e){
         if (e.key === 'Enter'){
-            RENDER.fourthX.focus();
+            if (RENDER.thirdZ.value >= '0'){
+                alert('z should be negative. Please reenter z.')
+            }else{
+                RENDER.fourthX.focus();
+            }
         }
     })
     RENDER.fourthX.addEventListener('keydown', function(e){
@@ -122,7 +134,11 @@ export function buildEventListeners(){
     })
     RENDER.fourthZ.addEventListener('keydown', function(e){
         if (e.key === 'Enter'){
-            submit.click();
+            if (RENDER.fourthZ.value >= '0'){
+                alert('z should be negative. Please reenter z.')
+            }else{
+                submit.click();
+            }
         }
     })
 }
