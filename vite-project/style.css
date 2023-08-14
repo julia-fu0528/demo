@@ -163,7 +163,7 @@ body{
   font-weight: 625;
 }
 .pair{
-  margin-left: 5px;
+  margin-left: 15px;
   display:flex;
   flex-direction: column;
   margin-right: 20%;
