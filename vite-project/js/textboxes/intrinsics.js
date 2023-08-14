@@ -11,33 +11,38 @@ const near = document.getElementById('near-clipping')
 const submit = document.getElementById('submit-intrinsics')
 
 function enter(){
-    RENDER.projMatrixHTML[10].innerHTML = Math.round(1 / (1 + near.value) * 100) / 100;
-    RENDER.projMatrixHTML[14].innerHTML = Math.round(- near.value / (1 + near.value) * 100) / 100;
+    if (parseFloat(far.value) >= 0 || parseFloat(near.value) >= 0){
+        alert('Please enter negative z coordinate values for clipping planes')
+    }else{
+        c = - near.value / far.value
+        RENDER.projMatrixHTML[10].innerHTML = Math.round(1 / (1 + c) * 100) / 100;
+        RENDER.projMatrixHTML[14].innerHTML = Math.round(- c / (1 + c) * 100) / 100;
 
-    RENDER.persMatrixHTML[0].innerHTML = Math.round(fx.value * 100) / 100;
-    RENDER.persMatrixHTML[5].innerHTML = Math.round(fy.value * 100) / 100;
+        RENDER.persMatrixHTML[0].innerHTML = Math.round(fx.value * 100) / 100;
+        RENDER.persMatrixHTML[5].innerHTML = Math.round(fy.value * 100) / 100;
 
-    RENDER.intrinsicMatrixHTML[0].innerHTML = Math.round(fx.value * 100) / 100;
-    console.log(fx.value);
-    RENDER.intrinsicMatrixHTML[4].innerHTML = Math.round(fy.value * 100) / 100;
+        RENDER.intrinsicMatrixHTML[0].innerHTML = Math.round(fx.value * 100) / 100;
+        console.log(fx.value);
+        RENDER.intrinsicMatrixHTML[4].innerHTML = Math.round(fy.value * 100) / 100;
 
-    RENDER.scaleMatrixHTML[0].innerHTML = Math.round(1 / far.value * 100) / 100;
-    RENDER.scaleMatrixHTML[5].innerHTML = Math.round(1 / far.value * 100) / 100;
-    RENDER.scaleMatrixHTML[10].innerHTML = Math.round(1 / far.value * 100) / 100;
+        RENDER.scaleMatrixHTML[0].innerHTML = Math.round(1 / far.value * 100) / 100;
+        RENDER.scaleMatrixHTML[5].innerHTML = Math.round(1 / far.value * 100) / 100;
+        RENDER.scaleMatrixHTML[10].innerHTML = Math.round(1 / far.value * 100) / 100;
 
-    RENDER.intrinsicMatrixFromPersHTML[0].innerHTML = Math.round(fx.value * 1 / far.value * 100) / 100
-    RENDER.intrinsicMatrixFromPersHTML[4].innerHTML = Math.round(fy.value * 1 / far.value * 100) / 100
+        RENDER.intrinsicMatrixFromPersHTML[0].innerHTML = Math.round(fx.value * 1 / far.value * 100) / 100
+        RENDER.intrinsicMatrixFromPersHTML[4].innerHTML = Math.round(fy.value * 1 / far.value * 100) / 100
 
-    RENDER.persMatrixFromCamHTML[0].innerHTML = Math.round(fx.value * 100) / 100;
-    RENDER.persMatrixFromCamHTML[5].innerHTML = Math.round(fy.value * 100) / 100;
+        RENDER.persMatrixFromCamHTML[0].innerHTML = Math.round(fx.value * 100) / 100;
+        RENDER.persMatrixFromCamHTML[5].innerHTML = Math.round(fy.value * 100) / 100;
 
-    RENDER.updateCamMatrix();
-    RENDER.updatePersMatrix();
-    RENDER.updatePersMatrixFromCam();
-    RENDER.updateCamPoints();
-    RENDER.updatePersPoints();
-    CAM.camRenderDots();
-    PERS.persRenderDots();
+        RENDER.updateCamMatrix();
+        RENDER.updatePersMatrix();
+        RENDER.updatePersMatrixFromCam();
+        RENDER.updateCamPoints();
+        RENDER.updatePersPoints();
+        CAM.camRenderDots();
+        PERS.persRenderDots();
+    }
 }
 export function buildEventListeners(){
     submit.addEventListener('click', enter);

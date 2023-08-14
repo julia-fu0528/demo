@@ -20,7 +20,7 @@
           <div class="text-inputs">
             <div class="input-points">
               <h4> Enter a set of 3D world points for projection</h4>
-              <h5> (Note! 0 for z can be dehomogenizable)</h5>
+              <h5> (Note! 0 for z may not be dehomogenizable)</h5>
               <div class="first-point">
                 <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
@@ -286,19 +286,19 @@
                     <div class="matrix undefined" id="scale-matrix">
                       <div class="matrix-label" style="font-size: 14px;">Scaling Matrix</div>
                       <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-2d">-1</span>
                         <span class="limit-dp elem-2d">0</span>
                         <span class="limit-dp elem-3d">0</span>
                         <span class="limit-dp elem-4d">0</span>
   
                         <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
+                        <span class="limit-dp elem-2d">-1</span>
                         <span class="limit-dp elem-3d">0</span>
                         <span class="limit-dp elem-4d">0</span>
     
                         <span class="limit-dp elem-3d">0</span>
                         <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
+                        <span class="limit-dp elem-3d">-1</span>
                         <span class="limit-dp elem-4d">0</span>
   
                         <span class="limit-dp elem-4d">0</span>
@@ -998,7 +998,7 @@
           </div>
         </div>
         <input type="button" id='cam-to-pers' value="Show Corresponding Perspective Projection Pipeline">
-        </div>
+        
         <div class="matrices-equations-cam-to-pers">
           <div class="matrix-equation pers-matrix-equation wide-screen" id="matrices-2d">
              <div id="rotation-matrix-wrapper">
