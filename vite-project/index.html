@@ -20,26 +20,26 @@
           <div class="text-inputs">
             <div class="input-points">
               <h4> Enter a set of 3D world points for projection</h4>
-              <h5> (Note! 0 for z may not be dehomogenizable)</h5>
+              <h5> (The view frustum is in the negative portion of the z axis)</h5>
               <div class="first-point">
                 <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
-                <input type="text" id="first-z" placeholder="Enter z ≠ 0" maxlength="10">
+                <input type="text" id="first-z" placeholder="Enter z &lt; 0" maxlength="10">
               </div>
               <div class="second-point">
                 <label for="second">Second point: </label><input type="text" id="second-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="second-y" placeholder="Enter y" maxlength="10">
-                <input type="text" id="second-z" placeholder="Enter z ≠ 0" maxlength="10">
+                <input type="text" id="second-z" placeholder="Enter z &lt; 0" maxlength="10">
               </div>
               <div class="third-point">
                 <label for="third">Third point: </label><input type="text" id="third-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="third-y" placeholder="Enter y" maxlength="10">
-                <input type="text" id="third-z" placeholder="Enter z ≠ 0" maxlength="10">
+                <input type="text" id="third-z" placeholder="Enter z &lt; 0" maxlength="10">
               </div>
               <div class="fourth-point">
                 <label for="fourth">Fourth point: </label><input type="text" id="fourth-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="fourth-y" placeholder="Enter y" maxlength="10">
-                <input type="text" id="fourth-z" placeholder="Enter z ≠ 0" maxlength="10">
+                <input type="text" id="fourth-z" placeholder="Enter z &lt; 0" maxlength="10">
               </div>
               <input type="button" id='submit' value="Submit">
             </div>
@@ -74,18 +74,30 @@
             <div class="rotation">
               <h4>Step 1: First rotate the points around respective axes</h4>
               <div class="slidecontainer" id="rotation-sliders">
-                  <p class="value"><span id='rotateX-val'>Rotate x: 0</span>&#8508;</p>
-                  <div class="val-left">0</div>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateX" class="slider">
-                  <div class="val-right">2<span>&#8508;</span></div>
-                  <p class="value"><span id='rotateY-val'>Rotate y: 0</span>&#8508;</p>
-                  <div class="val-left">0</div>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
-                  <div class="val-right">2<span>&#8508;</span></div>
-                  <p class="value"><span id='rotateZ-val'>Rotate z: 0</span>&#8508;</p>
-                  <div class="val-left">0</div>
-                  <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateZ" class="slider">
-                  <div class="val-right">2<span>&#8508;</span></div>
+                  <div class="pair">
+                    <p class="value"><span id='rotateX-val'>Rotate x: 0</span>&#8508;</p>
+                    <div class="slider-content">
+                      <div class="val-left">0</div>
+                      <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateX" class="slider">
+                      <div class="val-right">2<span>&#8508;</span></div>
+                    </div>
+                  </div>
+                  <div class="pair">
+                    <p class="value"><span id='rotateY-val'>Rotate y: 0</span>&#8508;</p>
+                    <div class="slider-content">
+                      <div class="val-left">0</div>
+                      <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
+                      <div class="val-right">2<span>&#8508;</span></div>
+                    </div>
+                  </div>
+                  <div class="pair">
+                    <p class="value"><span id='rotateZ-val'>Rotate z: 0</span>&#8508;</p>
+                    <div class="slider-content">
+                      <div class="val-left">0</div>
+                    <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateZ" class="slider">
+                    <div class="val-right">2<span>&#8508;</span></div>
+                    </div>
+                  </div>
               </div>
               <button id="reset-rot-button" type="button"
               style="width: 150px; height: 25px; font-size: 17px;">
@@ -95,18 +107,30 @@
             <div class="translation">
               <h4>Step 2: Then translate the points in respective directions</h4>
               <div class="slidecontainer" id="translation-sliders">
-                  <p id="transX-val">Translate x </p>
-                  <div class="val-left">-10</div>
-                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
-                  <div class="val-right">10</div>
-                  <p id="transY-val">Translate y </p>
-                  <div class="val-left">-10</div>
-                  <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
-                  <div class="val-right">10</div>
-                  <p id="transZ-val">Translate z </p>
-                  <div class="val-left">-10</div>
-                  <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
-                  <div class="val-right">10</div>
+                  <div class="pair">
+                    <p id="transX-val">Translate x </p>
+                    <div class="slider-content">
+                      <div class="val-left">-10</div>
+                      <input type="range" min="-10" max="10" value='0' step="0.1" id="translateX" class="slider">
+                      <div class="val-right">10</div>
+                    </div>
+                  </div>
+                  <div class="pair">
+                    <p id="transY-val">Translate y </p>
+                    <div class="slider-content">
+                      <div class="val-left">-10</div>
+                      <input type="range" min="-6" max="6" value='0' step="0.1" id="translateY" class="slider">
+                      <div class="val-right">10</div>
+                    </div>
+                  </div>
+                  <div class="pair">
+                    <p id="transZ-val">Translate z </p>
+                    <div class="slider-content">
+                      <div class="val-left">-10</div>
+                      <input type="range" min="-10" max="10" value='0' step="0.1" id="translateZ" class="slider">
+                      <div class="val-right">10</div>
+                    </div>
+                  </div>
                 </div>
               <button id="reset-trans-button" type="button"
               style="width: 150px; height: 25px; font-size: 17px;">
