@@ -168,6 +168,22 @@ body{
   flex-direction: column;
   margin-right: 20%;
 }
+#pers-point1 .matrix-label, #cam-point1 .matrix-label{
+  color: rgb(162, 2, 103);
+  font-weight: 600;
+}
+#pers-point2 .matrix-label, #cam-point2 .matrix-label{
+  color: rgb(184, 124, 3);
+  font-weight: 600;
+}
+#pers-point3 .matrix-label, #cam-point3 .matrix-label{
+  color: rgb(3, 150, 40);
+  font-weight: 600;
+}
+#pers-point4 .matrix-label, #cam-point4 .matrix-label{
+  color: rgb(1, 1, 169);
+  font-weight: 600;
+}
 .val-left{
   position: relative;
   left: -42%;
