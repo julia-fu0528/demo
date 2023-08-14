@@ -366,7 +366,7 @@ export function updatePersPoints(){
   for (let i = 0; i < 4; i ++){
     persPointsMatrixHTML[3 * i].innerHTML = Math.round(matrix.elements[4 * i] * 100) / 100
     persPointsMatrixHTML[3 * i + 1].innerHTML = Math.round(matrix.elements[4 * i + 1] * 100) / 100
-    persPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
+    persPointsMatrixHTML[3 * i + 2].innerHTML = - Math.round(matrix.elements[4 * i + 3] * 100) / 100
   }
   // point 1
   persZ1.innerHTML = persPointsMatrixHTML[2].innerHTML;

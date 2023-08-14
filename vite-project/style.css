@@ -407,6 +407,16 @@ border-left:none
   font-weight: 625;
   color:brown;
 }
+.short-arrow{
+  width: 40px;
+}
+.arrow-cam{
+  font-size: 20px;
+  position: relative;
+  font-weight: 400;
+  top: -31px;
+  left: -47px;
+}
 .input-points{
   width: 450px;
 }
