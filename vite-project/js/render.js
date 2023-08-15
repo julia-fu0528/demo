@@ -133,9 +133,10 @@ export function buildEventListeners(){
           updatePersMatrixFromCam();
           updatePersPoints();
           updateCamPoints();
-          // CAM.camRenderDots();
-          CAM.animate();
+          CAM.camRenderDots();
+          // CAM.animate();
           PERS.persRenderDots();
+          // PERS.animate();
         }
     }
     rotateYSlider.oninput = function(){
@@ -155,9 +156,10 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        // CAM.camRenderDots();
-        CAM.animate();
+        CAM.camRenderDots();
+        // CAM.animate();
         PERS.persRenderDots();
+        // PERS.animate();
       }
     }
     rotateZSlider.oninput = function(){
@@ -177,9 +179,10 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        // CAM.camRenderDots();
-        CAM.animate();
+        CAM.camRenderDots();
+        // CAM.animate();
         PERS.persRenderDots();
+        // PERS.animate();
       }
     } 
     resetRotButton.onclick = function(){
@@ -212,9 +215,10 @@ export function buildEventListeners(){
       updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
-      // CAM.camRenderDots();
-      CAM.animate();
+      CAM.camRenderDots();
+      // CAM.animate();
       PERS.persRenderDots();
+      // PERS.animate();
     }
 
     translateXSlider.oninput = function(){
@@ -229,9 +233,10 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        // CAM.camRenderDots();
-        CAM.animate();
+        CAM.camRenderDots();
+        // CAM.animate();
         PERS.persRenderDots();
+        // PERS.animate();
       }
     }
     translateYSlider.oninput = function(){
@@ -246,9 +251,10 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        // CAM.camRenderDots();
-        CAM.animate();
+        CAM.camRenderDots();
+        // CAM.animate();
         PERS.persRenderDots();
+        // PERS.animate();
       }
     }
     translateZSlider.oninput = function(){
@@ -263,9 +269,10 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        // CAM.camRenderDots();
-        CAM.animate();
+        CAM.camRenderDots();
+        // CAM.animate();
         PERS.persRenderDots();
+        // PERS.animate();
       }
     }
     resetTransButton.onclick = function(){
@@ -285,9 +292,10 @@ export function buildEventListeners(){
       updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
-      // CAM.camRenderDots();
-      CAM.animate();
+      CAM.camRenderDots();
+      // CAM.animate();
       PERS.persRenderDots();
+      // PERS.animate();
     }
     persToCam.onclick = function(){
         if (persToCam.value == "Show Corresponding Camera Projection Pipeline"){
@@ -414,7 +422,6 @@ export function updatePersMatrix(){
     .multiply(persMatrix)
     .multiply(scaleMatrix)
     .multiply(transMatrix);
-    console.log(matrix.elements)
     buildToHTML44(matrix, persProjMatrixHTML);
     buildToHTML44(matrix, persProjMatrixMapHTML);
 }
