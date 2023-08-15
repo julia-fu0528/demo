@@ -257,7 +257,7 @@ input[type="range"]{
 .matrix-equation>span {
   position:relative;
   /* top:1rem; */
-  top: 4rem;
+  top: 5rem;
   /* margin: 10px */
   margin: 0.1px;
 }
@@ -309,6 +309,51 @@ border-left:none
   place-items:left;
   grid-auto-flow:column;
   gap:.5ch 2ch
+}
+/* #ortho-button, #proj-button, #pers-button, #scale-button{
+  text-align: center;
+} */
+#ortho-proj-explain, #proj-matrix-explain, #pers-matrix-explain, #scale-matrix-explain, #transformation-explain, #intrinsic-explain,#extrinsic-explain{
+  display: none;
+}
+
+
+#ortho-proj-explain .matrix-label, #ortho-proj-explain .matrix-elements,
+#proj-matrix-explain .matrix-label, #proj-matrix-explain .matrix-elements,
+#pers-matrix-explain .matrix-label, #pers-matrix-explain .matrix-elements,
+#scale-matrix-explain .matrix-label, #scale-matrix-explain .matrix-elements,
+#transformation-explain .matrix-label, #transformation-explain .matrix-elements,
+#intrinsic-explain .matrix-label, #intrinsic-explain .matrix-elements,
+#extrinsic-explain .matrix-label, #extrinsic-explain .matrix-elements{
+  color:rgb(5, 78, 35);
+}
+#ortho-proj-explain .matrix::before,
+#proj-matrix-explain .matrix::before,
+#pers-matrix-explain .matrix::before,
+#scale-matrix-explain .matrix::before,
+#transformation-explain .matrix::before,
+#intrinsic-explain .matrix::before,
+#extrinsic-explain .matrix::before{
+  /* display: none; */
+  border:1px solid rgb(5, 78, 35);
+  border-right: none;
+}
+#ortho-proj-explain .matrix::after,
+#proj-matrix-explain .matrix::after,
+#pers-matrix-explain .matrix::after,
+#scale-matrix-explain .matrix::after,
+#transformation-explain .matrix::after,
+#intrinsic-explain .matrix::after,
+#extrinsic-explain .matrix::after{
+  /* display: none; */
+  border:1px solid rgb(5, 78, 35);
+  border-left: none;
+}
+#ortho-button, #proj-button, #pers-button, #scale-button, #trans-button, #intrinsic-button, #extrinsic-button:hover{
+  cursor: pointer;
+}
+#proj-matrix-explain .matrix-elements{
+  width: 30ch
 }
 .help{
   display: none;

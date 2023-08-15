@@ -61,6 +61,24 @@ const rotateXMatrixHTML = document.getElementById('rotate-x-matrix').getElements
 const rotateYMatrixHTML = document.getElementById('rotate-y-matrix').getElementsByTagName('span');
 const rotateZMatrixHTML = document.getElementById('rotate-z-matrix').getElementsByTagName('span');
 
+const orthoButton = document.getElementById('ortho-button')
+const projButton = document.getElementById('proj-button')
+const persButton = document.getElementById('pers-button')
+const scaleButton = document.getElementById('scale-button')
+const transButton = document.getElementById('trans-button')
+
+const inButton = document.getElementById('intrinsic-button')
+const exButton = document.getElementById('extrinsic-button')
+
+const orthoExplainMatrix = document.getElementById('ortho-proj-explain')
+const projExplainMatrix = document.getElementById('proj-matrix-explain')
+const persExplainMatrix = document.getElementById('pers-matrix-explain')
+const scaleExplainMatrix = document.getElementById('scale-matrix-explain')
+const transExplainMatrix = document.getElementById('transformation-explain')
+
+const inExplainMatrix = document.getElementById('intrinsic-explain')
+const exExplainMatrix = document.getElementById('extrinsic-explain')
+
 export const intrinsicMatrixFromPersHTML = document.getElementById('intrinsic-from-pers').getElementsByTagName('span');
 export const extrinsicMatrixFromPersHTML = document.getElementById('extrinsic-from-pers').getElementsByTagName('span');
 export const cameraMatrixFromPersHTML = document.getElementById('camera-proj-from-pers').getElementsByTagName('span');
@@ -292,6 +310,62 @@ export function buildEventListeners(){
         }else{
             camToPers.value = "Show Corresponding Perspective Projection Pipeline"
             matricesEquationsCamToPers.style.display = "none";
+        }
+    }
+    orthoButton.onclick = function(){
+        if (orthoExplainMatrix.style.display == "none"){
+            orthoExplainMatrix.style.display="block";
+            // orthoExplainMatrix.style.width = "140px";
+        }else{
+            orthoExplainMatrix.style.display = 'none';
+        }
+    }
+    projButton.onclick = function(){
+        if (projExplainMatrix.style.display == "none"){
+            projExplainMatrix.style.display="block";
+            // projExplainMatrix.style.width = "110px";
+        }else{
+            projExplainMatrix.style.display = 'none';
+        }
+    }
+    persButton.onclick = function(){
+        if (persExplainMatrix.style.display == "none"){
+            persExplainMatrix.style.display="block";
+            // persExplainMatrix.style.width = "90px";
+        }else{
+            persExplainMatrix.style.display = 'none';
+        }
+    }
+    scaleButton.onclick = function(){
+        if (scaleExplainMatrix.style.display == "none"){
+            scaleExplainMatrix.style.display="block";
+            // scaleExplainMatrix.style.width = "90px";
+        }else{
+            scaleExplainMatrix.style.display = 'none';
+        }
+    }
+    transButton.onclick = function(){
+        if (transExplainMatrix.style.display == "none"){
+            transExplainMatrix.style.display="block";
+            // scaleExplainMatrix.style.width = "90px";
+        }else{
+            transExplainMatrix.style.display = 'none';
+        }
+    }
+    inButton.onclick = function(){
+        if (inExplainMatrix.style.display == "none"){
+            inExplainMatrix.style.display="block";
+            // scaleExplainMatrix.style.width = "90px";
+        }else{
+            inExplainMatrix.style.display = 'none';
+        }
+    }
+    exButton.onclick = function(){
+        if (exExplainMatrix.style.display == "none"){
+            exExplainMatrix.style.display="block";
+            // scaleExplainMatrix.style.width = "90px";
+        }else{
+            exExplainMatrix.style.display = 'none';
         }
     }
 }
