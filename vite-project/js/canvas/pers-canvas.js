@@ -5,6 +5,11 @@ export const persPoint2 = document.getElementById('pers-point2').getElementsByTa
 export const persPoint3 = document.getElementById('pers-point3').getElementsByTagName('span');
 export const persPoint4 = document.getElementById('pers-point4').getElementsByTagName('span');
 
+export const persZ1 = document.getElementById('pers-coefficient1')
+export const persZ2 = document.getElementById('pers-coefficient2')
+export const persZ3 = document.getElementById('pers-coefficient3')
+export const persZ4 = document.getElementById('pers-coefficient4')
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
 const sizes = {

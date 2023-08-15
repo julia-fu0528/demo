@@ -7,6 +7,11 @@ export const camPoint2 = document.getElementById('cam-point2').getElementsByTagN
 export const camPoint3 = document.getElementById('cam-point3').getElementsByTagName('span');
 export const camPoint4 = document.getElementById('cam-point4').getElementsByTagName('span');
 
+export const camZ1 = document.getElementById('cam-coefficient1')
+export const camZ2 = document.getElementById('cam-coefficient2')
+export const camZ3 = document.getElementById('cam-coefficient3')
+export const camZ4 = document.getElementById('cam-coefficient4')
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
 const sizes = {

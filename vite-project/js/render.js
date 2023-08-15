@@ -37,21 +37,11 @@ const translateXSlider = document.getElementById('translateX')
 const translateYSlider = document.getElementById('translateY')
 const translateZSlider = document.getElementById('translateZ')
 
-const persZ1 = document.getElementById('pers-coefficient1')
-const persZ2 = document.getElementById('pers-coefficient2')
-const persZ3 = document.getElementById('pers-coefficient3')
-const persZ4 = document.getElementById('pers-coefficient4')
-const camZ1 = document.getElementById('cam-coefficient1')
-const camZ2 = document.getElementById('cam-coefficient2')
-const camZ3 = document.getElementById('cam-coefficient3')
-const camZ4 = document.getElementById('cam-coefficient4')
-
 const resetRotButton = document.getElementById('reset-rot-button')
 const resetTransButton = document.getElementById('reset-trans-button')
 
 const persToCam = document.getElementById('pers-to-cam')
 const camToPers = document.getElementById('cam-to-pers')
-
 
 const matricesEquationsPersToCam = document.querySelector('.matrices-equations-pers-to-cam')
 const matricesEquationsCamToPers = document.querySelector('.matrices-equations-cam-to-pers')
@@ -443,21 +433,21 @@ export function updatePersPoints(){
     persPointsMatrixHTML[3 * i + 2].innerHTML = Math.round(matrix.elements[4 * i + 3] * 100) / 100
   }
   // point 1
-  persZ1.innerHTML = persPointsMatrixHTML[2].innerHTML;
-  PERS.persPoint1[0].innerHTML = Math.round(persPointsMatrixHTML[0].innerHTML / persZ1.innerHTML * 100) / 100;
-  PERS.persPoint1[1].innerHTML = Math.round(persPointsMatrixHTML[1].innerHTML / persZ1.innerHTML * 100) / 100;
+  PERS.persZ1.innerHTML = persPointsMatrixHTML[2].innerHTML;
+  PERS.persPoint1[0].innerHTML = Math.round(persPointsMatrixHTML[0].innerHTML / PERS.persZ1.innerHTML * 100) / 100;
+  PERS.persPoint1[1].innerHTML = Math.round(persPointsMatrixHTML[1].innerHTML / PERS.persZ1.innerHTML * 100) / 100;
   // point 2
-  persZ2.innerHTML = persPointsMatrixHTML[5].innerHTML;
-  PERS.persPoint2[0].innerHTML = Math.round(persPointsMatrixHTML[3].innerHTML / persZ2.innerHTML * 100) / 100;
-  PERS.persPoint2[1].innerHTML = Math.round(persPointsMatrixHTML[4].innerHTML / persZ2.innerHTML * 100) / 100;
+  PERS.persZ2.innerHTML = persPointsMatrixHTML[5].innerHTML;
+  PERS.persPoint2[0].innerHTML = Math.round(persPointsMatrixHTML[3].innerHTML / PERS.persZ2.innerHTML * 100) / 100;
+  PERS.persPoint2[1].innerHTML = Math.round(persPointsMatrixHTML[4].innerHTML / PERS.persZ2.innerHTML * 100) / 100;
   // point 3
-  persZ3.innerHTML = persPointsMatrixHTML[8].innerHTML;
-  PERS.persPoint3[0].innerHTML = Math.round(persPointsMatrixHTML[6].innerHTML / persZ3.innerHTML * 100) / 100;
-  PERS.persPoint3[1].innerHTML = Math.round(persPointsMatrixHTML[7].innerHTML / persZ3.innerHTML * 100) / 100;
+  PERS.persZ3.innerHTML = persPointsMatrixHTML[8].innerHTML;
+  PERS.persPoint3[0].innerHTML = Math.round(persPointsMatrixHTML[6].innerHTML / PERS.persZ3.innerHTML * 100) / 100;
+  PERS.persPoint3[1].innerHTML = Math.round(persPointsMatrixHTML[7].innerHTML / PERS.persZ3.innerHTML * 100) / 100;
   // point 4
-  persZ4.innerHTML = persPointsMatrixHTML[11].innerHTML;
-  PERS.persPoint4[0].innerHTML = Math.round(persPointsMatrixHTML[9].innerHTML / persZ4.innerHTML * 100) / 100;
-  PERS.persPoint4[1].innerHTML = Math.round(persPointsMatrixHTML[10].innerHTML / persZ4.innerHTML * 100) / 100;
+  PERS.persZ4.innerHTML = persPointsMatrixHTML[11].innerHTML;
+  PERS.persPoint4[0].innerHTML = Math.round(persPointsMatrixHTML[9].innerHTML / PERS.persZ4.innerHTML * 100) / 100;
+  PERS.persPoint4[1].innerHTML = Math.round(persPointsMatrixHTML[10].innerHTML / PERS.persZ4.innerHTML * 100) / 100;
 }
 export function updateCamPoints(){
   let camMatrix = buildMatrix34(cameraMatrixMapHTML);
@@ -469,21 +459,21 @@ export function updateCamPoints(){
     camPointsMatrixHTML[3 * i + 2].innerHTML = - Math.round(matrix.elements[4 * i + 2] * 100) / 100
   }
   // point 1
-  camZ1.innerHTML = camPointsMatrixHTML[2].innerHTML;
-  CAM.camPoint1[0].innerHTML = Math.round(camPointsMatrixHTML[0].innerHTML / camZ1.innerHTML * 100) / 100;
-  CAM.camPoint1[1].innerHTML = Math.round(camPointsMatrixHTML[1].innerHTML / camZ1.innerHTML * 100) / 100;
+  CAM.camZ1.innerHTML = camPointsMatrixHTML[2].innerHTML;
+  CAM.camPoint1[0].innerHTML = Math.round(camPointsMatrixHTML[0].innerHTML / CAM.camZ1.innerHTML * 100) / 100;
+  CAM.camPoint1[1].innerHTML = Math.round(camPointsMatrixHTML[1].innerHTML / CAM.camZ1.innerHTML * 100) / 100;
   // point 2
-  camZ2.innerHTML = camPointsMatrixHTML[5].innerHTML;
-  CAM.camPoint2[0].innerHTML = Math.round(camPointsMatrixHTML[3].innerHTML / camZ2.innerHTML * 100) / 100;
-  CAM.camPoint2[1].innerHTML = Math.round(camPointsMatrixHTML[4].innerHTML / camZ2.innerHTML * 100) / 100;
+  CAM.camZ2.innerHTML = camPointsMatrixHTML[5].innerHTML;
+  CAM.camPoint2[0].innerHTML = Math.round(camPointsMatrixHTML[3].innerHTML / CAM.camZ2.innerHTML * 100) / 100;
+  CAM.camPoint2[1].innerHTML = Math.round(camPointsMatrixHTML[4].innerHTML / CAM.camZ2.innerHTML * 100) / 100;
   // point 3
-  camZ3.innerHTML = camPointsMatrixHTML[8].innerHTML;
-  CAM.camPoint3[0].innerHTML = Math.round(camPointsMatrixHTML[6].innerHTML / camZ3.innerHTML * 100) / 100;
-  CAM.camPoint3[1].innerHTML = Math.round(camPointsMatrixHTML[7].innerHTML / camZ3.innerHTML * 100) / 100;
+  CAM.camZ3.innerHTML = camPointsMatrixHTML[8].innerHTML;
+  CAM.camPoint3[0].innerHTML = Math.round(camPointsMatrixHTML[6].innerHTML / CAM.camZ3.innerHTML * 100) / 100;
+  CAM.camPoint3[1].innerHTML = Math.round(camPointsMatrixHTML[7].innerHTML / CAM.camZ3.innerHTML * 100) / 100;
   // point 4
-  camZ4.innerHTML = camPointsMatrixHTML[11].innerHTML;
-  CAM.camPoint4[0].innerHTML = Math.round(camPointsMatrixHTML[9].innerHTML / camZ4.innerHTML * 100) / 100;
-  CAM.camPoint4[1].innerHTML = Math.round(camPointsMatrixHTML[10].innerHTML / camZ4.innerHTML * 100) / 100;
+  CAM.camZ4.innerHTML = camPointsMatrixHTML[11].innerHTML;
+  CAM.camPoint4[0].innerHTML = Math.round(camPointsMatrixHTML[9].innerHTML / CAM.camZ4.innerHTML * 100) / 100;
+  CAM.camPoint4[1].innerHTML = Math.round(camPointsMatrixHTML[10].innerHTML / CAM.camZ4.innerHTML * 100) / 100;
 }
 function buildMatrix33(matrixHTML) {
     let ret = new THREE.Matrix3();
