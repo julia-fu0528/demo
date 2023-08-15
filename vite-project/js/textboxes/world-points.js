@@ -57,7 +57,8 @@ function project(){
         //                     secondX.value, secondY.value,
         //                 thirdX.value, thirdY.value,
         //                     fourthX.value, fourthY.value]); 
-        CAM.camRenderDots();
+        // CAM.camRenderDots();
+        CAM.animate();
         PERS.persRenderDots();
         }             
 }

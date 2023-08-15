@@ -40,7 +40,8 @@ function enter(){
         RENDER.updatePersMatrixFromCam();
         RENDER.updateCamPoints();
         RENDER.updatePersPoints();
-        CAM.camRenderDots();
+        // CAM.camRenderDots();
+        CAM.animate();
         PERS.persRenderDots();
     }
 }

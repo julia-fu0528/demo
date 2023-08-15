@@ -133,7 +133,8 @@ export function buildEventListeners(){
           updatePersMatrixFromCam();
           updatePersPoints();
           updateCamPoints();
-          CAM.camRenderDots();
+          // CAM.camRenderDots();
+          CAM.animate();
           PERS.persRenderDots();
         }
     }
@@ -154,7 +155,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots();
+        // CAM.camRenderDots();
+        CAM.animate();
         PERS.persRenderDots();
       }
     }
@@ -175,7 +177,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots();
+        // CAM.camRenderDots();
+        CAM.animate();
         PERS.persRenderDots();
       }
     } 
@@ -209,7 +212,8 @@ export function buildEventListeners(){
       updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
-      CAM.camRenderDots();
+      // CAM.camRenderDots();
+      CAM.animate();
       PERS.persRenderDots();
     }
 
@@ -225,7 +229,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots();
+        // CAM.camRenderDots();
+        CAM.animate();
         PERS.persRenderDots();
       }
     }
@@ -241,7 +246,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots();
+        // CAM.camRenderDots();
+        CAM.animate();
         PERS.persRenderDots();
       }
     }
@@ -257,7 +263,8 @@ export function buildEventListeners(){
         updatePersMatrixFromCam();
         updatePersPoints();
         updateCamPoints();
-        CAM.camRenderDots();
+        // CAM.camRenderDots();
+        CAM.animate();
         PERS.persRenderDots();
       }
     }
@@ -278,7 +285,8 @@ export function buildEventListeners(){
       updatePersMatrixFromCam();
       updatePersPoints();
       updateCamPoints();
-      CAM.camRenderDots();
+      // CAM.camRenderDots();
+      CAM.animate();
       PERS.persRenderDots();
     }
     persToCam.onclick = function(){
