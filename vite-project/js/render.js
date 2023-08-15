@@ -313,59 +313,59 @@ export function buildEventListeners(){
         }
     }
     orthoButton.onclick = function(){
-        if (orthoExplainMatrix.style.display == "none"){
-            orthoExplainMatrix.style.display="block";
+        if (orthoExplainMatrix.style.display == "block"){
+            orthoExplainMatrix.style.display="none";
             // orthoExplainMatrix.style.width = "140px";
         }else{
-            orthoExplainMatrix.style.display = 'none';
+            orthoExplainMatrix.style.display = 'block';
         }
     }
     projButton.onclick = function(){
-        if (projExplainMatrix.style.display == "none"){
-            projExplainMatrix.style.display="block";
+        if (projExplainMatrix.style.display == "block"){
+            projExplainMatrix.style.display="none";
             // projExplainMatrix.style.width = "110px";
         }else{
-            projExplainMatrix.style.display = 'none';
+            projExplainMatrix.style.display = 'block';
         }
     }
     persButton.onclick = function(){
-        if (persExplainMatrix.style.display == "none"){
-            persExplainMatrix.style.display="block";
+        if (persExplainMatrix.style.display == "block"){
+            persExplainMatrix.style.display="none";
             // persExplainMatrix.style.width = "90px";
         }else{
-            persExplainMatrix.style.display = 'none';
+            persExplainMatrix.style.display = 'block';
         }
     }
     scaleButton.onclick = function(){
-        if (scaleExplainMatrix.style.display == "none"){
-            scaleExplainMatrix.style.display="block";
+        if (scaleExplainMatrix.style.display == "block"){
+            scaleExplainMatrix.style.display="none";
             // scaleExplainMatrix.style.width = "90px";
         }else{
-            scaleExplainMatrix.style.display = 'none';
+            scaleExplainMatrix.style.display = 'block';
         }
     }
     transButton.onclick = function(){
-        if (transExplainMatrix.style.display == "none"){
-            transExplainMatrix.style.display="block";
+        if (transExplainMatrix.style.display == "block"){
+            transExplainMatrix.style.display="none";
             // scaleExplainMatrix.style.width = "90px";
         }else{
-            transExplainMatrix.style.display = 'none';
+            transExplainMatrix.style.display = 'block';
         }
     }
     inButton.onclick = function(){
-        if (inExplainMatrix.style.display == "none"){
-            inExplainMatrix.style.display="block";
+        if (inExplainMatrix.style.display == "block"){
+            inExplainMatrix.style.display="none";
             // scaleExplainMatrix.style.width = "90px";
         }else{
-            inExplainMatrix.style.display = 'none';
+            inExplainMatrix.style.display = 'block';
         }
     }
     exButton.onclick = function(){
-        if (exExplainMatrix.style.display == "none"){
-            exExplainMatrix.style.display="block";
+        if (exExplainMatrix.style.display == "block"){
+            exExplainMatrix.style.display="none";
             // scaleExplainMatrix.style.width = "90px";
         }else{
-            exExplainMatrix.style.display = 'none';
+            exExplainMatrix.style.display = 'block';
         }
     }
 }

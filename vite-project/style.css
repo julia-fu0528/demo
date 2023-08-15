@@ -382,6 +382,10 @@ border-left:none
 .matrices-equations-cam-to-pers .matrix-equation>span{
   color: rgb(3, 3, 96);
 }
+.note{
+  color:rgb(3, 3, 96);
+  font-size: 17px;
+}
 /* .canvas, .canvas-for-pers, .canvas-for-cam{
   height: fit-content;
   position:static;
