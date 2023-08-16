@@ -73,21 +73,22 @@
           
             <div class="rotation">
               <h4>Step 1: First rotate the points around respective axes</h4>
+              <p class="default-rot">Default rotation order: first z then y then x</p>
               <div class="slidecontainer" id="rotation-sliders">
                   <div class="pair">
                     <p class="value"><span id='rotateX-val'>Rotate x: 0</span>&#8508;</p>
                     <div class="slider-content">
                       <div class="val-left">0</div>
-                      <input type="range" min="0" max="3.14159265359" value='0' step="0.01" id="rotateX" class="slider">
-                      <div class="val-right">1<span>&#8508;</span></div>
+                      <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateX" class="slider">
+                      <div class="val-right">2<span>&#8508;</span></div>
                     </div>
                   </div>
                   <div class="pair">
                     <p class="value"><span id='rotateY-val'>Rotate y: 0</span>&#8508;</p>
                     <div class="slider-content">
                       <div class="val-left">0</div>
-                      <input type="range" min="0" max="3.14159265359" value='0' step="0.01" id="rotateY" class="slider">
-                      <div class="val-right">1<span>&#8508;</span></div>
+                      <input type="range" min="0" max="6.28318530718" value='0' step="0.01" id="rotateY" class="slider">
+                      <div class="val-right">2<span>&#8508;</span></div>
                     </div>
                   </div>
                   <div class="pair">
@@ -938,8 +939,9 @@
                        </div>
                     </div>
                   </div>
-            </div>
-
+            </div>  
+            <p class="pers-to-cam-explain">The extrinsic matrix is the same as the first 3 rows of the transformation matrix, 
+              while the intrinsic matrix is the product of the perspective matrix and the scaling matrix except for the 3rd row. </p>
 
 
 
@@ -1384,8 +1386,9 @@
                  </div>
                </div>
         </div>
-        
+        <p class="cam-to-pers-explain">The transformation matrix is equal to the extrinsic matrix except for their shape. The projection matrix and scaling matrix are not unique, because the clipping points and scaling factors are not taken into account in the intrinsic matrix. The perspective matrix corresponds with the intrinsic matrix. </p>
       </div>
+
       
       </div>
       

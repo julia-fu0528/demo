@@ -25,7 +25,7 @@ const sizes = {
 // const mesh = new THREE.Mesh(geometry, material);
 // scene.add(mesh)
 
-const camera = new THREE.PerspectiveCamera(75, sizes.width/sizes.height, 0.1, 100);
+const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height, 0.1, 100);
 camera.position.set(0, 0, 20)
 camera.lookAt(0,0, 0)
 scene.add(camera)
