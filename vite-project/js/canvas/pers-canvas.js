@@ -12,6 +12,8 @@ export const persZ4 = document.getElementById('pers-coefficient4')
 
 const far = document.getElementById('far-clipping')
 const near = document.getElementById('near-clipping')
+const fx = document.getElementById('focal-x')
+const fy = document.getElementById('focal-y')
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
@@ -103,6 +105,12 @@ export function persRenderDots(){
     }
     if (far.value === ""){
         far.value = -1
+    }
+    if (fx.value === ""){
+        fx.value = 1;
+    }
+    if (fy.value === ""){
+        fy.value = 1;
     }
     if (persZ1.innerHTML <= near.value && persZ1.innerHTML >= far.value){
         scene.add(dot1);

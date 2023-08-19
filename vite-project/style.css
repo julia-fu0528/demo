@@ -120,12 +120,13 @@ body{
   flex-direction: row;
 }
 .input-points{
-  width: 35%;
-  border-right: 1px dashed rgb(68, 48, 3);
+  width: 100%;
+  /* border-right: 1px dashed rgb(68, 48, 3); */
   border-top: 1px dashed rgb(68, 48, 3);;
 }
 .input-intrinsics{
-  width:40%;
+  width:75%;
+  border-left: 1px dashed rgb(68, 48, 3);
   border-top: 1px dashed rgb(68, 48, 3);;
 }
 .text-inputs{
@@ -134,16 +135,11 @@ body{
   flex-direction: row;
   width: 100%;
 }
-.constants{
-  /* width: fit-content;
-  max-width: 100%; */
+/* .constants{
   width: 40%;
-  /* background:rgb(187, 240, 234);
-  padding-bottom: 205px;
-  border: 1 */
   border-left: 1px dashed rgb(68, 48, 3);;
   border-top: 1px dashed rgb(68, 48, 3);;
-}
+} */
 .parameter-name{
   color: rgb(121, 6, 6)
 }
@@ -483,13 +479,14 @@ input[type=text], button{
   width: 55px;
   margin: 8px;
 }
-#far-clipping, #near-clipping{
-  width: 165px;
-}
 input[type=button]{
   margin: 10px;
   cursor: pointer;
   font-size: 1.0em;
+}
+.angle-of-view{
+  color: rgb(121, 6, 6);
+  font-weight: 400;
 }
 h4{
   color: blue;

@@ -14,6 +14,8 @@ export const camZ4 = document.getElementById('cam-coefficient4')
 
 const far = document.getElementById('far-clipping')
 const near = document.getElementById('near-clipping')
+const fx = document.getElementById('focal-x')
+const fy = document.getElementById('focal-y')
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
@@ -107,8 +109,12 @@ export function camRenderDots(){
     if (far.value === ""){
         far.value = -1
     }
-    console.log(near.value)
-    console.log(far.value);
+    if (fx.value === ""){
+        fx.value = 1;
+    }
+    if (fy.value === ""){
+        fy.value = 1;
+    }
     if (camZ1.innerHTML <= near.value && camZ1.innerHTML >= far.value){
         scene.add(dot1);
     }

@@ -1,6 +1,8 @@
 import * as CAM from '../canvas/cam-canvas.js';
 import * as PERS from '../canvas/pers-canvas.js';
 import * as RENDER from '../render.js';
+import * as INTRINSICS from './intrinsics.js'
+
 
 const submit = document.getElementById('submit');
 
@@ -61,7 +63,7 @@ function project(){
         // CAM.animate();
         PERS.persRenderDots();
         // PERS.animate();
-        }             
+        }  
 }
 
 export function buildEventListeners(){
