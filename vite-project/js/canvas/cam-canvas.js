@@ -12,6 +12,9 @@ export const camZ2 = document.getElementById('cam-coefficient2')
 export const camZ3 = document.getElementById('cam-coefficient3')
 export const camZ4 = document.getElementById('cam-coefficient4')
 
+const far = document.getElementById('far-clipping')
+const near = document.getElementById('near-clipping')
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
 const sizes = {
@@ -98,10 +101,26 @@ export function camRenderDots(){
     dot2.position.set(arr[2], arr[3], 0);
     dot3.position.set(arr[4], arr[5], 0);
     dot4.position.set(arr[6], arr[7], 0);
-    scene.add(dot1);
-    scene.add(dot2);
-    scene.add(dot3);
-    scene.add(dot4);
+    if (near.value === ""){
+        near.value = -0.5
+    }
+    if (far.value === ""){
+        far.value = -1
+    }
+    console.log(near.value)
+    console.log(far.value);
+    if (camZ1.innerHTML <= near.value && camZ1.innerHTML >= far.value){
+        scene.add(dot1);
+    }
+    if (camZ2.innerHTML <= near.value && camZ2.innerHTML >= far.value){
+        scene.add(dot2);
+    }
+    if (camZ3.innerHTML <= near.value && camZ3.innerHTML >= far.value){
+        scene.add(dot3);
+    }
+    if (camZ4.innerHTML <= near.value && camZ4.innerHTML >= far.value){
+        scene.add(dot4);
+    }
     // arr.length is 8 for here, 4 points
     // for (let i = 0; i < arr.length - 1; i += 2){
     //     const dotMaterial = new THREE.MeshStandardMaterial({

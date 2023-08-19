@@ -480,7 +480,7 @@ border-left:none
 }
 input[type=text], button{
   font-size: 0.8em;
-  width: 65px;
+  width: 55px;
   margin: 8px;
 }
 #far-clipping, #near-clipping{

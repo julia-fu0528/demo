@@ -10,6 +10,9 @@ export const persZ2 = document.getElementById('pers-coefficient2')
 export const persZ3 = document.getElementById('pers-coefficient3')
 export const persZ4 = document.getElementById('pers-coefficient4')
 
+const far = document.getElementById('far-clipping')
+const near = document.getElementById('near-clipping')
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
 const sizes = {
@@ -95,10 +98,24 @@ export function persRenderDots(){
     dot2.position.set(arr[2], arr[3], 0);
     dot3.position.set(arr[4], arr[5], 0);
     dot4.position.set(arr[6], arr[7], 0);
-    scene.add(dot1);
-    scene.add(dot2);
-    scene.add(dot3);
-    scene.add(dot4);
+    if (near.value === ""){
+        near.value = -0.5
+    }
+    if (far.value === ""){
+        far.value = -1
+    }
+    if (persZ1.innerHTML <= near.value && persZ1.innerHTML >= far.value){
+        scene.add(dot1);
+    }
+    if (persZ2.innerHTML <= near.value && persZ2.innerHTML >= far.value){
+        scene.add(dot2);
+    }
+    if (persZ3.innerHTML <= near.value && persZ3.innerHTML >= far.value){
+        scene.add(dot3);
+    }
+    if (persZ4.innerHTML <= near.value && persZ4.innerHTML >= far.value){
+        scene.add(dot4);
+    }
     // arr.length is 8 for here, 4 points
     // for (let i = 0; i < arr.length - 1; i += 2){
     //     const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
