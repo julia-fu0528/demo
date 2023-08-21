@@ -22,6 +22,7 @@ const secondZ = document.getElementById('second-z');
 const thirdZ = document.getElementById('third-z');
 const fourthZ = document.getElementById('fourth-z');
 
+const cameraMatrixHTML = document.getElementById('camera-proj').getElementsByTagName('span');
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
@@ -64,7 +65,7 @@ export function start(){
 // })
 // const mesh = new THREE.Mesh(geometry, material);
 // scene.add(mesh)
-function clearScene(){
+export function clearScene(){
     while (scene.children.length > 0){
         const child = scene.children[0];
         scene.remove(child);
@@ -303,3 +304,178 @@ export function camRenderDots(){
 
 //     renderer.render(scene, camera);
 // }
+export function camRenderSphere(){
+    let radius = 5;
+    let numDots = 1200;
+    // preparations
+    clearScene();
+    start();
+    // generates the random point clouds
+    const points = [];
+    for (let i = 0; i < 30; i ++){
+        for (let j = 0; j < 40; j ++){
+            const phi = Math.PI / 30 * i
+            const theta = 2 * Math.PI / 40 * j
+            points[3 * (i * 40 + j)] = radius * Math.sin(phi) * Math.cos(theta)
+            points[3 * (i * 40 + j) + 1] = radius * Math.sin(phi) * Math.sin(theta) 
+            points[3 * (i * 40 + j) + 2] = radius * Math.cos(phi)
+        }
+    }
+    // projection matrix
+    let pers_proj = new THREE.Matrix4();
+    let arr = []
+    for (let i = 0; i < 12; i++) {
+        arr[i] = Math.round(cameraMatrixHTML[i].innerHTML * 100) / 100;
+    }
+    pers_proj.set (arr[0], arr[3], arr[6],  arr[9],
+        arr[1], arr[4], arr[7],  arr[10],
+        arr[2], arr[5], arr[8], arr[11]);
+    // projected points
+    if (near.value === ""){
+        near.value = -0.5
+    }
+    if (far.value === ""){
+        far.value = -1
+    }
+    if (fx.value === ""){
+        fx.value = 1;
+    }
+    if (fy.value === ""){
+        fy.value = 1;
+    }
+    const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
+    const dotMaterial = new THREE.MeshStandardMaterial({
+        color: '#00ff40',
+        roughness: 0.3,
+    })
+    for (let i = 0; i < numDots; i ++){
+        const x = arr[0] * points[3 * i] + arr[3] * points[3 * i + 1] + arr[6] * points[3 * i + 2] + arr[9]
+        const y = arr[1] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[7] * points[3 * i + 2] + arr[10]
+        const w = -(arr[2] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[11])
+        // console.log(w)
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial)
+        // if (w <= parseFloat(near.value) && w >= parseFloat(far.value)){
+        if (w <= 0 && w >= -100){
+            dot.position.set(x , y, 0);
+            scene.add(dot)
+        }
+        // dot.position.set(x / w, y / w, 0)
+        // scene.add(dot)
+    }
+    renderer.render(scene, camera)
+}
+/*
+renders cube
+*/
+export function persRenderCube(){
+    let len = 10;
+    let numDots = 1080
+    // preparations
+    clearScene();
+    start();
+    // generates the point cloud
+    const points = [];
+    // top
+    for (let i = 0; i < 30; i ++){
+        points[3 * i] = - len / 2 + (len / 30) * i
+        points[3 * i + 1] = len / 2;
+        points[3 * i + 2] = len / 2 + 7;
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 90] = - len / 2 + (len / 30) * i
+        points[3 * i + 91] = - len / 2 
+        points[3 * i + 92] = len / 2 + 7
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 180] = - len / 2
+        points[3 * i + 181] = - len / 2 + (len / 30) * i
+        points[3 * i + 182] = len / 2 + 7
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 270] = len / 2
+        points[3 * i + 271] = - len / 2 + (len / 30) * i
+        points[3 * i + 272] = len / 2 + 7
+    }
+    // bottom
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 360] = - len / 2 + (len / 30) * i
+        points[3 * i + 361] = len / 2;
+        points[3 * i + 362] = - len / 2 + 7;
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 450] = - len / 2 + (len / 30) * i
+        points[3 * i + 451] = - len / 2 
+        points[3 * i + 452] = - len / 2 + 7
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 540] = - len / 2
+        points[3 * i + 541] = - len / 2 + (len / 30) * i
+        points[3 * i + 542] = - len / 2 + 7
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 630] = len / 2
+        points[3 * i + 631] = - len / 2 + (len / 30) * i
+        points[3 * i + 632] = - len / 2 + 7
+    }
+    // bridges
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 720] = len / 2 
+        points[3 * i + 721] = len / 2;
+        points[3 * i + 722] = - len / 2 + (len / 30) * i + 7;
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 810] = - len / 2
+        points[3 * i + 811] = - len / 2 
+        points[3 * i + 812] = - len / 2 + (len / 30) * i + 7
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 900] = - len / 2
+        points[3 * i + 901] = len / 2
+        points[3 * i + 902] = - len / 2 + (len / 30) * i + 7
+    }
+    for (let i = 0; i < 30; i ++){
+        points[3 * i + 990] = len / 2
+        points[3 * i + 991] = - len / 2
+        points[3 * i + 992] = - len / 2 + (len / 30) * i + 7
+    }
+    // projection matrix
+    let pers_proj = new THREE.Matrix4();
+    let arr = []
+    for (let i = 0; i < 16; i++) {
+        arr[i] = Math.round(persProjMatrixHTML[i].innerHTML * 100) / 100;
+    }
+    pers_proj.set (arr[0], arr[4], arr[8],  arr[12],
+        arr[1], arr[5], arr[9],  arr[13],
+        arr[2], arr[6], arr[10], arr[14],
+        arr[3], arr[7], arr[11], arr[15]);
+    // projected points
+    if (near.value === ""){
+        near.value = -0.5
+    }
+    if (far.value === ""){
+        far.value = -1
+    }
+    if (fx.value === ""){
+        fx.value = 1;
+    }
+    if (fy.value === ""){
+        fy.value = 1;
+    }
+    const dotGeometry = new THREE.SphereGeometry(0.15, 64, 64)
+    const dotMaterial = new THREE.MeshStandardMaterial({
+        color: '#00ff40',
+        roughness: 0.3,
+    })
+    for (let i = 0; i < numDots; i ++){
+        const x = arr[0] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[12]
+        const y = arr[1] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[9] * points[3 * i + 2] + arr[13]
+        const w = arr[3] * points[3 * i] + arr[7] * points[3 * i + 1] + arr[11] * points[3 * i + 2] + arr[15]
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial)
+        // if (w <= parseFloat(near.value) && w >= parseFloat(far.value)){
+        if (w <= 0 && w >= -100){
+            dot.position.set(x/w , y/w, 0);
+            scene.add(dot)
+        }
+    }
+    renderer.render(scene, camera)
+}

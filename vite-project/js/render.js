@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { Camera } from 'three';
 import * as CAM from './canvas/cam-canvas.js';
 import * as PERS from './canvas/pers-canvas.js';
 
@@ -94,7 +95,8 @@ export const fourthX = document.getElementById('fourth-x');
 export const fourthY = document.getElementById('fourth-y');
 export const fourthZ = document.getElementById('fourth-z');
 
-
+const sphereButton = document.getElementById('sphere-button')
+const cubeButton = document.getElementById('cube-button') 
 // let rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1);
 // let rotateYMatrix = rotateXMatrix.clone();
 // let rotateZMatrix = rotateYMatrix.clone();
@@ -116,9 +118,9 @@ export function alertPoint(){
 
 export function buildEventListeners(){
     rotateXSlider.oninput = function(){
-        if (pointsUnready()){
-          alertPoint();
-        }else{
+        // if (pointsUnready()){
+        //   alertPoint();
+        // }else{
           rotateXVal.innerHTML = "Rotate x: " + Math.round(rotateXSlider.value / Math.PI * 100) / 100;
           let cos = Math.cos(rotateXSlider.value);
           let sin = Math.sin(rotateXSlider.value);
@@ -130,19 +132,28 @@ export function buildEventListeners(){
           updateExtrinsicMatrix();
           updateCamMatrix();
           updatePersMatrix();
-          updatePersMatrixFromCam();
-          updatePersPoints();
-          updateCamPoints();
-          CAM.camRenderDots();
-          // CAM.animate();
-          PERS.persRenderDots();
-          // PERS.animate();
+          if (pointsUnready()){
+            if (sphereButton.value == "Hide Sphere"){
+              PERS.persRenderSphere();
+              CAM.camRenderSphere();
+            }else{
+              PERS.persRenderCube();
+              CAM.camRenderSphere();
+            }
+          }else{
+            updatePersMatrixFromCam();
+            updatePersPoints();
+            updateCamPoints();
+            CAM.camRenderDots();
+            // CAM.animate();
+            PERS.persRenderDots();
+            // PERS.animate();
         }
     }
     rotateYSlider.oninput = function(){
-      if (pointsUnready()){
-        alertPoint();
-      }else{
+      // if (pointsUnready()){
+      //   alertPoint();
+      // }else{
         rotateYVal.innerHTML = "Rotate y: " + Math.round(rotateYSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateYSlider.value);
         let sin = Math.sin(rotateYSlider.value);
@@ -153,19 +164,28 @@ export function buildEventListeners(){
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
-        updatePersMatrixFromCam();
-        updatePersPoints();
-        updateCamPoints();
-        CAM.camRenderDots();
-        // CAM.animate();
-        PERS.persRenderDots();
-        // PERS.animate();
-      }
+        if (pointsUnready()){
+          if (sphereButton.value == "Hide Sphere"){
+            PERS.persRenderSphere();
+            CAM.camRenderSphere();
+          }else{
+            PERS.persRenderCube();
+            CAM.camRenderSphere();
+          }
+        }else{
+          updatePersMatrixFromCam();
+          updatePersPoints();
+          updateCamPoints();
+          CAM.camRenderDots();
+          // CAM.animate();
+          PERS.persRenderDots();
+          // PERS.animate();
+        }
     }
     rotateZSlider.oninput = function(){
-      if (pointsUnready()){
-        alertPoint();
-      }else{
+      // if (pointsUnready()){
+      //   alertPoint();
+      // }else{
         rotateZVal.innerHTML = "Rotate z: " + Math.round(rotateZSlider.value / Math.PI * 100) / 100;
         let cos = Math.cos(rotateZSlider.value);
         let sin = Math.sin(rotateZSlider.value);
@@ -176,14 +196,23 @@ export function buildEventListeners(){
         updateExtrinsicMatrix();
         updateCamMatrix();
         updatePersMatrix();
-        updatePersMatrixFromCam();
-        updatePersPoints();
-        updateCamPoints();
-        CAM.camRenderDots();
-        // CAM.animate();
-        PERS.persRenderDots();
-        // PERS.animate();
-      }
+        if (pointsUnready()){
+          if (sphereButton.value == "Hide Sphere"){
+            PERS.persRenderSphere();
+            CAM.camRenderSphere();
+          }else{
+            PERS.persRenderCube();
+            CAM.camRenderSphere();
+          }
+        }else{
+          updatePersMatrixFromCam();
+          updatePersPoints();
+          updateCamPoints();
+          CAM.camRenderDots();
+          // CAM.animate();
+          PERS.persRenderDots();
+          // PERS.animate();
+        }
     } 
     resetRotButton.onclick = function(){
       rotateXVal.innerHTML = "Rotate x: 0";
@@ -213,67 +242,104 @@ export function buildEventListeners(){
       updateCamMatrix();
       updatePersMatrix();
       updatePersMatrixFromCam();
-      updatePersPoints();
-      updateCamPoints();
-      CAM.camRenderDots();
-      // CAM.animate();
-      PERS.persRenderDots();
-      // PERS.animate();
+      if (pointsUnready()){
+        if (sphereButton.value == "Hide Sphere"){
+          PERS.persRenderSphere();
+          CAM.camRenderSphere();
+        }else{
+          PERS.persRenderCube();
+          CAM.camRenderSphere();
+        }
+      }else{
+        updatePersPoints();
+        updateCamPoints();
+        CAM.camRenderDots();
+        // CAM.animate();
+        PERS.persRenderDots();
+        // PERS.animate();
+      }
     }
 
     translateXSlider.oninput = function(){
-      if (pointsUnready()){
-        alertPoint();
-      }else{
+      // if (pointsUnready()){
+      //   alertPoint();
+      // }else{
         transXVal.innerHTML = "Translate x: " + translateXSlider.value;
         extrinsicMatrixHTML[9].innerHTML = translateXSlider.value;
         transMatrixHTML[12].innerHTML = translateXSlider.value;
         updateCamMatrix();
         updatePersMatrix();
-        updatePersMatrixFromCam();
-        updatePersPoints();
-        updateCamPoints();
-        CAM.camRenderDots();
-        // CAM.animate();
-        PERS.persRenderDots();
-        // PERS.animate();
-      }
+        if (pointsUnready()){
+          if (sphereButton.value == "Hide Sphere"){
+            PERS.persRenderSphere();
+            CAM.camRenderSphere();
+          }else{
+            PERS.persRenderCube();
+            CAM.camRenderSphere();
+          }
+        }else{
+          updatePersMatrixFromCam();
+          updatePersPoints();
+          updateCamPoints();
+          CAM.camRenderDots();
+          // CAM.animate();
+          PERS.persRenderDots();
+          // PERS.animate();
+        }
     }
     translateYSlider.oninput = function(){
-      if (pointsUnready()){
-        alertPoint();
-      }else{
+      // if (pointsUnready()){
+      //   alertPoint();
+      // }else{
         transYVal.innerHTML = "Translate y: " + translateYSlider.value;
         extrinsicMatrixHTML[10].innerHTML = translateYSlider.value;
         transMatrixHTML[13].innerHTML = translateYSlider.value;
         updateCamMatrix();
         updatePersMatrix();
-        updatePersMatrixFromCam();
-        updatePersPoints();
-        updateCamPoints();
-        CAM.camRenderDots();
-        // CAM.animate();
-        PERS.persRenderDots();
-        // PERS.animate();
-      }
+        if (pointsUnready()){
+          if (sphereButton.value == "Hide Sphere"){
+            PERS.persRenderSphere();
+            CAM.camRenderSphere();
+          }else{
+            PERS.persRenderCube();
+            CAM.camRenderSphere();
+          }
+        }else{
+          updatePersMatrixFromCam();
+          updatePersPoints();
+          updateCamPoints();
+          CAM.camRenderDots();
+          // CAM.animate();
+          PERS.persRenderDots();
+          // PERS.animate();
+        }
     }
     translateZSlider.oninput = function(){
-      if (pointsUnready()){
-        alertPoint();
-      }else{
+      // if (pointsUnready()){
+      //   alertPoint();
+      // }else{
         transZVal.innerHTML = "Translate z: " + translateZSlider.value;
         extrinsicMatrixHTML[11].innerHTML = translateZSlider.value;
         transMatrixHTML[14].innerHTML = translateZSlider.value;
         updateCamMatrix();
         updatePersMatrix();
-        updatePersMatrixFromCam();
-        updatePersPoints();
-        updateCamPoints();
-        CAM.camRenderDots();
-        // CAM.animate();
-        PERS.persRenderDots();
-        // PERS.animate();
-      }
+        if (pointsUnready()){
+          if (sphereButton.value == "Hide Sphere"){
+            PERS.persRenderSphere();
+            CAM.camRenderSphere();
+          }else{
+            PERS.persRenderCube();
+            CAM.camRenderSphere();
+          }
+        }else{
+          updatePersMatrixFromCam();
+          updatePersPoints();
+          updateCamPoints();
+          CAM.camRenderDots();
+          // CAM.animate();
+          PERS.persRenderDots();
+          // PERS.animate();
+        }
     }
     resetTransButton.onclick = function(){
       transXVal.innerHTML = "Translation in x direction: 0";
@@ -289,13 +355,23 @@ export function buildEventListeners(){
       updateExtrinsicMatrix();
       updateCamMatrix();
       updatePersMatrix();
-      updatePersMatrixFromCam();
-      updatePersPoints();
-      updateCamPoints();
-      CAM.camRenderDots();
-      // CAM.animate();
-      PERS.persRenderDots();
-      // PERS.animate();
+      if (pointsUnready()){
+        if (sphereButton.value == "Hide Sphere"){
+          PERS.persRenderSphere();
+          CAM.camRenderSphere();
+        }else{
+          PERS.persRenderCube();
+          CAM.camRenderSphere();
+        }
+      }else{
+        updatePersMatrixFromCam();
+        updatePersPoints();
+        updateCamPoints();
+        CAM.camRenderDots();
+        // CAM.animate();
+        PERS.persRenderDots();
+        // PERS.animate();
+      }
     }
     persToCam.onclick = function(){
         if (persToCam.value == "Show Corresponding Camera Projection Pipeline"){
@@ -373,6 +449,34 @@ export function buildEventListeners(){
         }else{
             exExplainMatrix.style.display = 'block';
         }
+    }
+    sphereButton.onclick = function(){
+      if (sphereButton.value == "Project Sphere"){
+        PERS.persRenderSphere();
+        CAM.camRenderSphere();
+        sphereButton.value = "Hide Sphere";
+        cubeButton.value = "Project Cube";
+      }else{
+        sphereButton.value = "Project Sphere";
+        PERS.clearScene();
+        PERS.start();
+        CAM.clearScene();
+        CAM.start();
+      }
+    }
+    cubeButton.onclick = function(){
+      if (cubeButton.value == "Project Cube"){
+        PERS.persRenderCube();
+        CAM.camRenderSphere();
+        cubeButton.value = "Hide Cube";
+        sphereButton.value = "Project Sphere";
+      }else{
+        PERS.clearScene();
+        PERS.start();
+        CAM.clearScene();
+        CAM.start();
+        cubeButton.value = "Project Cube";
+      }
     }
 }
 function updateExtrinsicMatrix(){

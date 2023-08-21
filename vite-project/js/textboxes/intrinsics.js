@@ -38,12 +38,16 @@ function enter(){
         RENDER.updateCamMatrix();
         RENDER.updatePersMatrix();
         RENDER.updatePersMatrixFromCam();
-        RENDER.updateCamPoints();
-        RENDER.updatePersPoints();
-        CAM.camRenderDots();
-        // CAM.animate();
-        PERS.persRenderDots();
-        // PERS.animate();
+        if (RENDER.pointsUnready()){
+            PERS.persRenderSphere();
+          }else{
+            RENDER.updateCamPoints();
+            RENDER.updatePersPoints();
+            CAM.camRenderDots();
+            // CAM.animate();
+            PERS.persRenderDots();
+            // PERS.animate();
+          }
     }
 }
 export function buildEventListeners(){

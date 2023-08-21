@@ -10,9 +10,9 @@ const submit = document.getElementById('submit');
 function project(){
     if (RENDER.pointsUnready()){
         RENDER.alertPoint();
-    //  }else if (RENDER.firstZ.value >= '0' || RENDER.secondZ.value >= '0' 
-    //         || RENDER.thirdZ.value >= '0' || RENDER.fourthZ.value >= '0'){
-    //     alert('z should be negative. Please reenter z.')
+    // //  }else if (RENDER.firstZ.value >= '0' || RENDER.secondZ.value >= '0' 
+    // //         || RENDER.thirdZ.value >= '0' || RENDER.fourthZ.value >= '0'){
+    // //     alert('z should be negative. Please reenter z.')
      }else{
         // perspective projection matrix
         RENDER.persWorldPointsHTML[0].innerHTML = RENDER.firstX.value;
@@ -63,7 +63,8 @@ function project(){
         // CAM.animate();
         PERS.persRenderDots();
         // PERS.animate();
-        }  
+    }
+          
 }
 
 export function buildEventListeners(){
