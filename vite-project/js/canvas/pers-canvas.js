@@ -15,6 +15,11 @@ const near = document.getElementById('near-clipping')
 const fx = document.getElementById('focal-x')
 const fy = document.getElementById('focal-y')
 
+const camZ1 = document.getElementById('cam-coefficient1')
+const camZ2 = document.getElementById('cam-coefficient2')
+const camZ3 = document.getElementById('cam-coefficient3')
+const camZ4 = document.getElementById('cam-coefficient4')
+
 const firstZ = document.getElementById('first-z');
 const secondZ = document.getElementById('second-z');
 const thirdZ = document.getElementById('third-z');
@@ -117,14 +122,10 @@ export function persRenderDots(){
     if (fy.value === ""){
         fy.value = 1;
     }
-    let point1Valid = parseFloat(firstZ.value) <= parseFloat(near.value) && parseFloat(firstZ.value) >= parseFloat(far.value);
-    let point2Valid = parseFloat(secondZ.value) <= parseFloat(near.value) && parseFloat(secondZ.value) >= parseFloat(far.value);
-    let point3Valid = parseFloat(thirdZ.value) <= parseFloat(near.value) && parseFloat(thirdZ.value) >= parseFloat(far.value);
-    let point4Valid = parseFloat(fourthZ.value) <= parseFloat(near.value) && parseFloat(fourthZ.value) >= parseFloat(far.value);
-    console.log(point1Valid);
-    console.log(parseFloat(firstZ.value))
-    console.log(near.value);
-    console.log(firstZ.value <= near.value);
+    let point1Valid = parseFloat(-camZ1.innerHTML) <= parseFloat(near.value) && parseFloat(-camZ1.innerHTML) >= parseFloat(far.value);
+    let point2Valid = parseFloat(-camZ2.innerHTML) <= parseFloat(near.value) && parseFloat(-camZ2.innerHTML) >= parseFloat(far.value);
+    let point3Valid = parseFloat(-camZ3.innerHTML) <= parseFloat(near.value) && parseFloat(-camZ3.innerHTML) >= parseFloat(far.value);
+    let point4Valid = parseFloat(-camZ4.innerHTML) <= parseFloat(near.value) && parseFloat(-camZ4.innerHTML) >= parseFloat(far.value);
     if (point1Valid){
         scene.add(dot1);
     }
@@ -149,27 +150,81 @@ export function persRenderDots(){
     //     scene.add(dot);
     // }
     
-    // between 1st and 2nd points
-    if (point1Valid && point2Valid){
-        points.push(new THREE.Vector2(arr[0], arr[1]));
-        points.push(new THREE.Vector2(arr[2], arr[3]));
+    // // between 1st and 2nd points
+    // if (point1Valid && point2Valid){
+    //     points.push(new THREE.Vector2(arr[0], arr[1]));
+    //     points.push(new THREE.Vector2(arr[2], arr[3]));
+    // }
+    // // between 2nd and 3rd points
+    // if (point2Valid && point3Valid){
+    //     points.push(new THREE.Vector2(arr[2], arr[3]));
+    //     points.push(new THREE.Vector2(arr[4], arr[5]));
+    // }
+    // // between 3rd and 4th points
+    // if (point3Valid && point4Valid){
+    //     points.push(new THREE.Vector2(arr[4], arr[5]));
+    //     points.push(new THREE.Vector2(arr[6], arr[7]));
+    // }
+    // // between 4th and 1st points
+    // if (point4Valid && point1Valid){
+    //     points.push(new THREE.Vector2(arr[6], arr[7]));
+    //     points.push(new THREE.Vector2(arr[0], arr[1]));
+    // }
+    if (point1Valid){
+        if (point2Valid){
+            points.push(new THREE.Vector2(arr[0], arr[1]));
+            points.push(new THREE.Vector2(arr[2], arr[3]));
+            if (point3Valid){
+                points.push(new THREE.Vector2(arr[2], arr[3]));
+                points.push(new THREE.Vector2(arr[4], arr[5]));
+                if (point4Valid){
+                    points.push(new THREE.Vector2(arr[4], arr[5]));
+                    points.push(new THREE.Vector2(arr[6], arr[7]));
+                    points.push(new THREE.Vector2(arr[6], arr[7]));
+                    points.push(new THREE.Vector2(arr[0], arr[1]));
+                }else{
+                    points.push(new THREE.Vector2(arr[4], arr[5]));
+                    points.push(new THREE.Vector2(arr[0], arr[1]));
+                }
+            }else if(point4Valid){
+                points.push(new THREE.Vector2(arr[2], arr[3]));
+                points.push(new THREE.Vector2(arr[6], arr[7]));
+                points.push(new THREE.Vector2(arr[6], arr[7]));
+                points.push(new THREE.Vector2(arr[0], arr[1]));
+            }
+        }else if(point3Valid){
+            points.push(new THREE.Vector2(arr[0], arr[1]));
+            points.push(new THREE.Vector2(arr[4], arr[5]));
+            if (point4Valid){
+                points.push(new THREE.Vector2(arr[4], arr[5]));
+                points.push(new THREE.Vector2(arr[6], arr[7]));
+                points.push(new THREE.Vector2(arr[6], arr[7]));
+                points.push(new THREE.Vector2(arr[0], arr[1]));
+            }
+        }else if(point4Valid){
+            points.push(new THREE.Vector2(arr[0]), arr[1]);
+            points.push(new THREE.Vector2(arr[6], arr[7]));
+        }
+    }else{
+        if(point2Valid){
+            if (point3Valid){
+                points.push(new THREE.Vector2(arr[2], arr[3]));
+                points.push(new THREE.Vector2(arr[4], arr[5]));
+                if (point4Valid){
+                    points.push(new THREE.Vector2(arr[4], arr[5]));
+                    points.push(new THREE.Vector2(arr[6], arr[7]));
+                    points.push(new THREE.Vector2(arr[6], arr[7]));
+                    points.push(new THREE.Vector2(arr[2], arr[3]));
+                }
+            }else if(point4Valid){
+                points.push(new THREE.Vector2(arr[2], arr[3]));
+                points.push(new THREE.Vector2(arr[6], arr[7]));
+            }
+        }else if(point3Valid && point4Valid){
+            points.push(new THREE.Vector2(arr[4], arr[5]));
+            points.push(new THREE.Vector2(arr[6], arr[7]));
+        }
     }
-    // between 2nd and 3rd points
-    if (point2Valid && point3Valid){
-        points.push(new THREE.Vector2(arr[2], arr[3]));
-        points.push(new THREE.Vector2(arr[4], arr[5]));
-    }
-    // between 3rd and 4th points
-    if (point3Valid && point4Valid){
-        points.push(new THREE.Vector2(arr[4], arr[5]));
-        points.push(new THREE.Vector2(arr[6], arr[7]));
-    }
-    // between 4th and 1st points
-    if (point4Valid && point1Valid){
-        points.push(new THREE.Vector2(arr[6], arr[7]));
-        points.push(new THREE.Vector2(arr[0], arr[1]));
-    }
-
     const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
     const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lineMesh)
