@@ -17,6 +17,12 @@ const near = document.getElementById('near-clipping')
 const fx = document.getElementById('focal-x')
 const fy = document.getElementById('focal-y')
 
+const firstZ = document.getElementById('first-z');
+const secondZ = document.getElementById('second-z');
+const thirdZ = document.getElementById('third-z');
+const fourthZ = document.getElementById('fourth-z');
+
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#ffffff');
 const sizes = {
@@ -115,16 +121,20 @@ export function camRenderDots(){
     if (fy.value === ""){
         fy.value = 1;
     }
-    if (camZ1.innerHTML <= near.value && camZ1.innerHTML >= far.value){
+    let point1Valid = parseFloat(firstZ.value) <= parseFloat(near.value) && parseFloat(firstZ.value) >= parseFloat(far.value);
+    let point2Valid = parseFloat(secondZ.value) <= parseFloat(near.value) && parseFloat(secondZ.value) >= parseFloat(far.value);
+    let point3Valid = parseFloat(thirdZ.value) <= parseFloat(near.value) && parseFloat(thirdZ.value) >= parseFloat(far.value);
+    let point4Valid = parseFloat(fourthZ.value) <= parseFloat(near.value) && parseFloat(fourthZ.value) >= parseFloat(far.value);
+    if (point1Valid){
         scene.add(dot1);
     }
-    if (camZ2.innerHTML <= near.value && camZ2.innerHTML >= far.value){
+    if (point2Valid){
         scene.add(dot2);
     }
-    if (camZ3.innerHTML <= near.value && camZ3.innerHTML >= far.value){
+    if (point3Valid){
         scene.add(dot3);
     }
-    if (camZ4.innerHTML <= near.value && camZ4.innerHTML >= far.value){
+    if (point4Valid){
         scene.add(dot4);
     }
     // arr.length is 8 for here, 4 points
@@ -138,17 +148,25 @@ export function camRenderDots(){
     //     scene.add(dot);
     // }
     // between 1st and 2nd points
-    points.push(new THREE.Vector2(arr[0], arr[1]));
-    points.push(new THREE.Vector2(arr[2], arr[3]));
+    if (point1Valid && point2Valid){
+        points.push(new THREE.Vector2(arr[0], arr[1]));
+        points.push(new THREE.Vector2(arr[2], arr[3]));
+    }
     // between 2nd and 3rd points
-    points.push(new THREE.Vector2(arr[2], arr[3]));
-    points.push(new THREE.Vector2(arr[4], arr[5]));
+    if (point2Valid && point3Valid){
+        points.push(new THREE.Vector2(arr[2], arr[3]));
+        points.push(new THREE.Vector2(arr[4], arr[5]));
+    }
     // between 3rd and 4th points
-    points.push(new THREE.Vector2(arr[4], arr[5]));
-    points.push(new THREE.Vector2(arr[6], arr[7]));
+    if (point3Valid && point4Valid){
+        points.push(new THREE.Vector2(arr[4], arr[5]));
+        points.push(new THREE.Vector2(arr[6], arr[7]));
+    }
     // between 4th and 1st points
-    points.push(new THREE.Vector2(arr[6], arr[7]));
-    points.push(new THREE.Vector2(arr[0], arr[1]));
+    if (point4Valid && point1Valid){
+        points.push(new THREE.Vector2(arr[6], arr[7]));
+        points.push(new THREE.Vector2(arr[0], arr[1]));
+    }
 
     const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
     const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);

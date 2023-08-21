@@ -3,8 +3,8 @@ import * as CAM from '../canvas/cam-canvas.js'
 import * as PERS from '../canvas/pers-canvas.js'
 import { RenderTarget } from 'three'
 
-const fx = document.getElementById('focal-x')
-const fy = document.getElementById('focal-y')
+export const fx = document.getElementById('focal-x')
+export const fy = document.getElementById('focal-y')
 const far = document.getElementById('far-clipping')
 const near = document.getElementById('near-clipping')
 
@@ -49,22 +49,22 @@ function enter(){
 export function buildEventListeners(){
     submit.addEventListener('click', enter);
 
-    fx.addEventListener('keydown', function(e){
-        if (e.key === 'Enter'){
-            fy.focus();
-        }
-    })
-    fy.addEventListener('keydown', function(e){
-        if (e.key === 'Enter'){
-            far.focus();
-        }
-    })
     far.addEventListener('keydown', function(e){
         if (e.key === 'Enter'){
             near.focus();
         }
     })
     near.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            fx.focus();
+        }
+    })
+    fx.addEventListener('keydown', function(e){
+        if (e.key === 'Enter'){
+            fy.focus();
+        }
+    })
+    fy.addEventListener('keydown', function(e){
         if (e.key === 'Enter'){
             submit.click();
         }
