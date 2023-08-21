@@ -367,7 +367,7 @@ export function camRenderSphere(){
 /*
 renders cube
 */
-export function persRenderCube(){
+export function camRenderCube(){
     let len = 10;
     let numDots = 1080
     // preparations
@@ -441,13 +441,12 @@ export function persRenderCube(){
     // projection matrix
     let pers_proj = new THREE.Matrix4();
     let arr = []
-    for (let i = 0; i < 16; i++) {
-        arr[i] = Math.round(persProjMatrixHTML[i].innerHTML * 100) / 100;
+    for (let i = 0; i < 12; i++) {
+        arr[i] = Math.round(cameraMatrixHTML[i].innerHTML * 100) / 100;
     }
-    pers_proj.set (arr[0], arr[4], arr[8],  arr[12],
-        arr[1], arr[5], arr[9],  arr[13],
-        arr[2], arr[6], arr[10], arr[14],
-        arr[3], arr[7], arr[11], arr[15]);
+    pers_proj.set (arr[0], arr[3], arr[6],  arr[9],
+        arr[1], arr[4], arr[7],  arr[10],
+        arr[2], arr[5], arr[8], arr[11]);
     // projected points
     if (near.value === ""){
         near.value = -0.5
@@ -467,9 +466,9 @@ export function persRenderCube(){
         roughness: 0.3,
     })
     for (let i = 0; i < numDots; i ++){
-        const x = arr[0] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[12]
-        const y = arr[1] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[9] * points[3 * i + 2] + arr[13]
-        const w = arr[3] * points[3 * i] + arr[7] * points[3 * i + 1] + arr[11] * points[3 * i + 2] + arr[15]
+        const x = arr[0] * points[3 * i] + arr[3] * points[3 * i + 1] + arr[6] * points[3 * i + 2] + arr[9]
+        const y = arr[1] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[7] * points[3 * i + 2] + arr[10]
+        const w = -(arr[2] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[11])
         const dot = new THREE.Mesh(dotGeometry, dotMaterial)
         // if (w <= parseFloat(near.value) && w >= parseFloat(far.value)){
         if (w <= 0 && w >= -100){

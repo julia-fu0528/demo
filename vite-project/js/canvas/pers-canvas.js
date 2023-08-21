@@ -202,26 +202,26 @@ export function persRenderDots(){
 */
 export function persRenderSphere(){
     let radius = 5;
-    let numDots = 1200;
+    
     // preparations
     clearScene();
     start();
     // generates the random point clouds
 
     const points = [];
-    for (let i = 0; i < 30; i ++){
+    for (let i = 0; i < 50; i ++){
         for (let j = 0; j < 40; j ++){
-            const phi = Math.PI / 30 * i
+            const phi = Math.PI / 50 * i
             const theta = 2 * Math.PI / 40 * j
             // points.push(radius * Math.sin(phi) * Math.cos(theta))
             // points.push(radius * Math.sin(phi) * Math.sin(theta))
             // points.push(radius * Math.sin(phi) * Math.cos(theta))
             points[3 * (i * 40 + j)] = radius * Math.sin(phi) * Math.cos(theta)
             points[3 * (i * 40 + j) + 1] = radius * Math.sin(phi) * Math.sin(theta) 
-            points[3 * (i * 40 + j) + 2] = radius * Math.cos(phi)
+            points[3 * (i * 40 + j) + 2] = radius * Math.cos(phi) + 6
         }
     }
-
+    let numDots = points.length;
     // projection matrix
     let pers_proj = new THREE.Matrix4();
     let arr = []
@@ -245,7 +245,7 @@ export function persRenderSphere(){
     if (fy.value === ""){
         fy.value = 1;
     }
-    const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
+    const dotGeometry = new THREE.SphereGeometry(0.1, 64, 64)
     const dotMaterial = new THREE.MeshStandardMaterial({
         color: '#00ff40',
         roughness: 0.3,
@@ -258,7 +258,7 @@ export function persRenderSphere(){
         const dot = new THREE.Mesh(dotGeometry, dotMaterial)
         // if (w <= parseFloat(near.value) && w >= parseFloat(far.value)){
         if (w <= 0 && w >= -100){
-            dot.position.set(x , y, 0);
+            dot.position.set(x/w , y/w, 0);
             scene.add(dot)
         }
         // dot.position.set(x / w, y / w, 0)
@@ -378,8 +378,6 @@ export function persRenderCube(){
             dot.position.set(x/w , y/w, 0);
             scene.add(dot)
         }
-        // dot.position.set(x / w, y / w, 0)
-        // scene.add(dot)
     }
     renderer.render(scene, camera)
 }

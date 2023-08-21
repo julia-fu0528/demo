@@ -138,7 +138,7 @@ export function buildEventListeners(){
               CAM.camRenderSphere();
             }else{
               PERS.persRenderCube();
-              CAM.camRenderSphere();
+              CAM.camRenderCube();
             }
           }else{
             updatePersMatrixFromCam();
@@ -170,7 +170,7 @@ export function buildEventListeners(){
             CAM.camRenderSphere();
           }else{
             PERS.persRenderCube();
-            CAM.camRenderSphere();
+            CAM.camRenderCube();
           }
         }else{
           updatePersMatrixFromCam();
@@ -202,7 +202,7 @@ export function buildEventListeners(){
             CAM.camRenderSphere();
           }else{
             PERS.persRenderCube();
-            CAM.camRenderSphere();
+            CAM.camRenderCube();
           }
         }else{
           updatePersMatrixFromCam();
@@ -248,7 +248,7 @@ export function buildEventListeners(){
           CAM.camRenderSphere();
         }else{
           PERS.persRenderCube();
-          CAM.camRenderSphere();
+          CAM.camRenderCube();
         }
       }else{
         updatePersPoints();
@@ -275,7 +275,7 @@ export function buildEventListeners(){
             CAM.camRenderSphere();
           }else{
             PERS.persRenderCube();
-            CAM.camRenderSphere();
+            CAM.camRenderCube();
           }
         }else{
           updatePersMatrixFromCam();
@@ -302,7 +302,7 @@ export function buildEventListeners(){
             CAM.camRenderSphere();
           }else{
             PERS.persRenderCube();
-            CAM.camRenderSphere();
+            CAM.camRenderCube();
           }
         }else{
           updatePersMatrixFromCam();
@@ -329,7 +329,7 @@ export function buildEventListeners(){
             CAM.camRenderSphere();
           }else{
             PERS.persRenderCube();
-            CAM.camRenderSphere();
+            CAM.camRenderCube();
           }
         }else{
           updatePersMatrixFromCam();
@@ -361,7 +361,7 @@ export function buildEventListeners(){
           CAM.camRenderSphere();
         }else{
           PERS.persRenderCube();
-          CAM.camRenderSphere();
+          CAM.camRenderCube();
         }
       }else{
         updatePersMatrixFromCam();
@@ -467,7 +467,7 @@ export function buildEventListeners(){
     cubeButton.onclick = function(){
       if (cubeButton.value == "Project Cube"){
         PERS.persRenderCube();
-        CAM.camRenderSphere();
+        CAM.camRenderCube();
         cubeButton.value = "Hide Cube";
         sphereButton.value = "Project Sphere";
       }else{
