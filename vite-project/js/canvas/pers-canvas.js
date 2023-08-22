@@ -36,7 +36,7 @@ const sizes = {
 }
 
 // creates camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height, 0.1, 100);
+const camera = new THREE.PerspectiveCamera(55, sizes.width/sizes.height, 0.1, 100);
 camera.position.set(0, 0, 20)
 camera.lookAt(0,0,0)
 scene.add(camera)
@@ -210,15 +210,16 @@ export function persRenderSphere(){
 
     const points = [];
     for (let i = 0; i < 50; i ++){
-        for (let j = 0; j < 40; j ++){
-            const phi = Math.PI / 50 * i
-            const theta = 2 * Math.PI / 40 * j
+        const phi = Math.PI / 50 * i
+        const num = Math.sin(phi) * 40
+        for (let j = 0; j < num; j ++){
+            const theta = 2 * Math.PI / num * j
             // points.push(radius * Math.sin(phi) * Math.cos(theta))
             // points.push(radius * Math.sin(phi) * Math.sin(theta))
             // points.push(radius * Math.sin(phi) * Math.cos(theta))
             points[3 * (i * 40 + j)] = radius * Math.sin(phi) * Math.cos(theta)
             points[3 * (i * 40 + j) + 1] = radius * Math.sin(phi) * Math.sin(theta) 
-            points[3 * (i * 40 + j) + 2] = radius * Math.cos(phi) + 6
+            points[3 * (i * 40 + j) + 2] = radius * Math.cos(phi) + 5.5
         }
     }
     let numDots = points.length;

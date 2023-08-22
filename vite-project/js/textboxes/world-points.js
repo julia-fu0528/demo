@@ -5,7 +5,10 @@ import * as INTRINSICS from './intrinsics.js'
 
 
 const submit = document.getElementById('submit');
-
+const cubeButton = document.getElementById('cube-button')
+const sphereButton = document.getElementById('sphere-button');
+const resetRotButton = document.getElementById('reset-rot-button')
+const resetTransButton = document.getElementById('reset-trans-button')
 
 function project(){
     if (RENDER.pointsUnready()){
@@ -48,6 +51,8 @@ function project(){
         RENDER.camWorldPointsHTML[13].innerHTML = RENDER.fourthY.value;
         RENDER.camWorldPointsHTML[14].innerHTML = RENDER.fourthZ.value;
         
+        resetRotButton.onclick();
+        resetTransButton.onclick();
         RENDER.updateCamPoints();
         RENDER.updatePersPoints();
 
@@ -63,6 +68,8 @@ function project(){
         // CAM.animate();
         PERS.persRenderDots();
         // PERS.animate();
+        cubeButton.value = "Project Cube";
+        sphereButton.value = "Project Sphere";
     }
           
 }

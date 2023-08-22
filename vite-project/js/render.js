@@ -115,7 +115,20 @@ export function alertPoint(){
     alert('Please fill in all coordinates of the four points')
 }
 
-
+function clearDots(){
+  firstX.value = '';
+  firstY.value = '';
+  firstZ.value = ''
+  secondX.value = '' 
+  secondY.value = '' 
+  secondZ.value = ''
+  thirdX.value = '' 
+  thirdY.value = '' 
+  thirdZ.value = ''
+  fourthX.value = '' 
+  fourthY.value = '' 
+  fourthZ.value = ''
+}
 export function buildEventListeners(){
     rotateXSlider.oninput = function(){
         // if (pointsUnready()){
@@ -452,6 +465,9 @@ export function buildEventListeners(){
     }
     sphereButton.onclick = function(){
       if (sphereButton.value == "Project Sphere"){
+        resetRotButton.onclick();
+        resetTransButton.onclick();
+        clearDots();
         PERS.persRenderSphere();
         CAM.camRenderSphere();
         sphereButton.value = "Hide Sphere";
@@ -466,6 +482,9 @@ export function buildEventListeners(){
     }
     cubeButton.onclick = function(){
       if (cubeButton.value == "Project Cube"){
+        resetRotButton.onclick();
+        resetTransButton.onclick();
+        clearDots();
         PERS.persRenderCube();
         CAM.camRenderCube();
         cubeButton.value = "Hide Cube";
@@ -555,18 +574,26 @@ export function updatePersPoints(){
   PERS.persZ1.innerHTML = persPointsMatrixHTML[2].innerHTML;
   PERS.persPoint1[0].innerHTML = Math.round(persPointsMatrixHTML[0].innerHTML / PERS.persZ1.innerHTML * 100) / 100;
   PERS.persPoint1[1].innerHTML = Math.round(persPointsMatrixHTML[1].innerHTML / PERS.persZ1.innerHTML * 100) / 100;
+  // PERS.persPoint1[0].innerHTML = Math.round(matrix.elements[0]/ matrix.elements[3] * 100) / 100;
+  // PERS.persPoint1[1].innerHTML = Math.round(matrix.elements[1] / matrix.elements[3] * 100) / 100;
   // point 2
   PERS.persZ2.innerHTML = persPointsMatrixHTML[5].innerHTML;
   PERS.persPoint2[0].innerHTML = Math.round(persPointsMatrixHTML[3].innerHTML / PERS.persZ2.innerHTML * 100) / 100;
   PERS.persPoint2[1].innerHTML = Math.round(persPointsMatrixHTML[4].innerHTML / PERS.persZ2.innerHTML * 100) / 100;
+  // PERS.persPoint2[0].innerHTML = Math.round(matrix.elements[4]/ matrix.elements[7] * 100) / 100;
+  // PERS.persPoint2[1].innerHTML = Math.round(matrix.elements[5]/ matrix.elements[7] * 100) / 100;
   // point 3
   PERS.persZ3.innerHTML = persPointsMatrixHTML[8].innerHTML;
   PERS.persPoint3[0].innerHTML = Math.round(persPointsMatrixHTML[6].innerHTML / PERS.persZ3.innerHTML * 100) / 100;
   PERS.persPoint3[1].innerHTML = Math.round(persPointsMatrixHTML[7].innerHTML / PERS.persZ3.innerHTML * 100) / 100;
+  // PERS.persPoint3[0].innerHTML = Math.round(matrix.elements[8]/ matrix.elements[11] * 100) / 100;
+  // PERS.persPoint3[1].innerHTML = Math.round(matrix.elements[9]/ matrix.elements[11] * 100) / 100;
   // point 4
   PERS.persZ4.innerHTML = persPointsMatrixHTML[11].innerHTML;
   PERS.persPoint4[0].innerHTML = Math.round(persPointsMatrixHTML[9].innerHTML / PERS.persZ4.innerHTML * 100) / 100;
   PERS.persPoint4[1].innerHTML = Math.round(persPointsMatrixHTML[10].innerHTML / PERS.persZ4.innerHTML * 100) / 100;
+  // PERS.persPoint4[0].innerHTML = Math.round(matrix.elements[12]/ matrix.elements[15] * 100) / 100;
+  // PERS.persPoint4[1].innerHTML = Math.round(matrix.elements[13]/ matrix.elements[15] * 100) / 100;
 }
 export function updateCamPoints(){
   let camMatrix = buildMatrix34(cameraMatrixMapHTML);
@@ -648,7 +675,7 @@ function buildMatrix44(matrixHTML) {
 
     let arr = []
     for (let i = 0; i < 16; i++) {
-        arr[i] = Math.round(matrixHTML[i].innerHTML * 100) / 100;
+        arr[i] = matrixHTML[i].innerHTML
     }
 
     ret.set (arr[0], arr[4], arr[8],  arr[12],
