@@ -97,6 +97,7 @@ export const fourthZ = document.getElementById('fourth-z');
 
 const sphereButton = document.getElementById('sphere-button')
 const cubeButton = document.getElementById('cube-button') 
+const bunnyButton = document.getElementById('bunny-button');
 // let rotateXMatrix = new THREE.Matrix3().set(1, 0, 0, 0, 1, 0, 0, 0, 1);
 // let rotateYMatrix = rotateXMatrix.clone();
 // let rotateZMatrix = rotateYMatrix.clone();
@@ -149,9 +150,12 @@ export function buildEventListeners(){
             if (sphereButton.value == "Hide Sphere"){
               PERS.persRenderSphere();
               CAM.camRenderSphere();
-            }else{
+            }else if (cubeButton.value == "Hide Cube"){
               PERS.persRenderCube();
               CAM.camRenderCube();
+            }else{
+              PERS.persRenderBunny();
+              CAM.camRenderBunny();
             }
           }else{
             updatePersMatrixFromCam();
@@ -181,9 +185,12 @@ export function buildEventListeners(){
           if (sphereButton.value == "Hide Sphere"){
             PERS.persRenderSphere();
             CAM.camRenderSphere();
-          }else{
+          }else if (cubeButton.value == "Hide Cube"){
             PERS.persRenderCube();
             CAM.camRenderCube();
+          }else{
+            PERS.persRenderBunny();
+            CAM.camRenderBunny();
           }
         }else{
           updatePersMatrixFromCam();
@@ -213,9 +220,12 @@ export function buildEventListeners(){
           if (sphereButton.value == "Hide Sphere"){
             PERS.persRenderSphere();
             CAM.camRenderSphere();
-          }else{
+          }else if (cubeButton.value == "Hide Cube"){
             PERS.persRenderCube();
             CAM.camRenderCube();
+          }else{
+            PERS.persRenderBunny();
+            CAM.camRenderBunny();
           }
         }else{
           updatePersMatrixFromCam();
@@ -259,9 +269,12 @@ export function buildEventListeners(){
         if (sphereButton.value == "Hide Sphere"){
           PERS.persRenderSphere();
           CAM.camRenderSphere();
-        }else{
+        }else if (cubeButton.value == "Hide Cube"){
           PERS.persRenderCube();
           CAM.camRenderCube();
+        }else{
+          PERS.persRenderBunny();
+          CAM.camRenderBunny();
         }
       }else{
         updatePersPoints();
@@ -286,9 +299,12 @@ export function buildEventListeners(){
           if (sphereButton.value == "Hide Sphere"){
             PERS.persRenderSphere();
             CAM.camRenderSphere();
-          }else{
+          }else if (cubeButton.value == "Hide Cube"){
             PERS.persRenderCube();
             CAM.camRenderCube();
+          }else{
+            PERS.persRenderBunny();
+            CAM.camRenderBunny();
           }
         }else{
           updatePersMatrixFromCam();
@@ -313,9 +329,12 @@ export function buildEventListeners(){
           if (sphereButton.value == "Hide Sphere"){
             PERS.persRenderSphere();
             CAM.camRenderSphere();
-          }else{
+          }else if (cubeButton.value == "Hide Cube"){
             PERS.persRenderCube();
             CAM.camRenderCube();
+          }else{
+            PERS.persRenderBunny();
+            CAM.camRenderBunny();
           }
         }else{
           updatePersMatrixFromCam();
@@ -340,9 +359,12 @@ export function buildEventListeners(){
           if (sphereButton.value == "Hide Sphere"){
             PERS.persRenderSphere();
             CAM.camRenderSphere();
-          }else{
+          }else if (cubeButton.value == "Hide Cube"){
             PERS.persRenderCube();
             CAM.camRenderCube();
+          }else{
+            PERS.persRenderBunny();
+            CAM.camRenderBunny();
           }
         }else{
           updatePersMatrixFromCam();
@@ -372,9 +394,12 @@ export function buildEventListeners(){
         if (sphereButton.value == "Hide Sphere"){
           PERS.persRenderSphere();
           CAM.camRenderSphere();
-        }else{
+        }else if (cubeButton.value == "Hide Cube"){
           PERS.persRenderCube();
           CAM.camRenderCube();
+        }else{
+          PERS.persRenderBunny();
+          CAM.camRenderBunny();
         }
       }else{
         updatePersMatrixFromCam();
@@ -465,13 +490,20 @@ export function buildEventListeners(){
     }
     sphereButton.onclick = function(){
       if (sphereButton.value == "Project Sphere"){
+        sphereButton.value = "Hide Sphere";
+        cubeButton.value = "Project Cube";
+        bunnyButton.value = "Project Bunny";
+        // PERS.clearScene();
+        // PERS.start();
+        // CAM.clearScene();
+        // CAM.start();
         resetRotButton.onclick();
         resetTransButton.onclick();
         clearDots();
+        CAM.clearBunnyDots();
+        PERS.clearBunnyDots();
         PERS.persRenderSphere();
         CAM.camRenderSphere();
-        sphereButton.value = "Hide Sphere";
-        cubeButton.value = "Project Cube";
       }else{
         sphereButton.value = "Project Sphere";
         PERS.clearScene();
@@ -482,19 +514,44 @@ export function buildEventListeners(){
     }
     cubeButton.onclick = function(){
       if (cubeButton.value == "Project Cube"){
+        cubeButton.value = "Hide Cube";
+        sphereButton.value = "Project Sphere";
+        bunnyButton.value = "Project Bunny";
+        // PERS.clearScene();
+        // PERS.start();
+        // CAM.clearScene();
+        // CAM.start();
         resetRotButton.onclick();
         resetTransButton.onclick();
         clearDots();
+        CAM.clearBunnyDots();
+        PERS.clearBunnyDots();
         PERS.persRenderCube();
         CAM.camRenderCube();
-        cubeButton.value = "Hide Cube";
-        sphereButton.value = "Project Sphere";
       }else{
         PERS.clearScene();
         PERS.start();
         CAM.clearScene();
         CAM.start();
         cubeButton.value = "Project Cube";
+      }
+    }
+    bunnyButton.onclick = function(){
+      if (bunnyButton.value == "Project Bunny"){
+        bunnyButton.value = "Hide Bunny";
+        sphereButton.value = "Project Sphere";
+        cubeButton.value = "Project Cube";
+        resetRotButton.onclick();
+        resetTransButton.onclick();
+        clearDots();
+        PERS.persRenderBunny();
+        CAM.camRenderBunny();
+      }else{
+        PERS.clearScene();
+        PERS.start();
+        CAM.clearScene();
+        CAM.start();
+        bunnyButton.value = "Project Bunny";
       }
     }
 }

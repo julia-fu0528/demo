@@ -17,7 +17,7 @@ PERS.start();
 WORLD.buildEventListeners();
 INTRINSICS.buildEventListeners();
 RENDER.buildEventListeners();
-PERS.persRenderSphere();
-CAM.camRenderSphere();
+PERS.persRenderBunny();
+CAM.camRenderBunny();
 
 

@@ -65,12 +65,14 @@ export function clearScene(){
     while (scene.children.length > 0){
         const child = scene.children[0];
         scene.remove(child);
+        // .log(scene.children)
     }
     renderer.render(scene, camera);
 }
 
 // render dots
 export function persRenderDots(){
+    clearBunnyDots();
     clearScene();
     start();
     const points = [];
@@ -82,7 +84,7 @@ export function persRenderDots(){
                  persPoint2[0].innerHTML, persPoint2[1].innerHTML, 
                  persPoint3[0].innerHTML, persPoint3[1].innerHTML, 
                  persPoint4[0].innerHTML, persPoint4[1].innerHTML, ]
-    const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
+    const dotGeometry = new THREE.SphereGeometry(0.5, 64, 64)
     const dotMaterial1 = new THREE.MeshStandardMaterial({
         color: '#ff00a2',
         roughness: 0.3,
@@ -204,6 +206,7 @@ export function persRenderSphere(){
     let radius = 5;
     
     // preparations
+    clearBunnyDots();
     clearScene();
     start();
     // generates the random point clouds
@@ -255,7 +258,6 @@ export function persRenderSphere(){
         const x = arr[0] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[12]
         const y = arr[1] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[9] * points[3 * i + 2] + arr[13]
         const w = arr[3] * points[3 * i] + arr[7] * points[3 * i + 1] + arr[11] * points[3 * i + 2] + arr[15]
-        // console.log(w)
         const dot = new THREE.Mesh(dotGeometry, dotMaterial)
         // if (w <= parseFloat(near.value) && w >= parseFloat(far.value)){
         if (w <= 0 && w >= -100){
@@ -274,6 +276,7 @@ export function persRenderCube(){
     let len = 10;
     let numDots = 1080
     // preparations
+    clearBunnyDots();
     clearScene();
     start();
     // generates the point cloud
@@ -381,4 +384,75 @@ export function persRenderCube(){
         }
     }
     renderer.render(scene, camera)
+}
+var bunnyDots = [];
+/*
+creates bunny
+*/
+export function persRenderBunny(){
+    // preparations
+    clearScene();
+    start();
+    // points
+    var points = [];
+    fetch('bunny.json')
+    .then(response => response.json())
+    .then(pointCloud => {
+        // Use pointCloud data as needed
+        for (let i = 0; i < pointCloud.length; i ++ ){
+            for (let j = 0;j < 3; j ++){
+                // points[3 * i + j] = pointCloud[i][j]
+                points.push(pointCloud[i][j])
+            }
+
+        }
+    // projection matrix
+    let pers_proj = new THREE.Matrix4();
+    let arr = []
+    for (let i = 0; i < 16; i++) {
+        arr[i] = Math.round(persProjMatrixHTML[i].innerHTML * 100) / 100;
+    }
+    pers_proj.set (arr[0], arr[4], arr[8],  arr[12],
+        arr[1], arr[5], arr[9],  arr[13],
+        arr[2], arr[6], arr[10], arr[14],
+        arr[3], arr[7], arr[11], arr[15]);
+    // projected points
+    if (near.value === ""){
+        near.value = -0.5
+    }
+    if (far.value === ""){
+        far.value = -1
+    }
+    if (fx.value === ""){
+        fx.value = 1;
+    }
+    if (fy.value === ""){
+        fy.value = 1;
+    }
+    const dotGeometry = new THREE.SphereGeometry(0.15, 64, 64)
+    const dotMaterial = new THREE.MeshStandardMaterial({
+        color: '#00ff40',
+        roughness: 0.3,
+    })
+    for (let i = 0; i < points.length / 3; i ++){
+        const x = arr[0] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[12]
+        const y = arr[1] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[9] * points[3 * i + 2] + arr[13]
+        const w = arr[3] * points[3 * i] + arr[7] * points[3 * i + 1] + arr[11] * points[3 * i + 2] + arr[15]
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial)
+        // if (w <= 0 && w >= -100){
+            if(w >= -0.1){
+            dot.position.set(x/w, y/w, 0);
+            bunnyDots.push(dot);
+            scene.children.push(dot);
+            scene.add(dot)
+        }
+    }
+    renderer.render(scene, camera)
+    });
+}
+export function clearBunnyDots(){
+    for (let i = 0; i < bunnyDots.length; i ++){
+        scene.remove(bunnyDots[i]);
+    }
+    bunnyDots = []
 }

@@ -74,6 +74,7 @@ export function clearScene(){
 
 
 export function camRenderDots(){
+    clearBunnyDots();
     clearScene();
     start();
     const points = [];
@@ -85,7 +86,7 @@ export function camRenderDots(){
                  camPoint2[0].innerHTML, camPoint2[1].innerHTML, 
                  camPoint3[0].innerHTML, camPoint3[1].innerHTML, 
                  camPoint4[0].innerHTML, camPoint4[1].innerHTML, ]
-    const dotGeometry = new THREE.SphereGeometry(0.25, 64, 64)
+    const dotGeometry = new THREE.SphereGeometry(0.5, 64, 64)
     const dotMaterial1 = new THREE.MeshStandardMaterial({
         color: '#ff00a2',
         roughness: 0.3,
@@ -138,37 +139,6 @@ export function camRenderDots(){
     if (point4Valid){
         scene.add(dot4);
     }
-    // arr.length is 8 for here, 4 points
-    // for (let i = 0; i < arr.length - 1; i += 2){
-    //     const dotMaterial = new THREE.MeshStandardMaterial({
-    //         color: '#00ff40',
-    //         roughness: 0.3,
-    //     })
-    //     const dot = new THREE.Mesh(dotGeometry, dotMaterial);
-    //     dot.position.set(arr[i], arr[i+1], 0);
-    //     scene.add(dot);
-    // }
-    // between 1st and 2nd points
-    // if (point1Valid && point2Valid){
-    //     points.push(new THREE.Vector2(arr[0], arr[1]));
-    //     points.push(new THREE.Vector2(arr[2], arr[3]));
-    // }
-    // // between 2nd and 3rd points
-    // if (point2Valid && point3Valid){
-    //     points.push(new THREE.Vector2(arr[2], arr[3]));
-    //     points.push(new THREE.Vector2(arr[4], arr[5]));
-    // }
-    // // between 3rd and 4th points
-    // if (point3Valid && point4Valid){
-    //     points.push(new THREE.Vector2(arr[4], arr[5]));
-    //     points.push(new THREE.Vector2(arr[6], arr[7]));
-    // }
-    // // between 4th and 1st points
-    // if (point4Valid && point1Valid){
-    //     points.push(new THREE.Vector2(arr[6], arr[7]));
-    //     points.push(new THREE.Vector2(arr[0], arr[1]));
-    // }
-
 
     if (point1Valid){
         if (point2Valid){
@@ -233,80 +203,10 @@ export function camRenderDots(){
     renderer.render(scene, camera);
 }
 
-// export const animate = () =>{
-//     requestAnimationFrame(animate);
-//     clearScene();
-//     start();
-//     const points = [];
-//     const lineMaterial = new THREE.LineBasicMaterial({
-//         color: 0x00ff40,
-//         linewidth: 200,
-//     })
-//     const arr = [camPoint1[0].innerHTML, camPoint1[1].innerHTML, 
-//                  camPoint2[0].innerHTML, camPoint2[1].innerHTML, 
-//                  camPoint3[0].innerHTML, camPoint3[1].innerHTML, 
-//                  camPoint4[0].innerHTML, camPoint4[1].innerHTML, ]
-//     const dotGeometry = new THREE.SphereGeometry(0.05, 64, 64)
-//     const dotMaterial1 = new THREE.MeshStandardMaterial({
-//         color: '#ff00a2',
-//         roughness: 0.3,
-//     })
-//     const dotMaterial2 = new THREE.MeshStandardMaterial({
-//         color: '#ffaa00',
-//         roughness: 0.3,
-//     })
-//     const dotMaterial3 = new THREE.MeshStandardMaterial({
-//         color: '#00ff40',
-//         roughness: 0.3,
-//     })
-//     const dotMaterial4 = new THREE.MeshStandardMaterial({
-//         color: '#0000ff',
-//         roughness: 0.3,
-//     })
-//     const dot1 = new THREE.Mesh(dotGeometry, dotMaterial1)
-//     const dot2 = new THREE.Mesh(dotGeometry, dotMaterial2);
-//     const dot3 = new THREE.Mesh(dotGeometry, dotMaterial3);
-//     const dot4 = new THREE.Mesh(dotGeometry, dotMaterial4);
-//     dot1.position.set(arr[0], arr[1], 0);
-//     dot2.position.set(arr[2], arr[3], 0);
-//     dot3.position.set(arr[4], arr[5], 0);
-//     dot4.position.set(arr[6], arr[7], 0);
-//     scene.add(dot1);
-//     scene.add(dot2);
-//     scene.add(dot3);
-//     scene.add(dot4);
-
-//     const distanceToCamera1 = camZ1.innerHTML - camera.position.z;
-//     const distanceToCamera2 = camZ2.innerHTML - camera.position.z;
-//     const distanceToCamera3 = camZ3.innerHTML - camera.position.z;
-//     const distanceToCamera4 = camZ4.innerHTML - camera.position.z;
-//     dot1.scale.set(1 - distanceToCamera1 * 0.3, 1 - distanceToCamera1 * 0.3, 1)
-//     dot2.scale.set(1 - distanceToCamera2 * 0.3, 1 - distanceToCamera2 * 0.3, 1)
-//     dot3.scale.set(1 - distanceToCamera3 * 0.3, 1 - distanceToCamera3 * 0.3, 1)
-//     dot4.scale.set(1 - distanceToCamera4 * 0.3, 1 - distanceToCamera4 * 0.3, 1)
-
-//     // between 1st and 2nd points
-//     points.push(new THREE.Vector2(arr[0], arr[1]));
-//     points.push(new THREE.Vector2(arr[2], arr[3]));
-//     // between 2nd and 3rd points
-//     points.push(new THREE.Vector2(arr[2], arr[3]));
-//     points.push(new THREE.Vector2(arr[4], arr[5]));
-//     // between 3rd and 4th points
-//     points.push(new THREE.Vector2(arr[4], arr[5]));
-//     points.push(new THREE.Vector2(arr[6], arr[7]));
-//     // between 4th and 1st points
-//     points.push(new THREE.Vector2(arr[6], arr[7]));
-//     points.push(new THREE.Vector2(arr[0], arr[1]));
-
-//     const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
-//     const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
-//     scene.add(lineMesh)
-
-//     renderer.render(scene, camera);
-// }
 export function camRenderSphere(){
     let radius = 5;
     // preparations
+    clearBunnyDots();
     clearScene();
     start();
     // generates the random point clouds
@@ -353,7 +253,6 @@ export function camRenderSphere(){
         const x = arr[0] * points[3 * i] + arr[3] * points[3 * i + 1] + arr[6] * points[3 * i + 2] + arr[9]
         const y = arr[1] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[7] * points[3 * i + 2] + arr[10]
         const w = -(arr[2] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[11])
-        // console.log(w)
         const dot = new THREE.Mesh(dotGeometry, dotMaterial)
         // if (w <= parseFloat(near.value) && w >= parseFloat(far.value)){
         if (w <= 0 && w >= -100){
@@ -372,6 +271,7 @@ export function camRenderCube(){
     let len = 10;
     let numDots = 1080
     // preparations
+    clearBunnyDots();
     clearScene();
     start();
     // generates the point cloud
@@ -478,4 +378,73 @@ export function camRenderCube(){
         }
     }
     renderer.render(scene, camera)
+}
+let bunnyDots = [];
+/*
+creates bunny
+*/
+export function camRenderBunny(){
+    // preparations
+    clearScene();
+    start();
+    // points
+    let points = [];
+    fetch('bunny.json')
+    .then(response => response.json())
+    .then(pointCloud => {
+        // Use pointCloud data as needed
+        for (let i = 0; i < pointCloud.length; i ++ ){
+            for (let j = 0;j < 3; j ++){
+                // points[3 * i + j] = pointCloud[i][j]
+                points.push(pointCloud[i][j])
+            }
+
+        }
+        // projection matrix
+    let pers_proj = new THREE.Matrix4();
+    let arr = []
+    for (let i = 0; i < 12; i++) {
+        arr[i] = Math.round(cameraMatrixHTML[i].innerHTML * 100) / 100;
+    }
+    pers_proj.set (arr[0], arr[3], arr[6],  arr[9],
+        arr[1], arr[4], arr[7],  arr[10],
+        arr[2], arr[5], arr[8], arr[11]);
+    // projected points
+    if (near.value === ""){
+        near.value = -0.5
+    }
+    if (far.value === ""){
+        far.value = -1
+    }
+    if (fx.value === ""){
+        fx.value = 1;
+    }
+    if (fy.value === ""){
+        fy.value = 1;
+    }
+    const dotGeometry = new THREE.SphereGeometry(0.15, 64, 64)
+    const dotMaterial = new THREE.MeshStandardMaterial({
+        color: '#00ff40',
+        roughness: 0.3,
+    })
+    for (let i = 0; i < points.length / 3; i ++){
+        const x = arr[0] * points[3 * i] + arr[3] * points[3 * i + 1] + arr[6] * points[3 * i + 2] + arr[9]
+        const y = arr[1] * points[3 * i] + arr[4] * points[3 * i + 1] + arr[7] * points[3 * i + 2] + arr[10]
+        const w = -(arr[2] * points[3 * i] + arr[5] * points[3 * i + 1] + arr[8] * points[3 * i + 2] + arr[11])
+        const dot = new THREE.Mesh(dotGeometry, dotMaterial)
+        // if (w <= 0 && w >= -100){
+            if(w >= -0.1){
+            dot.position.set(x/w, y/w, 0);
+            scene.add(dot)
+            bunnyDots.push(dot);
+        }
+    }
+    renderer.render(scene, camera)
+    });
+}
+export function clearBunnyDots(){
+    for (let i = 0; i < bunnyDots.length; i ++){
+        scene.remove(bunnyDots[i]);
+    }
+    bunnyDots = []
 }
