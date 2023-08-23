@@ -1,7 +1,7 @@
 import * as RENDER from '../render.js'
 import * as CAM from '../canvas/cam-canvas.js'
 import * as PERS from '../canvas/pers-canvas.js'
-import { RenderTarget } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js';
+import { RenderTarget } from 'https://unpkg.com/three@0.155.0/build/three.module.js';
 
 export const fx = document.getElementById('focal-x')
 export const fy = document.getElementById('focal-y')

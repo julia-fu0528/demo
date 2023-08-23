@@ -1,5 +1,5 @@
-import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js';
-import { Camera } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js';
+import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
+import { Camera } from 'https://unpkg.com/three@0.155.0/build/three.module.js';
 import * as CAM from './canvas/cam-canvas.js';
 import * as PERS from './canvas/pers-canvas.js';
 

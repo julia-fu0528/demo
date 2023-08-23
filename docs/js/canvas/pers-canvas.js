@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js';
+import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
 
 export const persPoint1 = document.getElementById('pers-point1').getElementsByTagName('span');
 export const persPoint2 = document.getElementById('pers-point2').getElementsByTagName('span');
