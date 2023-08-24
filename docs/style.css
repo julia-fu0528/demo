@@ -279,6 +279,9 @@ input[type="range"]{
   position: relative;
   width: 80%;
 }
+#pers-to-cam, #cam-to-pers{
+  font-size: 15px;
+}
 .matrices-equations-pers-to-cam .matrix-equation>span{
   top: 3.8rem;
 }
