@@ -89,6 +89,11 @@ body{
   margin-bottom: 20px;
   top: 80%;
 }
+.section-container{
+  position: relative;
+  width: 100%;
+}
+
 .slideContainer{
   display: flex;
   flex-direction:  column;
@@ -263,6 +268,10 @@ input[type="range"]{
   /* margin: 10px */
   margin: 0.1px;
 }
+.explain{
+  position: relative;
+  width: 80%;
+}
 .matrices-equations-pers-to-cam .matrix-equation>span{
   top: 3.8rem;
 }
@@ -396,6 +405,9 @@ border-left:none
 .note{
   color:rgb(5, 78, 35);
   font-size: 17px;
+  position: relative; 
+  display: inline-block;
+  width: 100%;
 }
 /* .canvas, .canvas-for-pers, .canvas-for-cam{
   height: fit-content;

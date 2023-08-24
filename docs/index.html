@@ -19,8 +19,8 @@
     <script 
     src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script> -->
-    <script type="module" src="js/canvas/cam-canvas.js"></script>
-    <script type="module" src="js/canvas/pers-canvas.js"></script>
+    <!-- <script type="module" src="js/canvas/cam-canvas.js"></script>
+    <script type="module" src="js/canvas/pers-canvas.js"></script> -->
     <script type="module" src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" >
 </head>
@@ -180,594 +180,404 @@
       </div>
       <div class="contents">
         <div class="section-container" id="pers">
-            <h3>Perspective Projection in Graphics</h3>
-                <div class="matrices-equations help">
-                  <div class="matrix-equation " id="matrices-2d">
-                    <div id="rotation-matrix-wrapper">
-                      <div class="matrix undefined" id="rotate-x-matrix">
-                        <div class="matrix-label" style="font-size: 14px;">Rotation X Matrix</div>
-                        <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-    
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-3d">0</span>
+          <h3>Perspective Projection in Graphics</h3>
+          <div class="matrices-equations help">
+            <div class="matrix-equation " id="matrices-2d">
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="rotate-x-matrix">
+                  <div class="matrix-label" style="font-size: 14px;">Rotation X Matrix
+                  </div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+        
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
       
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">1</span>
-    
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <span class="big">·</span>
-                    <div id="rotation-matrix-wrapper">
-                      <div class="matrix undefined" id="rotate-y-matrix">
-                        <div class="matrix-label" style="font-size: 14px;">Rotate Y Matrix</div>
-                        <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-    
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-3d">0</span>
-      
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">1</span>
-    
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <span class="big">·</span>
-                    <div id="rotation-matrix-wrapper">
-                      <div class="matrix undefined" id="rotate-z-matrix">
-                        <div class="matrix-label" style="font-size: 14px;">Rotate Z Matrix</div>
-                        <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-    
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-3d">0</span>
-      
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">1</span>
-    
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
-                <div class="matrices-equations explain">
-                  <div class="matrix-equation pers-matrix-equation wide-screen" id="matrices-2d">
-                     <div id="ortho-proj-explain">
-                         <div class="matrix undefined" >
-                           <div class="matrix-label" style="font-size: 14px;">Flattens the 3D points onto the 2D XY plane by setting z to 0</div>
-                           <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                             <span class="limit-dp elem-2d">1</span>
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+              </div>
+                      
+              <span class="big">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="rotate-y-matrix">
+                  <div class="matrix-label" style="font-size: 14px;">Rotate Y Matrix</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+      
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+        
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+      
+                  </div>
+                </div>
+              </div>
+                      
+              <span class="big">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="rotate-z-matrix">
+                  <div class="matrix-label" style="font-size: 14px;">Rotate Z Matrix</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+      
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+        
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+      
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="matrices-equations explain">
+            <div class="matrix-equation pers-matrix-equation wide-screen" id="matrices-2d">
+              <div id="ortho-proj-explain">
+                <div class="matrix undefined" >
+                  <div class="matrix-label" style="font-size: 14px;">Flattens the 3D points onto the 2D XY plane by setting z to 0</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-2d">1</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
          
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">1</span>
-                            </div>
-                         </div>
-                       </div>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
+                  </div>
+                </div>
+              </div>
                        <!-- <span class="big">·</span> -->
-                     <div id="proj-matrix-explain">
-                         <div class="matrix undefined" >
-                           <div class="matrix-label" style="font-size: 14px;">Transforms canonical perspective view frustum into canonical parallel view frustum</div>
-                           <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                             <span class="limit-dp elem-2d">1</span>
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+              <div id="proj-matrix-explain">
+                <div class="matrix undefined" >
+                  <div class="matrix-label" style="font-size: 14px;">Transforms canonical perspective view frustum into canonical parallel view frustum</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-2d">1</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
          
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d"><sup>far</sup>/<sub>far - near</sub></span>
-                             <span class="limit-dp elem-4d">-1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d"><sup>far</sup>/<sub>far - near</sub></span>
+                    <span class="limit-dp elem-4d">-1</span>
        
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d"><sup>near</sup>/<sub>far-near</sub></span>
-                             <span class="limit-dp elem-4d">0</span>
-                            </div>
-                         </div>
-                       </div>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d"><sup>near</sup>/<sub>far-near</sub></span>
+                    <span class="limit-dp elem-4d">0</span>
+                  </div>
+                </div>
+              </div>
                        <!-- <span class="big">·</span> -->
-                     <div id="pers-matrix-explain">
-                         <div class="matrix undefined" >
-                           <div class="matrix-label" style="font-size: 14px;">Transforms perspective view frustum into canonical perspective view frustum</div>
-                           <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                             <span class="limit-dp elem-2d"><sup>1</sup>/<sub>tan(θ<sub>x</sub>/2)</sub></span>
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+              <div id="pers-matrix-explain">
+                <div class="matrix undefined" >
+                  <div class="matrix-label" style="font-size: 14px;">Transforms perspective view frustum into canonical perspective view frustum</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d"><sup>1</sup>/<sub>tan(θ<sub>x</sub>/2)</sub></span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-2d"><sup>1</sup>/<sub>tan(θ<sub>y</sub>/2)</sub></span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d"><sup>1</sup>/<sub>tan(θ<sub>y</sub>/2)</sub></span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
          
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d">1</span>
-                             <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">1</span>
-                            </div>
-                         </div>
-                       </div>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
+                  </div>
+                </div>
+              </div>
                        <!-- <span class="big">·</span> -->
-                     <div id="scale-matrix-explain">
-                         <div class="matrix undefined">
-                           <div class="matrix-label" style="font-size: 14px;">Moves the far clipping plane to<br>z = -1</div>
-                           <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                             <span class="limit-dp elem-2d">-<sup>1</sup>/<sub>far</sub></span>
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+              <div id="scale-matrix-explain">
+                <div class="matrix undefined">
+                  <div class="matrix-label" style="font-size: 14px;">Moves the far clipping plane to<br>z = -1</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">-<sup>1</sup>/<sub>far</sub></span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                             <span class="limit-dp elem-2d">0</span>
-                             <span class="limit-dp elem-2d">-<sup>1</sup>/<sub>far</sub></span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">-<sup>1</sup>/<sub>far</sub></span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
          
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d">0</span>
-                             <span class="limit-dp elem-3d">-<sup>1</sup>/<sub>far</sub></span>
-                             <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">-<sup>1</sup>/<sub>far</sub></span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">0</span>
-                             <span class="limit-dp elem-4d">1</span>
-                            </div>
-                         </div>
-                       </div>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
+                  </div>
+                </div>
+              </div>
                        <!-- <span class="big">·</span> -->
-                     <div id="transformation-explain">
-                       <div class="matrix undefined" >
-                         <div class="matrix-label" style="font-size: 14px;">Transforms 3D world coordinates to camera coordinates</div>
-                         <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                           <span class="limit-dp elem-2d">r<sub>x<sub>1</sub></sub></span>
-                           <span class="limit-dp elem-2d">r<sub>y<sub>1</sub></sub></span>
-                           <span class="limit-dp elem-3d">r<sub>z<sub>1</sub></sub></span>
-                           <span class="limit-dp elem-4d">0</span>
+              <div id="transformation-explain">
+                <div class="matrix undefined" >
+                  <div class="matrix-label" style="font-size: 14px;">Transforms 3D world coordinates to camera coordinates</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">r<sub>x<sub>1</sub></sub></span>
+                    <span class="limit-dp elem-2d">r<sub>y<sub>1</sub></sub></span>
+                    <span class="limit-dp elem-3d">r<sub>z<sub>1</sub></sub></span>
+                    <span class="limit-dp elem-4d">0</span>
      
-                           <span class="limit-dp elem-2d">r<sub>x<sub>2</sub></sub></span>
-                           <span class="limit-dp elem-2d">r<sub>y<sub>2</sub></sub></span>
-                           <span class="limit-dp elem-3d">r<sub>z<sub>2</sub></sub></span>
-                           <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">r<sub>x<sub>2</sub></sub></span>
+                    <span class="limit-dp elem-2d">r<sub>y<sub>2</sub></sub></span>
+                    <span class="limit-dp elem-3d">r<sub>z<sub>2</sub></sub></span>
+                    <span class="limit-dp elem-4d">0</span>
        
-                           <span class="limit-dp elem-3d">r<sub>x<sub>3</sub></sub></span>
-                           <span class="limit-dp elem-3d">r<sub>y<sub>3</sub></sub></span>
-                           <span class="limit-dp elem-3d">r<sub>z<sub>3</sub></sub></span>
-                           <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-3d">r<sub>x<sub>3</sub></sub></span>
+                    <span class="limit-dp elem-3d">r<sub>y<sub>3</sub></sub></span>
+                    <span class="limit-dp elem-3d">r<sub>z<sub>3</sub></sub></span>
+                    <span class="limit-dp elem-4d">0</span>
      
-                           <span class="limit-dp elem-4d">t<sub>x</sub></span>
-                           <span class="limit-dp elem-4d">t<sub>y</sub></span>
-                           <span class="limit-dp elem-4d">t<sub>z</sub></span>
-                           <span class="limit-dp elem-4d">1</span>
-                          </div>
-                       </div>
-                     </div>
+                    <span class="limit-dp elem-4d">t<sub>x</sub></span>
+                    <span class="limit-dp elem-4d">t<sub>y</sub></span>
+                    <span class="limit-dp elem-4d">t<sub>z</sub></span>
+                    <span class="limit-dp elem-4d">1</span>
+                  </div>
+                </div>
+              </div>
                      
-                  </div>
-            <div class="matrices-equations">
-             <div class="matrix-equation pers-matrix-equation wide-screen" id="matrices-2d">
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="ortho-proj">
-                      <button class="matrix-label" id="ortho-button" style="width: 130px; border: none; font-size: 14px;">Orthographic Projection Matrix</button>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+            </div>
+          </div>
+          <div class="matrices-equations">
+            <div class="matrix-equation pers-matrix-equation wide-screen" id="matrices-2d">
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="ortho-proj">
+                  <button class="matrix-label" id="ortho-button" style="width: 130px; border: none; font-size: 14px;">Orthographic Projection Matrix</button>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
   
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
     
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
   
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">1</span>
-                       </div>
-                    </div>
-                  </div>
-                  <span class="big">·</span>
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="proj-matrix">
-                      <button class="matrix-label" id="proj-button" style="width: 100px;border: none;font-size: 14px;">Projection Matrix</button>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-  
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-    
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">2</span>
-                        <span class="limit-dp elem-4d">-1</span>
-  
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">1</span>
-                        <span class="limit-dp elem-4d">0</span>
-                       </div>
-                    </div>
-                  </div>
-                  <span class="big">·</span>
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="pers-matrix">
-                      <button class="matrix-label" id="pers-button" style="width: 100px; border: none;font-size: 14px;">Perspective Matrix</button>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-  
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-    
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
-                        <span class="limit-dp elem-4d">0</span>
-  
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">1</span>
-                       </div>
-                    </div>
-                  </div>
-                  <span class="big">·</span>
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="scale-matrix">
-                      <button class="matrix-label" id="scale-button" style="width: 80px; border: none; font-size: 14px;">Scaling Matrix</button>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-  
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-    
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
-                        <span class="limit-dp elem-4d">0</span>
-  
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">1</span>
-                       </div>
-                    </div>
-                  </div>
-                  <span class="big">·</span>
-                <div id="rotation-matrix-wrapper">
-                  <div class="matrix undefined" id="transformation">
-                    <button class="matrix-label" id="trans-button" style="width: 100px;border: none;font-size: 14px;">Transformation Matrix</button>
-                    <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                      <span class="limit-dp elem-2d">1</span>
-                      <span class="limit-dp elem-2d">0</span>
-                      <span class="limit-dp elem-3d">0</span>
-                      <span class="limit-dp elem-4d">0</span>
-
-                      <span class="limit-dp elem-2d">0</span>
-                      <span class="limit-dp elem-2d">1</span>
-                      <span class="limit-dp elem-3d">0</span>
-                      <span class="limit-dp elem-4d">0</span>
-  
-                      <span class="limit-dp elem-3d">0</span>
-                      <span class="limit-dp elem-3d">0</span>
-                      <span class="limit-dp elem-3d">1</span>
-                      <span class="limit-dp elem-4d">0</span>
-
-                      <span class="limit-dp elem-4d">0</span>
-                      <span class="limit-dp elem-4d">0</span>
-                      <span class="limit-dp elem-4d">0</span>
-                      <span class="limit-dp elem-4d">1</span>
-                     </div>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
                   </div>
                 </div>
-                <span class="equal">=</span>
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="pers-proj">
-                      <div class="matrix-label" style="font-size: 14px;">Perspective Projection Matrix</div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+              </div>
+              <span class="big">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="proj-matrix">
+                  <button class="matrix-label" id="proj-button" style="width: 100px;border: none;font-size: 14px;">Projection Matrix</button>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
   
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
     
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">-1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">2</span>
+                    <span class="limit-dp elem-4d">-1</span>
   
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                       </div>
-                    </div>
-                  </div>
-             </div>
-            
-
-
-
-
-              <!-- <div class="matrix-equation pers-matrix-equation small-screen" id="matrices-2d">
-                <div class="upper-line">
-                  <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="ortho-proj">
-                      <div class="matrix-label" style="font-size: 14px;">
-                        Orthographic Projection Matrix
-                      </div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-      
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">1</span>
-                      </div>
-                   </div>
-                  </div>
-                  <span class="big">·</span>
-                  <div id="rotation-matrix-wrapper">
-                      <div class="matrix undefined" id="proj-matrix">
-                        <div class="matrix-label" style="font-size: 14px;">
-                          Projection Matrix
-                        </div>
-                        <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-      
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">&frac23;</span>
-                          <span class="limit-dp elem-4d">-1</span>
-
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">-&frac13;</span>
-                          <span class="limit-dp elem-4d">0</span>
-                        </div>
-                      </div>
-                    </div>
-                  <span class="big">·</span>
-                  <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="pers-matrix">
-                      <div class="matrix-label" style="font-size: 14px;">
-                        Perspective Matrix
-                      </div>
-                        <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-
-                          <span class="limit-dp elem-2d">0</span>
-                          <span class="limit-dp elem-2d">1</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-      
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">0</span>
-                          <span class="limit-dp elem-3d">1</span>
-                          <span class="limit-dp elem-4d">0</span>
-
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">0</span>
-                          <span class="limit-dp elem-4d">1</span>
-                        </div>
-                    </div>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
+                    <span class="limit-dp elem-4d">0</span>
                   </div>
                 </div>
-                <div class="lower-line">
-                  <span class="big">·</span>
-                  <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="scale-matrix">
-                      <div class="matrix-label" style="font-size: 14px;">
-                        Scaling Matrix
-                      </div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+              </div>
+              <span class="big">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="pers-matrix">
+                  <button class="matrix-label" id="pers-button" style="width: 100px; border: none;font-size: 14px;">Perspective Matrix</button>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+  
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
     
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
-                        <span class="limit-dp elem-4d">0</span>
-
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">1</span>
-                      </div>
-                    </div>
-                  </div>
-                  <span class="big">·</span>
-                  <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="transformation">
-                      <div class="matrix-label" style="font-size: 14px;">
-                        Transformation Matrix
-                      </div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
-                        <span class="limit-dp elem-4d">0</span>
-
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">1</span>
-                      </div>
-                    </div>
-                  </div>
-                  <span class="equal">=</span>
-                  <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="pers-proj">
-                      <div class="matrix-label" style="font-size: 14px;">
-                        Perspective Projection Matrix
-                      </div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-    
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
-                        <span class="limit-dp elem-4d">0</span>
-
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">1</span>
-                      </div>
-                    </div>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+                    <span class="limit-dp elem-4d">0</span>
+  
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
                   </div>
                 </div>
-             </div> -->
-
-
-
-
-
-
-
-              <div class="matrix-equation pers-dot-mapping" id="dot-mapping">
-                
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="pers-proj-map">
-                      <div class="matrix-label" style="font-size: 14px;">Perspective Projection Matrix</div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+              </div>
+              <span class="big">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="scale-matrix">
+                  <button class="matrix-label" id="scale-button" style="width: 80px; border: none; font-size: 14px;">Scaling Matrix</button>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
   
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
     
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-4d">-1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+                    <span class="limit-dp elem-4d">0</span>
   
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                        <span class="limit-dp elem-4d">0</span>
-                       </div>
-                    </div>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
                   </div>
-                  <span class="big map-span">·</span>
+                </div>
+              </div>
+              <span class="big">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="transformation">
+                  <button class="matrix-label" id="trans-button" style="width: 100px;border: none;font-size: 14px;">Transformation Matrix</button>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+  
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+                    <span class="limit-dp elem-4d">0</span>
+
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">1</span>
+                  </div>
+                </div>
+              </div>
+              <span class="equal">=</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="pers-proj">
+                  <div class="matrix-label" style="font-size: 14px;">Perspective Projection Matrix</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+  
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+    
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">-1</span>
+  
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="matrix-equation pers-dot-mapping" id="dot-mapping">
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="pers-proj-map">
+                  <div class="matrix-label" style="font-size: 14px;">Perspective Projection Matrix</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(4, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+  
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+    
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">-1</span>
+  
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                  </div>
+                </div>
+              </div>
+              <span class="big map-span">·</span>
               <div id="rotation-matrix-wrapper">
                 <div class="matrix undefined" id="pers-world-points">
                   <div class="matrix-label" style="font-size: 14px;">World Points</div>
@@ -880,88 +690,86 @@
                     <span class="limit-dp elem-2d">0</span>
                     <span class="limit-dp elem-2d">0</span>
                     <span class="limit-dp elem-2d">1</span>
-                   </div>
+                  </div>
                 </div>
               </div>
             </div>
-            
           </div>
           <p class="note">The coordinates can be inaccurate when the far clipping plane has a very negative z value. </p>
           <input type="button" id='pers-to-cam' value="Show Corresponding Camera Projection Pipeline">
-        
 
 
 
           <div class="matrices-equations-pers-to-cam">
             <div class="matrix-equation cam-matrix-equation" id="matrices-2d">
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="intrinsic-from-pers">
-                      <div class="matrix-label" style="font-size: 14px;">Intrinsic Matrix</div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="intrinsic-from-pers">
+                  <div class="matrix-label" style="font-size: 14px;">Intrinsic Matrix</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(3, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
   
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
     
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
   
-                       </div>
-                    </div>
-                  </div>
-                  
-                  <span class="big">·</span>
-                <div id="rotation-matrix-wrapper">
-                  <div class="matrix undefined" id="extrinsic-from-pers">
-                    <div class="matrix-label" style="font-size: 14px;">Extrinsic Matrix</div>
-                    <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(4, auto);">
-                      <span class="limit-dp elem-2d">1</span>
-                      <span class="limit-dp elem-2d">0</span>
-                      <span class="limit-dp elem-3d">0</span>
-
-                      <span class="limit-dp elem-4d">0</span>
-                      <span class="limit-dp elem-2d">1</span>
-                      <span class="limit-dp elem-2d">0</span>
-
-                      <span class="limit-dp elem-3d">0</span>
-                      <span class="limit-dp elem-4d">0</span>
-                      <span class="limit-dp elem-3d">1</span>
-                      
-                      <span class="limit-dp elem-3d">0</span>
-                      <span class="limit-dp elem-3d">0</span>
-                      <span class="limit-dp elem-4d">0</span>
-
-                     </div>
                   </div>
                 </div>
-                <span class="equal">=</span>
-                <div id="rotation-matrix-wrapper">
-                    <div class="matrix undefined" id="camera-proj-from-pers">
-                      <div class="matrix-label" style="font-size: 14px;">Camera Projection Matrix</div>
-                      <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(4, auto);">
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-  
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">1</span>
-                        <span class="limit-dp elem-3d">0</span>
-  
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">1</span>
-                        
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-2d">0</span>
-                        <span class="limit-dp elem-3d">0</span>
-  
-                       </div>
-                    </div>
+              </div>
+                  
+              <span class="big">·</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="extrinsic-from-pers">
+                  <div class="matrix-label" style="font-size: 14px;">Extrinsic Matrix</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+                      
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+                    <span class="limit-dp elem-4d">0</span>
+
                   </div>
+                </div>
+              </div>
+              <span class="equal">=</span>
+              <div id="rotation-matrix-wrapper">
+                <div class="matrix undefined" id="camera-proj-from-pers">
+                  <div class="matrix-label" style="font-size: 14px;">Camera Projection Matrix</div>
+                  <div class="matrix-elements affine-demo-matrix-elements" style="grid-template: repeat(3, 1fr) / repeat(4, auto);">
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+  
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">1</span>
+                    <span class="limit-dp elem-3d">0</span>
+  
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">1</span>
+                        
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-2d">0</span>
+                    <span class="limit-dp elem-3d">0</span>
+  
+                  </div>
+                </div>
+              </div>
             </div>  
             <p class="pers-to-cam-explain">The extrinsic matrix is the same as the first 3 rows of the transformation matrix, 
               while the intrinsic matrix is the product of the perspective matrix and the scaling matrix except for the 3rd row. </p>
@@ -970,7 +778,7 @@
 
 
 
-        </div>
+          </div>
         
         </div>
         <div class="section-container" id="cam">
@@ -1410,7 +1218,7 @@
                </div>
         </div>
         <p class="cam-to-pers-explain">The transformation matrix is equal to the extrinsic matrix except for their shape. The projection matrix and scaling matrix are not unique, because the clipping points and scaling factors are not taken into account in the intrinsic matrix. The perspective matrix corresponds with the intrinsic matrix. </p>
-      </div>
+      
 
       
       
