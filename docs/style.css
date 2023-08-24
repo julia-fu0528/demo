@@ -102,11 +102,11 @@ body{
   font-size: 17px;
 }
 .slider{
-  height: 10px;
+  height: 4px;
   width: 100px;
   position: relative;
-  margin: 0;
-  padding: 0;
+  margin: 0%;
+  padding: 0%;
   border: 1px solid black;
 }
 .rotation{
@@ -174,11 +174,14 @@ body{
   /* margin-bottom:10px; */
   color:rgb(5, 78, 35);
   font-weight: 625;
+  font-size: 15px;
+  margin: 1%;
 }
 #transX-val, #transY-val, #transZ-val{
   /* margin-bottom: 5px; */
   color:rgb(5, 78, 35);
   font-weight: 625;
+  font-size: 15px;
 }
 .pair{
   margin-left: 15px;
@@ -463,7 +466,9 @@ input[type=text], button{
   font-size: 0.8em;
   width: 55px;
   margin: 5px;
+  cursor: pointer;
 }
+
 input[type=button]{
   margin: 4px;
   margin-left: 3%;
@@ -488,7 +493,7 @@ h4{
 }
 .default-rot{
   font-size: 14px;
-  margin: 0px;
+  margin: 1%;
 }
 /* .small-screen{
   position: relative;
