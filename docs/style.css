@@ -129,7 +129,7 @@ body{
 .generator{
   display: flex;
   flex-direction: column;
-  width: 35%;
+  width: 30%;
   position: relative;
   align-items: center;
   border-top: 1px dashed rgb(68, 48, 3);
@@ -144,12 +144,12 @@ body{
   border-top: 1px dashed rgb(68, 48, 3);;
 }
 .input-intrinsics{
-  width:40%;
+  width:45%;
   border-right: 1px dashed rgb(68, 48, 3);
   border-top: 1px dashed rgb(68, 48, 3);;
 }
 #focal-x, #focal-y{
-  width: 40px;
+  width: 30px;
 }
 .text-inputs{
   /* background:rgb(187, 240, 234); */
