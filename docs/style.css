@@ -129,11 +129,11 @@ body{
 .generator{
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 35%;
   position: relative;
   align-items: center;
   border-top: 1px dashed rgb(68, 48, 3);
-  /* border-left: 1px dashed rgb(68, 48, 3); */
+  border-left: 1px dashed rgb(68, 48, 3);
 }
 #sphere-button, #cube-button, #bunny-button{
   width: 160px;
@@ -144,7 +144,7 @@ body{
   border-top: 1px dashed rgb(68, 48, 3);;
 }
 .input-intrinsics{
-  width:35%;
+  width:40%;
   border-right: 1px dashed rgb(68, 48, 3);
   border-top: 1px dashed rgb(68, 48, 3);;
 }
