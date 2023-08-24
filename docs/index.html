@@ -32,6 +32,23 @@
         <h4 >Global Parameters</h4>
         <div class="slideContainer">
           <div class="text-inputs">
+            <div class="input-intrinsics">
+              <h5> Enter intrinsic parameters for the camera</h5>
+              <div class="clipping">
+                <label for="far-clipping"> Far clipping plane: z = </label><input type="text" id="far-clipping" placeholder="-1" maxlength="10">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="near-clipping">Near clipping plane: z = </label><input type="text" id="near-clipping" placeholder="-0.5" maxlength="10">
+              </div>
+              <div class="focal">
+                <label for="focal-x">Focal length f<sub>x</sub> =  <sup>1</sup>/<sub>tan (<sup>θ<sub>x</sub></sup>/<sub>2</sub>)</sub>= </label><input type="text" id="focal-x" placeholder="1" maxlength="10">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="focal-y">Focal length f<sub>y</sub> =  <sup>1</sup>/<sub>tan (<sup>θ<sub>y</sub></sup>/<sub>2</sub>)</sub>= </label><input type="text" id="focal-y" placeholder="1" maxlength="10">
+              </div>
+              <p class="angle-of-view"><em>θ<sub>x</sub> and θ<sub>y</sub> are the angles of view along the x and y axes</em></p>
+              <p><b class="parameter-name">Skew</b> : s = 0 &nbsp;&nbsp;&nbsp;<b class="parameter-name">Principal point</b> : (x<sub>0</sub>, y<sub>0</sub>) = (0, 0)</p>
+              
+              <input type="button" id='submit-intrinsics' value="Submit">
+            </div>
             <div class="input-points">
               <h5> Enter a set of 3D world points for projection</h5>
               <h6> (The view frustum is in the negative portion of the z axis)</h6>
@@ -58,31 +75,14 @@
               <div class="submit1">
                 <input type="button" id='submit' value="Submit">
               </div>
-              <div class="generator">
-                <input type="button" id='sphere-button' value="Project Sphere">
-                <input type="button" id='cube-button' value="Project Cube">
-                <input type="button" id='bunny-button' value="Hide Bunny">
-              </div>
             </div>
-            <div class="input-intrinsics">
-              <h5> Enter intrinsic parameters for the camera</h5>
-              <div class="far-clipping">
-                <label for="far-clipping"> Far clipping plane: z = </label><input type="text" id="far-clipping" placeholder="-1" maxlength="10">
-              </div>
-              <div class="near-clipping">
-                <label for="near-clipping">Near clipping plane: z = </label><input type="text" id="near-clipping" placeholder="-0.5" maxlength="10">
-              </div>
-              <div class="focal-x">
-                <label for="focal-x">Focal length f<sub>x</sub> =  <sup>1</sup>/<sub>tan (<sup>θ<sub>x</sub></sup>/<sub>2</sub>)</sub>= </label><input type="text" id="focal-x" placeholder="1" maxlength="10">
-              </div>
-              <div class="focal-y">
-                <label for="focal-y">Focal length f<sub>y</sub> =  <sup>1</sup>/<sub>tan (<sup>θ<sub>y</sub></sup>/<sub>2</sub>)</sub>= </label><input type="text" id="focal-y" placeholder="1" maxlength="10">
-              </div>
-              <p class="angle-of-view"><em>θ<sub>x</sub> and θ<sub>y</sub> are the angles of view along the x and y axes</em></p>
-              <p><b class="parameter-name">Skew</b> : s = 0 &nbsp;&nbsp;&nbsp;<b class="parameter-name">Principal point</b> : (x<sub>0</sub>, y<sub>0</sub>) = (0, 0)</p>
-              
-              <input type="button" id='submit-intrinsics' value="Submit">
+            <div class="generator">
+              <h5> Project basic structures onto the screen</h5>
+              <input type="button" class="shape" id='sphere-button' value="Project Sphere">
+              <input type="button" class="shape" id='cube-button' value="Project Cube">
+              <input type="button" class="shape" id='bunny-button' value="Hide Bunny">
             </div>
+            
             <!-- <div class="constants">
               <h4>Default intrinsics: </h4>
               <p><b class="parameter-name">Skew</b> : s = 0</p>

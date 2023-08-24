@@ -119,7 +119,7 @@ body{
   /* width: fit-content;
   max-width: 50%; */
   width: 50%;
-  border-top: 1px dashed rgb(68, 48, 3);;
+  border-top: 1px dashed rgb(68, 48, 3);
 }
 .row{
   display: flex;
@@ -127,18 +127,27 @@ body{
 }
 .generator{
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: column;
+  width: 20%;
+  position: relative;
+  align-items: center;
+  border-top: 1px dashed rgb(68, 48, 3);
+}
+#sphere-button, #cube-button, #bunny-button{
+  width: 160px;
 }
 .input-points{
-  width: 100%;
-  /* border-right: 1px dashed rgb(68, 48, 3); */
+  width: 200%;
+  border-right: 1px dashed rgb(68, 48, 3);
   border-top: 1px dashed rgb(68, 48, 3);;
 }
 .input-intrinsics{
-  width:75%;
-  border-left: 1px dashed rgb(68, 48, 3);
+  width:35%;
+  border-right: 1px dashed rgb(68, 48, 3);
   border-top: 1px dashed rgb(68, 48, 3);;
+}
+#focal-x, #focal-y{
+  width: 40px;
 }
 .text-inputs{
   /* background:rgb(187, 240, 234); */
@@ -457,6 +466,9 @@ input[type=button]{
   margin-left: 3%;
   cursor: pointer;
   font-size: 1.0em;
+}
+input[type=button].shape{
+  margin: 14px;
 }
 .angle-of-view{
   color: rgb(121, 6, 6);
