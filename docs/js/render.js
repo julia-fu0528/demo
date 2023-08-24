@@ -377,9 +377,9 @@ export function buildEventListeners(){
         }
     }
     resetTransButton.onclick = function(){
-      transXVal.innerHTML = "Translation in x direction: 0";
-      transYVal.innerHTML = "Translation in y direction: 0";
-      transZVal.innerHTML = "Translation in z direction: 0";
+      transXVal.innerHTML = "Translate x: 0";
+      transYVal.innerHTML = "Translate y: 0";
+      transZVal.innerHTML = "Translate z: 0";
       translateXSlider.value = 0;
       translateYSlider.value = 0;
       translateZSlider.value = 0;
