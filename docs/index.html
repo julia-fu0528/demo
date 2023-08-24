@@ -28,13 +28,13 @@
     
     <div class="pipeline">
       <div id="both">
-        <h1>Perspective Projection Matrix | Camera Projection Matrix</h1>
-        <h3>Global Parameters</h3>
+        <h2>Perspective Projection Matrix | Camera Projection Matrix</h2>
+        <h4 >Global Parameters</h4>
         <div class="slideContainer">
           <div class="text-inputs">
             <div class="input-points">
-              <h4> Enter a set of 3D world points for projection</h4>
-              <h5> (The view frustum is in the negative portion of the z axis)</h5>
+              <h5> Enter a set of 3D world points for projection</h5>
+              <h6> (The view frustum is in the negative portion of the z axis)</h6>
               <div class="first-point">
                 <label for="first">First point: </label><input type="text" id="first-x" placeholder="Enter x" maxlength="10">
                 <input type="text" id="first-y" placeholder="Enter y" maxlength="10">
@@ -65,7 +65,7 @@
               </div>
             </div>
             <div class="input-intrinsics">
-              <h4> Enter intrinsic parameters for the camera</h4>
+              <h5> Enter intrinsic parameters for the camera</h5>
               <div class="far-clipping">
                 <label for="far-clipping"> Far clipping plane: z = </label><input type="text" id="far-clipping" placeholder="-1" maxlength="10">
               </div>
@@ -94,8 +94,8 @@
           <div class="row">
           
             <div class="rotation">
-              <h4>Step 1: First rotate the points around respective axes</h4>
-              <p class="default-rot">Default rotation order: first z then y then x</p>
+              <h5>Step 1: First rotate the points around respective axes</h5>
+              <h6 class="default-rot">Default rotation order: first z then y then x</h6>
               <div class="slidecontainer" id="rotation-sliders">
                   <div class="pair">
                     <p class="value"><span id='rotateX-val'>Rotate x: 0</span>&#8508;</p>
@@ -128,7 +128,7 @@
               </button>
             </div>
             <div class="translation">
-              <h4>Step 2: Then translate the points in respective directions</h4>
+              <h5>Step 2: Then translate the points in respective directions</h5>
               <div class="slidecontainer" id="translation-sliders">
                   <div class="pair">
                     <p id="transX-val">Translate x </p>

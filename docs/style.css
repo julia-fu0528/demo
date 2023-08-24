@@ -506,18 +506,18 @@ input[type=button]{
   color: rgb(121, 6, 6);
   font-weight: 400;
 }
-h4{
+h5{
   color: blue;
 }
-h3{
+h4{
   margin: 0px;
   z-index: 100;
   padding-bottom: 10px;
 }
-.default-rot{
+/* .default-rot{
   font-size: 15px;
   margin:0px;
-}
+} */
 /* .small-screen{
   position: relative;
   display: flex;
