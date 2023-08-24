@@ -326,13 +326,16 @@ margin-top: 0px;
 .matrix:after {
 content:"";
 font-size:.5rem;
-border:1px solid #000000
+border:1px solid #000000;
+
 }
 .matrix:before {
-border-right:none
+border-right:none;
+
 }
 .matrix:after {
-border-left:none
+border-left:none;
+
 }
 .matrix-label {
   grid-area:a;
@@ -341,6 +344,8 @@ border-left:none
   color:#000000; 
   padding: 0;
   margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
  }
 .matrix-elements {
   margin-top: 0px;
@@ -349,6 +354,7 @@ border-left:none
   place-items:left;
   grid-auto-flow:column;
   gap:.5ch 2ch
+  
 }
 /* #ortho-button, #proj-button, #pers-button, #scale-button{
   text-align: center;
@@ -428,7 +434,7 @@ border-left:none
   position: relative; 
   display: inline-block;
   width: 100%;
-  margin: 1px;
+  margin: 0px;
 }
 /* .can
 
